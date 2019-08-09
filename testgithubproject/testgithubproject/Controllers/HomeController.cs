@@ -16,6 +16,7 @@ namespace testgithubproject.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "I am Ravi.";
 
             return View();
         }
