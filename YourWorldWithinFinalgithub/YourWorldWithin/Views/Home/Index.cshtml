@@ -1,9 +1,8 @@
 ﻿@model YourWorldWithin.Models.Property
 @{
     ViewBag.Title = "Index";
-    Layout = null;
-}
-<!DOCTYPE html>
+    Layout = null;//"~/Views/Shared/_Layout.cshtml";
+}<!DOCTYPE html>
 <html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -11,7 +10,6 @@
     <meta name="description" content="HTML5 and CSS3 Mind Folio Responsive Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>YourWorldWithin</title>
-
     <link rel="stylesheet" href="@Url.Content("~/css/style.css")" media='all'>
     <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" media='all'>
     <link rel="stylesheet" href="@Url.Content("~/css/owl-carousel.css")" media='all'>
@@ -21,63 +19,60 @@
     <link rel="stylesheet" href="@Url.Content("~/css/jquery.scrollbar.css")" media='all'>
     <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" media='all'>
     <link rel="stylesheet" href="@Url.Content("~/css/icomoon.css")" media='all'>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <style>
+        .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+            display: block;
+            height: 600px;
+            min-width: 100%;
+            width: 100%;
+            max-width: 100%;
+            line-height: 1;
+            object-fit: cover;
+        }
 
+        .carousel-caption {
+            position: absolute;
+            right: 15%;
+            top: 35%;
+            bottom: auto;
+            left: 15%;
+            z-index: 10;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+            background: rgba(0,0,0,.5);
+        }
+
+            .carousel-caption h2 {
+                font-size: 50px;
+                line-height: 60px;
+            }
+
+        @@media(max-width:768px) {
+            .carousel-caption h2 {
+                font-size: 24px;
+                line-height: 30px;
+            }
+
+            .carousel-caption h4 {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-
     <!--Wrapper Content Start-->
     <div class="tnit-wrapper">
-
-
-        @*<div class="tnit-popup-outer">
-
-                <div class="modal fade tnit-modal-outer" id="tnit-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="top">
-                                    <h5 class="modal-title"><a href="#">New to site?</a> Creat an Account</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <h3>Register</h3>
-                            </div>
-                            <div class="modal-body">
-
-                                <form method="get" class="tnit-modal-form">
-                                    <div class="inner-holder">
-                                        <label>Username</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="inner-holder">
-                                        <label>Email</label>
-                                        <input type="email">
-                                    </div>
-                                    <div class="inner-holder">
-                                        <label>Password</label>
-                                        <input type="password">
-                                    </div>
-                                    <div class="inner-holder">
-                                        <button class="btn-register" type="submit">Register</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>*@
-        <!--Popup Overlay Outer End-->
-        <!--Header Content Start-->
-        <header class="tnit-header bg-transparent">
+        <header class="tnit-header">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <!--Logo Start-->
                         <strong class="tnit-logo">
-                            <a href="index.html"><img src="@Url.Content("~/images/logo.png")" alt=""></a>
+                            <a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/images/logo.png")" alt=""></a>
                         </strong><!--Logo End-->
                     </div>
                     <div class="col-md-8 col-sm-12 col-xs-12  col-md-offset-1">
@@ -92,7 +87,7 @@
                             </ul> <!--Top Left Box End-->
                             <!--Top Right Start-->
                             <div class="tp-right">
-                                <a href="#" class="btn-account" data-toggle="modal" id="model1" data-target="#tnit-modal">My Account</a>
+                                <a href="#" class="btn-account" data-toggle="modal" data-target="#tnit-modal">My Account</a>
                                 <!--Socail Links start-->
                                 <ul class="tnit-social-links">
                                     <li>
@@ -100,9 +95,6 @@
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
@@ -125,8 +117,17 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="tnit-navbar-collapse">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                                        <li><a href="@Url.Action("Index", "MotivationalVedio")">Motivational Videos</a></li>
+                                        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">Success Videos</a></li>
+                                                <li><a href="javascript:void(0);">Leadership Videos</a></li>
+                                                <li><a href="@Url.Action("Index","MotivationalVedio")">Motivational Videos</a></li>
+                                                <li><a href="javascript:void(0);">Inspirational Videos</a></li>
+                                                <li><a href="javascript:void(0);">Productivity Videos</a></li>
+                                            </ul>
+                                        </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
@@ -136,9 +137,8 @@
                                         </li>
                                         <li><a href="javascript:void(0);">Store</a></li>
                                         <li><a href="javascript:void(0);">Blog</a></li>
-                                        <li><a href="@Url.Action("Index", "About")">About</a></li>
-
-                                        <li><a href="@Url.Action("Index", "Contact")">Contact Me</a></li>
+                                        <li><a href="@Url.Action("Index","About")">About</a></li>
+                                        <li><a href="@Url.Action("Index","Contact")">Contact Me</a></li>
                                     </ul>
                                 </div>
                                 <!-- /.navbar-collapse -->
@@ -161,33 +161,41 @@
                     </div>
                 </div>
             </div>
-        </header><!--Header Content End-->
+        </header>
 
         <div class="tnit-banner">
-            <!--Banner Slider Start-->
-            <div id="tnit-banner-slider" class="owl-carousel">
-                <!--Banner Slider Item-->
-                <div class="slider-item">
-                    <img src="@Url.Content("~/images/girl-run1.jpg")" alt="">
-                    <iframe style="position: absolute; top: 0; left: 0;"
-                            src="https://www.youtube.com/embed/xf4eJgwrUyA?autoplay=1&controls=0&loop=1&playlist=xf4eJgwrUyA&amp;showinfo=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <!--Banner Slider Caption Start-->
-                    <div class="banner-caption">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="top-text">
-                                        <h2>Bring Your Story to Life</h2>
-                                        <h4>The world is but a canvas for our imagination</h4>
-                                        <a href="#" class="btn-appiontment">Work With Us</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--  <img src="images/banner-man-img.png" alt=""> -->
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" data-pause="false">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="@Url.Content("~/images/girl-run1.jpg")" alt="">
+                        <div id="ytbg" data-youtube="https://youtu.be/xf4eJgwrUyA"></div>
+                        <div class="carousel-caption">
+                            <h2>Bring Your Story to Life</h2>
+                            <h4>The world is but a canvas for our imagination</h4>
+                            <a href="#" class="btn-appiontment">Work With Us</a>
                         </div>
-                    </div><!--Banner Slider Caption End-->
-                </div><!--Banner Slider End-->
-            </div><!--Banner Slider End-->
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/images/banner_bg.png")" alt="" class="">
+                        <div class="carousel-caption">
+                            <h2>Get Motivated, Take Action And Change Your World</h2>
+                            <h4>Get Your Free Copy of Our Book Your World Within</h4>
+                            <a href="#" class="btn-appiontment">Special Offer Click Here</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
+
+            </div>
+
             <!--Social Row Start-->
             <div class="tnit-social-row">
                 <div class="container">
@@ -274,37 +282,6 @@
                 </div>
             </section>
             <!--Facts Section Start-->
-            @*<section class="tnit-facts-section tnit-features-section pd-tb70">
-                <div class="container">
-                    <div class="tnit-heading-outer">
-                        <h2>Inspiration on the Go</h2>
-                    </div><!--Heading Outer End-->
-                    <!--Facts Inner Outer Start-->
-                    <div class="facts-inner-outer">
-                        <ul class="tnit-facts-listed">
-                            <li class="facts-item">
-                                <i class="fa fa-spotify" aria-hidden="true"></i>
-                                <div class="tnit-text">
-                                    <a href=""><strong class="tnit-counter">Spotify</strong></a>
-                                </div>
-                            </li>
-                            <li class="facts-item">
-                                <i class="fa fa-apple" aria-hidden="true"></i>
-                                <div class="tnit-text">
-                                    <a href=""><strong class="tnit-counter">ITunes</strong></a>
-                                </div>
-                            </li>
-                            <li class="facts-item">
-                                <i class="fa fa-amazon" aria-hidden="true"></i>
-                                <div class="tnit-text">
-                                    <a href=""><strong class="tnit-counter">Amazon Music</strong></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><!--Facts Inner Outer End-->
-                </div>
-                <h4 class="text-center pt40">Listen to tracks from Your World Within any time, anywhere on any major music distribution platform</h4>
-            </section>*@<!--Facts Section End-->
             <!--About Section Start-->
             <section class="tnit-about-section">
                 <div class="container tnit-container-after">
@@ -336,68 +313,46 @@
                         <h2>Videos <small class="pull-right"><a href="">View More <i class="fa fa-arrow-right"></i></a></small></h2>
                     </div><!--Heading Outer End-->
                     <div class="row">
-                        @if (ViewBag.videolist!=null)
+                        @if (ViewBag.videolist != null)
                         {
-                            foreach (YourWorldWithin.Models.Property item in ViewBag.videolist)
-                            {
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <!--Video Item Start-->
-                                    <div class="tnit-video-item">
-                                        <figure class="video-thumb">
-                                            <video style="width: 262px;height:196px;" src="@Url.Content("~/DataImages/Videos/" + item.VideoFile)" poster="@Url.Action("Images", "DataImages", new { @Id = @item.ImageFile })" controls preload="none"></video>
-                                            @*<video src="@Url.Content("~/DataImages/Videos/"+item.VideoFile)" alt="">*@
-                                            <figcaption class="tnit-caption">
-                                                <div class="bottom-text">
-                                                    <a class="icon-box" href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">
-                                                        <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                                    </a>
+                        foreach (YourWorldWithin.Models.Property item in ViewBag.videolist)
+                        {
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!--Video Item Start-->
+                            <div class="tnit-video-item">
+                                <figure class="video-thumb">
+                                    <video style="width: 262px;height:196px;" src="@Url.Content("~/DataImages/Videos/" + item.VideoFile)" poster="@Url.Action("Images", "DataImages", new { @Id = @item.ImageFile })" controls preload="none"></video>
+                                    @*<video src="@Url.Content("~/DataImages/Videos/"+item.VideoFile)" alt="">*@
+                                    <figcaption class="tnit-caption">
+                                        <div class="bottom-text">
+                                            <a class="icon-box" href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                            </a>
 
-                                                    <ul class="tnit-meta-listed">
-                                                        <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> @item.creationdate</li>
+                                            <ul class="tnit-meta-listed">
+                                                <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> @item.creationdate</li>
 
-                                                    </ul>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                        <div class="tnit-text-outer">
-                                            <h4><a href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">@item.Title</a></h4>
+                                            </ul>
                                         </div>
-                                    </div><!--Video Item End-->
+                                    </figcaption>
+                                </figure>
+                                <div class="tnit-text-outer">
+                                    <h4><a href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">@item.Title</a></h4>
                                 </div>
-                            }
+                            </div><!--Video Item End-->
+                        </div>
+                        }
                         }
                         else
                         {
-                            <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <h4 class="text-center">No Videos Uploaded</h4>
                         </div>
                         }
-                        @*<div class="col-md-3 col-sm-6 col-xs-12">
-                                <!--Video Item Start-->
-                                <div class="tnit-video-item">
-                                    <figure class="video-thumb">
-                                        <img src="@Url.Content("~/images/video-img-01.jpg")" alt="">
-                                        <figcaption class="tnit-caption">
-                                            <div class="bottom-text">
-                                                <a class="icon-box" href="video-detail.html">
-                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                                </a>
-                                                <!--Meta Listed Start-->
-                                                <ul class="tnit-meta-listed">
-                                                    <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> 12 Jun, 2017</li>
-                                                    <li><i class="fa fa-comments-o" aria-hidden="true"></i> 3</li>
-                                                </ul><!--Meta Listed End-->
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                    <div class="tnit-text-outer">
-                                        <h4><a href="video-detail.html">How To Make Better Life</a></h4>
-                                    </div>
-                                </div><!--Video Item End-->
-                            </div>*@
+
 
                     </div>
-            </div>
+                </div>
             </section><!--Video Section End-->
 
 
@@ -405,6 +360,97 @@
 
         </div><!--Main Content End-->
         <!--Footer Content Start-->
+
+        <div class="tnit-popup-outer">
+
+            <!-- Modal Box Start-->
+            <div class="modal fade tnit-modal-outer" id="tnit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="col-md-12">
+
+                            <div class="col-md-1">
+
+                            </div>
+                            <div class="col-md-10">
+                                <div class="modal-header">
+                                    <div class="top">
+                                        <h5 class="modal-title"><a href="#">New to site?</a> Create an Account</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <h3>Register</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <!--Modal Form Start-->
+                                    @using (Html.BeginForm("UserRegister", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
+                                    {
+                                    if (TempData["success"] != null)
+                                    {
+                                    <div class="alert alert-success fade in blue-alert" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>@TempData["success"]</strong>
+                                    </div>
+                                    }
+                                    else if (TempData["error"] != null)
+                                    {
+                                    <div class="alert alert-warning fade in blue-alert" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <strong>@TempData["error"]</strong>
+                                    </div>
+                                    }
+
+                                    <div class="inner-holder">
+                                        <label>Name</label>
+                                        @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name", @required = "required", @class = "form-control input-lg" })
+
+                                    </div>
+                                    <div class="inner-holder">
+                                        <label>Email</label>
+                                        @Html.TextBoxFor(model => model.Email, new { @type = "Email", @placeholder = "Email", @required = "required", @class = "input-lg form-control" })
+
+                                    </div>
+                                    <div class="inner-holder">
+                                        <label>Phone</label>
+                                        @Html.TextBoxFor(model => model.Phone, new { @placeholder = "Phone", @required = "required", @class = "input-lg form-control", @onkeypress = "return isNumber(event,this);" })
+
+                                    </div>
+                                    <div class="inner-holder">
+                                        <label>Password</label>
+                                        @Html.TextBoxFor(model => model.Password, new { @type = "password", @placeholder = "Password", @required = "required", @class = "input-lg form-control", @onchange = "passwordmatch()", @onfocus = "passwordmatch()" })
+
+
+                                    </div>
+                                    <div class="inner-holder">
+                                        <label>Confirm Password</label>
+                                        @Html.TextBoxFor(model => model.ConPassword, new { @type = "Password", @placeholder = "Confirm Password", @required = "required", @class = "input-lg form-control", @onchange = "passwordmatch()", @onfocus = "passwordmatch()" })
+                                        <span style="color:red;font-size:14px;" id="p1"></span>
+                                    </div>
+                                    <div class="inner-holder text-center">
+                                        <div class="col-sm-6">
+                                            <input value="Register" class="btn-register" type="submit" style="margin-top:20px;">
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input value="Close" class="btn-register" data-dismiss="modal" type="button" style="margin-top:20px;background-color:darkseagreen">
+
+                                        </div>
+
+                                    </div>
+                                    }<!--Modal Form End-->
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- Modal Box End-->
+        </div>
+
         <footer class="tnit-footer">
             <!--Footer Top Row start-->
             <div class="tnit-footer-tprow">
@@ -414,9 +460,8 @@
                             <!--Widget About Start-->
                             <div class="widget widget-about">
                                 <strong class="ft-logo">
-                                    <a href="index.html"><img src="@Url.Content("~/images/ft-logo.png")" alt=""></a>
+                                    <a href="@Url.Action("Home","Index")"><img src="@Url.Content("~/images/footer_logo.png")" alt=""></a>
                                 </strong>
-                                <p>Suspendisse nec est nunc. Sed sed sem in libero lacinia suscipit non ac neque. Integer scelerisque tellus est.</p>
                                 <ul class="about-info-listed">
                                     <li>
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -444,7 +489,6 @@
                                     <li><a href="#">Leadership</a></li>
                                     <li><a href="#">Business Training</a></li>
                                     <li><a href="#">Public Speaking</a></li>
-                                    <li><a href="#">Sales Training</a></li>
                                 </ul><!--Widget Listed End-->
                             </div><!--Widget End-->
                         </div>
@@ -458,7 +502,6 @@
                                     <li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
                                     <li><a href="#"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus-square"></i> Google+</a></li>
                                     <li><a href="#"><i class="fa fa-youtube-square"></i> YouTube</a></li>
                                 </ul><!--Widget Listed End-->
                             </div><!--Widget End-->
@@ -478,156 +521,79 @@
                             </div><!--Widget End-->
                         </div>
                     </div>
+                </div>
+            </div><!--Footer Top Row End-->
+            <!--CopyRight Row Start-->
+            <div class="tnit-copyright-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
 
-                </div><!--Footer Top Row End-->
-                <!--CopyRight Row Start-->
-                <div class="tnit-copyright-row">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12 col-xs-12">
-
-                            </div>
-                            <div class="col-md-5 col-sm-6 col-xs-12">
-                                <p>Copyright © 2019 <span class="th-color">YourWorldWithin</span>, Design by <a href="https://www.goigi.com/">GOIGI</a>.</p>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <!--Socail Links start-->
-                                <ul class="tnit-social-links tnit-social-links_v2">
-                                    <li>
-                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                                    </li>
-                                </ul><!--Socail Links End-->
-                            </div>
                         </div>
-                    </div>
-                </div><!--CopyRight Row End-->
-        </footer><!--Footer Content End-->
-        <div class="tnit-popup-outer">
-
-            <!-- Modal Box Start-->
-            <div class="modal fade tnit-modal-outer" id="tnit-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="col-md-12">
-
-                            <div class="col-md-1">
-
-                            </div>
-                            <div class="col-md-10">
-                                <div class="modal-header">
-                                    <div class="top">
-                                        <h5 class="modal-title"><a href="#">New to site?</a> Create an Account</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <h3>Register</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <!--Modal Form Start-->
-                                    @using (Html.BeginForm("UserRegister", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
-                                    {
-                                        if (TempData["success"] != null)
-                                        {
-                                            <div class="alert alert-success fade in blue-alert" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                <strong>@TempData["success"]</strong>
-                                            </div>
-                                        }
-                                        else if (TempData["error"] != null)
-                                        {
-                                            <div class="alert alert-warning fade in blue-alert" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                <strong>@TempData["error"]</strong>
-                                            </div>
-                                        }
-
-                                        <div class="inner-holder">
-                                            <label>Name</label>
-                                            @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name", @required = "required", @class = "form-control input-lg" })
-
-                                        </div>
-                                        <div class="inner-holder">
-                                            <label>Email</label>
-                                            @Html.TextBoxFor(model => model.Email, new { @type = "Email", @placeholder = "Email", @required = "required", @class = "input-lg form-control" })
-
-                                        </div>
-                                        <div class="inner-holder">
-                                            <label>Phone</label>
-                                            @Html.TextBoxFor(model => model.Phone, new { @placeholder = "Phone", @required = "required", @class = "input-lg form-control", @onkeypress = "return isNumber(event,this);" })
-
-                                        </div>
-                                        <div class="inner-holder">
-                                            <label>Password</label>
-                                            @Html.TextBoxFor(model => model.Password, new { @type = "password", @placeholder = "Password", @required = "required", @class = "input-lg form-control", @onchange = "passwordmatch()", @onfocus = "passwordmatch()" })
-
-
-                                        </div>
-                                        <div class="inner-holder">
-                                            <label>Confirm Password</label>
-                                            @Html.TextBoxFor(model => model.ConPassword, new { @type = "Password", @placeholder = "Confirm Password", @required = "required", @class = "input-lg form-control", @onchange = "passwordmatch()", @onfocus = "passwordmatch()" })
-                                            <span style="color:red;font-size:14px;" id="p1"></span>
-                                        </div>
-                                        <div class="inner-holder text-center">
-                                            <div class="col-sm-6">
-                                                <input value="Register" class="btn-register" type="submit" style="margin-top:20px;">
-
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input value="Close" class="btn-register" data-dismiss="modal" type="button" style="margin-top:20px;background-color:darkseagreen">
-
-                                            </div>
-
-                                        </div>
-                                    }<!--Modal Form End-->
-                                </div>
-                            </div>
-
-                            <div class="col-md-1">
-                            </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <p>Copyright © 2019 <span class="th-color">YourWorldWithin</span>, Design by <a href="https://www.goigi.com/">GOIGI</a>.</p>
                         </div>
-
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!--Socail Links start-->
+                            <ul class="tnit-social-links tnit-social-links_v2">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                </li>
+                            </ul><!--Socail Links End-->
+                        </div>
                     </div>
                 </div>
-            </div><!-- Modal Box End-->
-        </div>
-        </div><!--Wrapper Content End-->
-        <!--JQuery Files Start-->
-        <script src="@Url.Content("~/js/jquery-3.1.1.min.js")"></script>
-        <script>
-            $(document).ready(function () {
+            </div><!--CopyRight Row End-->
+        </footer>
+    </div><!--Wrapper Content End-->
+    <!--JQuery Files Start-->
+    <script src="@Url.Content("~/js/jquery-3.1.1.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/html5shiv.js")"></script>
+    <script src="@Url.Content("~/js/owl-carousel.js")"></script>
+    <script src="@Url.Content("~/js/modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/js/waypoints.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.counterup.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.scrollbar.js")"></script>
+    <script src="@Url.Content("~/js/video-player.js")"></script>
+    <script src="@Url.Content("~/js/jquery.circliful.js")"></script>
+    @*<script src="@Url.Content("https://maps.googleapis.com/maps/api/js?key=AIzaSyAPf96eskAPXvkyDLPyYhxSCAKIziCUG_E")"></script>*@
+    @*<script src="@Url.Content("~/js/map.js")"></script>*@
+    <script src="@Url.Content("~/js/script.js")"></script>
+    <script src="@Url.Content("~/js/jquery.youtube-background.js")"></script>
+    <script>
+        $(document).ready(function () {
 
-                if ('@TempData["msg"]' == "1") {
-                    $("#model1").click();
+            if ('@TempData["msg"]' == "1") {
+                $("#model1").click();
 
-                }
-
-            });
-            function passwordmatch() {
-                if ($("#Password").val() != $("#ConfirmPassword").val()) {
-                    $("#p1").html('Confirm Password Not Match');
-                    // $("#btnregister1").prop('disabled', true);
-                }
-                else {
-                    $("#p1").html('');
-                    //$("#btnregister1").prop('disabled', false);;
-                }
             }
 
-        </script>
-        <script type="text/javascript">
+        });
+        function passwordmatch() {
+            if ($("#Password").val() != $("#ConfirmPassword").val()) {
+                $("#p1").html('Confirm Password Not Match');
+                // $("#btnregister1").prop('disabled', true);
+            }
+            else {
+                $("#p1").html('');
+                //$("#btnregister1").prop('disabled', false);;
+            }
+        }
+
+    </script>
+  
+
+    <script type="text/javascript">
 
             function isNumber(evt, element) {
                 var charCode = (evt.which) ? evt.which : event.keyCode
@@ -638,17 +604,15 @@
                 return true;
             }
 
-        </script>
-        <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
-        <script src="@Url.Content("~/js/html5shiv.js")"></script>
-        <script src="@Url.Content("~/js/owl-carousel.js")"></script>
-        <script src="@Url.Content("~/js/modernizr.custom.js")"></script>
-        <script src="@Url.Content("~/https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js")"></script>
-        <script src="@Url.Content("~/js/jquery.counterup.min.js")"></script>
-        <script src="@Url.Content("~/js/jquery.scrollbar.js")"></script>
-        <script src="@Url.Content("~/js/video-player.js")"></script>
-        <script src="@Url.Content("~/js/wow.min.js")"></script>
-        <script src="@Url.Content("~/js/script.js")"></script>
+    </script>
 
-    </body>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('[data-youtube]').youtube_background();
+            });
+    </script>
+
+   
+</body>
+
 </html>

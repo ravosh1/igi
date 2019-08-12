@@ -294,12 +294,12 @@ height:100%;
 .tnit-header{
     float: left;
     width: 100%;
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
     padding-top: 15px;
     z-index: 999;
-	background:rgba(0,0,0,.5);
+	background:#000;
 }
 .tnit-header_v2{
     position: absolute;
@@ -622,7 +622,7 @@ height:100%;
     margin: 0;
 }
 .tnit-navbar-holder .navbar-nav > li{
-    padding: 25px 15px 22px;
+    padding: 25px 20px 22px;
 }
 .tnit-navbar-holder .navbar-nav > li:first-child{
     padding-left: 0;
@@ -644,7 +644,7 @@ height:100%;
 }
 .tnit-navbar-holder .navbar-nav li .dropdown-menu{
     width: 180px;
-    padding: 10px 0;
+    padding: 0;
     margin: 0;
     border-radius: 0;
     border: none;
@@ -1305,7 +1305,7 @@ Innner Css
 Social Row Css
 ---------------------------------------------*/
 .tnit-banner .tnit-social-row{
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     z-index: 99;
@@ -1749,8 +1749,8 @@ Feature Section Css
 .tnit-features-section{
     float: left;
     width: 100%;
-    padding-top: 70px;
-    padding-bottom: 42px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     background-color: #f7f7f7;
 }
 .tnit-features-section .tnit-container-before:before{
@@ -1836,9 +1836,7 @@ Video Section Css
 .tnit-video-item{
     float: left;
     width: 100%;
-    /*margin-bottom: 38px;*/
-     margin-bottom: 0px;
-     min-height: 290px;
+    margin-bottom: 38px;
 }
 .video-thumb{
     float: left;
@@ -1885,7 +1883,7 @@ Video Section Css
 }
 .video-thumb .bottom-text .tnit-meta-listed{
     overflow: hidden;
-    padding: 32px 0 0 12px;
+    padding: 20px 0 0 12px;
 }
 .video-thumb .tnit-meta-listed li{
     font-size: 12px;
@@ -4790,17 +4788,20 @@ Footer Css
     float: left;
     width: 100%;
     position: relative;
-    padding: 35px 40px 43px;
+    padding: 5px 10px 5px;
     margin-bottom: -60px;
     border-left: 10px solid #fff;
     border-right: 10px solid #fff;
+	background-color:#000!important;
 }
 .widget-about .ft-logo{
     display: block;
     margin-bottom: 20px;
+    text-align: center;
 }
 .widget-about .ft-logo img{
-    width:100%;
+    width: 50%;
+    text-align: center;
 }
 .widget-about p{
     font-size: 14px;
@@ -5385,3 +5386,11 @@ a,ul li,img,.slider-item img,.owl-nav [class*="owl-"],.owl-nav .owl-next,.owl-na
 .pt40{
 	padding-top:40px;
 }
+.fa-youtube, .fa-youtube-square{color:#f92020!important}
+.fa-facebook-square, .fa-facebook{color:#1675c6!important}
+.fa-twitter, .fa-twitter-square{color:#33aae2!important}
+.fa-linkedin-square{color:#1c9ad6!important}
+.fa-instagram{background: -webkit-linear-gradient(50deg, #fbb61d, #f00, #e807f7 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;}
+.fa-spotify{color:#14a505!important}
