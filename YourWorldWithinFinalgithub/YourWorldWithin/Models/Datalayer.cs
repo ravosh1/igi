@@ -309,7 +309,22 @@ namespace YourWorldWithin.Models
                 throw;
             }
         }
-        
+
+
+        public DataSet usp_getSubscription(Property p)
+        {
+            try
+            {
+                string[] paname = { "@SubscriptionId" };
+                string[] pvalue = { p.planid };
+                return Ds_Process("usp_getSubscription", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public int usp_setVideo(Property p)
         {
             try

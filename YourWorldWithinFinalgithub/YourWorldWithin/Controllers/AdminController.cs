@@ -41,8 +41,9 @@ namespace YourWorldWithin.Controllers
         }
         public void Fillsubscriptionplan()
         {
+            Property p = new Models.Property();
             List<SelectListItem> subscriptionlist = new List<SelectListItem>();
-            DataSet ds = dl.Inline_Process("select * from [dbo].[M10_Category]");
+            DataSet ds = dl.usp_getSubscription(p);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -146,11 +147,16 @@ namespace YourWorldWithin.Controllers
            
             return View();
         }
+
+
         public ActionResult AddVideo()
         {
+            Fillsubscriptionplan();
             FillVideoCategory();
             return View();
         }
+
+
         [HttpPost]
         public ActionResult AddVideo(Property p, HttpPostedFileBase ImageFile, HttpPostedFileBase VideoFile)
         {
@@ -177,6 +183,7 @@ namespace YourWorldWithin.Controllers
                 {
                     TempData["error"] = "Video Not Uploaded!";
                 }
+                Fillsubscriptionplan();
                 FillVideoCategory();
                 ModelState.Clear();
             }
