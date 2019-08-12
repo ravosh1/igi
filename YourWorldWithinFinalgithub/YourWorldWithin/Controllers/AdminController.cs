@@ -39,7 +39,24 @@ namespace YourWorldWithin.Controllers
 
             ViewBag.VideoCategorylist = new SelectList(Catlist, "Value", "Text");
         }
+        public void Fillsubscriptionplan()
+        {
+            List<SelectListItem> subscriptionlist = new List<SelectListItem>();
+            DataSet ds = dl.Inline_Process("select * from [dbo].[M10_Category]");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    SelectListItem sl = new SelectListItem();
+                    sl.Text = ds.Tables[0].Rows[i]["subscriptionname"].ToString();
+                    sl.Value = ds.Tables[0].Rows[i]["subscriptionid"].ToString();
+                    subscriptionlist.Add(sl);
+                }
+            }
 
+            ViewBag.subscriptionplanlist = new SelectList(subscriptionlist, "Value", "Text");
+        }
+        
         public ActionResult UserList()
         {
             Property p = new Property();

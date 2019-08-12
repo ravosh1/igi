@@ -31,6 +31,8 @@ namespace YourWorldWithin.Models
         [Display(Name = "Title")]
         public string Title { get; set; }
         public string CategoryId { get; set; }
+        public string planid { get; set; }
+        public string plan { get; set; }
         
 
         [Display(Name = "Description")]

@@ -142,7 +142,7 @@
                                     </a>
                                 </li>
 
-                                <li @TempData["Video"]>
+                                <li class="@TempData["Video"]">
                                     <a href="#">
                                         <i class="fa fa-cogs fa-fw"></i>
                                         <span class="menu-title">Video</span>
@@ -154,12 +154,12 @@
                         <span class="submenu-title">Add/Edit Colour</span>
                     </a>
                 </li>*@
-                                        <li @TempData["AddVideo"]>
+                                        <li class="@TempData["AddVideo"]">
                                             <a href="@Url.Action("AddVideo", "Admin")">
                                                 <i class="fa fa-video-camera"  aria-hidden="true"></i><span class="submenu-title">Upload Video</span>
                                             </a>
                                         </li>
-                                        <li @TempData["VideoList"]>
+                                        <li class="@TempData["VideoList"]">
                                             <a href="@Url.Action("VideoList", "Admin")">
                                                 <i class="fa fa-file-video-o" aria-hidden="true"></i><span class="submenu-title">Video List</span>
                                             </a>
