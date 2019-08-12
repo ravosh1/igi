@@ -149,11 +149,7 @@
                                         <span class="fa arrow"></span>
                                     </a>
                                     <ul class="nav nav-second-level">
-                                        @*<li @TempData["Service11"]>
-                    <a href="/Color/Add">
-                        <span class="submenu-title">Add/Edit Colour</span>
-                    </a>
-                </li>*@
+                                        
                                         <li class="@TempData["AddVideo"]">
                                             <a href="@Url.Action("AddVideo", "Admin")">
                                                 <i class="fa fa-video-camera"  aria-hidden="true"></i><span class="submenu-title">Upload Video</span>
@@ -164,35 +160,34 @@
                                                 <i class="fa fa-file-video-o" aria-hidden="true"></i><span class="submenu-title">Video List</span>
                                             </a>
                                         </li>
-                                        @*<li @TempData["boat"]>
-                                            <a href="@Url.Action("Boat", "Admin")">
-                                                <i class="fal fa-ship"></i> <span class="submenu-title">Boat </span>
-                                            </a>
-                                        </li>
-                                        <li @TempData["Electronics"]>
-                                            <a href="@Url.Action("Electronics", "Admin")">
-                                                <i class="fa fa-laptop" aria-hidden="true"></i><span class="submenu-title">Electronics</span>
-                                            </a>
-                                        </li>*@
+                                       
 
 
                                     </ul>
                                 </li>
-                                @*<li @TempData["Volunter"]>
-                                   <a href="#">
-                                       <i class="fa fa-male" aria-hidden="true"></i>
-                                        <span class="menu-title">Volunteer</span>
+                                <li class="@TempData["Audio"]">
+                                    <a href="#">
+                                        <i class="fa fa-cogs fa-fw"></i>
+                                        <span class="menu-title">Audio</span>
                                         <span class="fa arrow"></span>
                                     </a>
                                     <ul class="nav nav-second-level">
-                                        <li @TempData["List"]>
-                                            <a href="@Url.Action("GetVolunterList", "Admin")">
-                                                <span class="submenu-title">List</span>
+
+                                        <li class="@TempData["AddAudio"]">
+                                            <a href="@Url.Action("AddAudio", "Admin")">
+                                                <i class="fa fa-video-camera" aria-hidden="true"></i><span class="submenu-title">Upload Audio</span>
+                                            </a>
+                                        </li>
+                                        <li class="@TempData["AudioList"]">
+                                            <a href="@Url.Action("AudioList", "Admin")">
+                                                <i class="fa fa-file-video-o" aria-hidden="true"></i><span class="submenu-title">Audio List</span>
                                             </a>
                                         </li>
 
+
+
                                     </ul>
-                                </li>*@
+                                </li>
                                 <li class="@TempData["User"]">
                                     <a href="#">
                                         <i class="fa fa-user" aria-hidden="true"></i>

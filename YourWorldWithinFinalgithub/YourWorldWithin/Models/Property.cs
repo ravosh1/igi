@@ -28,6 +28,7 @@ namespace YourWorldWithin.Models
         public string creationdate { get; set; }
         //=== VideoModel
         public string VideoId { get; set; }
+        public string AudioId { get; set; }
         [Display(Name = "Title")]
         public string Title { get; set; }
         public string CategoryId { get; set; }
@@ -43,6 +44,7 @@ namespace YourWorldWithin.Models
 
         [Display(Name = "VideoFile")]
         public string VideoFile { get; set; }
+        public string AudioFile { get; set; }
 
         [Display(Name = "ImageFile")]
         public string ImageFile { get; set; }

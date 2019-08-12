@@ -324,6 +324,7 @@ namespace YourWorldWithin.Models
                 throw;
             }
         }
+        
 
         public int usp_setVideo(Property p)
         {
@@ -333,6 +334,21 @@ namespace YourWorldWithin.Models
                 , "@Description", "@Tags","@VideoFile", "@ImageFile", "@CategoryId","@SubscriptionId"};
                 string[] pvalue = { p.VideoId, p.Title, p.Description, p.Tags, p.VideoFile, p.ImageFile, p.CategoryId,p.planid };
                 return Int_Process("usp_setVideo", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int usp_setAudio(Property p)
+        {
+            try
+            {
+                string[] paname = { "@AudioId", "@Title"
+                , "@Description", "@Tags","@AudioFile", "@ImageFile", "@CategoryId","@SubscriptionId"};
+                string[] pvalue = { p.AudioId, p.Title, p.Description, p.Tags, p.AudioFile, p.ImageFile, p.CategoryId, p.planid };
+                return Int_Process("usp_setAudio", paname, pvalue);
             }
             catch (Exception ex)
             {

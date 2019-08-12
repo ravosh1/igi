@@ -683,6 +683,7 @@
     <Content Include="Content\avatar.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\defaultaudio.gif" />
     <Content Include="Content\defaultvideo.png" />
     <Content Include="css\animate.css" />
     <Content Include="css\bootstrap.css" />
@@ -978,6 +979,8 @@
     <Content Include="Views\Admin\EditVideo.cshtml" />
     <Content Include="Views\Admin\UserList.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AddAudio.cshtml" />
+    <Content Include="Views\Admin\AudioList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

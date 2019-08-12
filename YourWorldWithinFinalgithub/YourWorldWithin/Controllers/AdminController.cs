@@ -201,6 +201,9 @@ namespace YourWorldWithin.Controllers
             return View();
 
         }
+
+
+
         [HttpPost]
         public ActionResult EditVideo(string Id, Property p, HttpPostedFileBase ImageFile, HttpPostedFileBase VideoFile)
         {
@@ -241,6 +244,84 @@ namespace YourWorldWithin.Controllers
         }
 
 
+        public ActionResult AudioList()
+        {
+            Property p = new Property();
+            List<Property> plist = new List<Property>();
+            DataSet ds = dl.usp_getVideo(p);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Property pp = new Property();
+                    pp.VideoId = ds.Tables[0].Rows[i]["videoid"].ToString();
+                    pp.Title = ds.Tables[0].Rows[i]["Title"].ToString();
+                    pp.Description = ds.Tables[0].Rows[i]["Description"].ToString();
+                    pp.Tags = ds.Tables[0].Rows[i]["Tags"].ToString();
+                    pp.VideoFile = ds.Tables[0].Rows[i]["VideoFile"].ToString();
+                    pp.ImageFile = ds.Tables[0].Rows[i]["ImageFile"].ToString();
+                    pp.creationdate = ds.Tables[0].Rows[i]["createdatetime"].ToString();
+                    pp.CategoryId = ds.Tables[0].Rows[i]["Category"].ToString();
+
+                    plist.Add(pp);
+                }
+
+                ViewBag.videolist = plist;
+            }
+
+
+            return View();
+        }
+
+
+        public ActionResult AddAudio()
+        {
+            Fillsubscriptionplan();
+            FillVideoCategory();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddAudio(Property p, HttpPostedFileBase ImageFile, HttpPostedFileBase AudioFile)
+        {
+            FillVideoCategory();
+            Fillsubscriptionplan();
+            string Image = "", Audio = "";
+            try
+            {
+                if (ImageFile != null)
+                {
+                    Image = dl.NewSaveSingleImages("~/DataImages/Images/", ImageFile, Image);
+                }
+                if (AudioFile != null)
+                {
+                    Audio = dl.NewSaveSingleImages("~/DataImages/Audio/", AudioFile, Image);
+                }
+                p.ImageFile = Image;
+                p.AudioFile = Audio;
+                int i = 0;
+                i = dl.usp_setAudio(p);
+                if (i > 0)
+                {
+                    TempData["success"] = "Audio Uploaded Successfully..";
+                }
+                else
+                {
+                    TempData["error"] = "Audio Not Uploaded!";
+                }
+
+                ModelState.Clear();
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Audio Not Uploaded!";
+            }
+
+            return View();
+
+        }
 
 
     }
