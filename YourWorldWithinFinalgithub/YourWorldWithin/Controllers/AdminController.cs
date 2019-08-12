@@ -160,6 +160,8 @@ namespace YourWorldWithin.Controllers
         [HttpPost]
         public ActionResult AddVideo(Property p, HttpPostedFileBase ImageFile, HttpPostedFileBase VideoFile)
         {
+            FillVideoCategory();
+            Fillsubscriptionplan();
             string Image = "", Video = "";
             try
             {
@@ -183,8 +185,7 @@ namespace YourWorldWithin.Controllers
                 {
                     TempData["error"] = "Video Not Uploaded!";
                 }
-                Fillsubscriptionplan();
-                FillVideoCategory();
+             
                 ModelState.Clear();
             }
             catch (Exception ex)

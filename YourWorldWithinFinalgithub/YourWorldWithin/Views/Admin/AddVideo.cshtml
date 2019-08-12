@@ -28,14 +28,14 @@
                             {
                                 <div class="alert alert-success fade in blue-alert" role="alert">
                                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                    <strong>@TempData["success"]</strong>
+                                    <strong class="text-success">@TempData["success"]</strong>
                                 </div>
                             }
                             else if (TempData["error"] != null)
                             {
                                 <div class="alert alert-warning fade in blue-alert" role="alert">
                                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                    <strong>@TempData["error"]</strong>
+                                    <strong class="text-warning">@TempData["error"]</strong>
                                 </div>
                             }
                             <div class="row">

@@ -330,8 +330,8 @@ namespace YourWorldWithin.Models
             try
             {
                 string[] paname = { "@VideoId", "@Title"
-                , "@Description", "@Tags","@VideoFile", "@ImageFile", "@CategoryId"};
-                string[] pvalue = { p.VideoId, p.Title, p.Description, p.Tags, p.VideoFile, p.ImageFile, p.CategoryId };
+                , "@Description", "@Tags","@VideoFile", "@ImageFile", "@CategoryId","@SubscriptionId"};
+                string[] pvalue = { p.VideoId, p.Title, p.Description, p.Tags, p.VideoFile, p.ImageFile, p.CategoryId,p.planid };
                 return Int_Process("usp_setVideo", paname, pvalue);
             }
             catch (Exception ex)
