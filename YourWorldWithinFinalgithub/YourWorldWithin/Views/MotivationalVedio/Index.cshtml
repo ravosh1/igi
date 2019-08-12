@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Inner Banner Content Start-->
+<div class="tnit-inner-banner tnit-banner-image_v2">
+    <div class="container">
+        <h2>Motivational Videos</h2>
+        <!--BreadCrumb Listed Start-->
+        <ul class="breadcrumb tnit-breadcrumb-holder">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="breadcrumb-item active">Motivational Videos</li>
+        </ul><!--BreadCrumb Listed End-->
+    </div>
+</div><!--Inner Banner Content End-->
+<!--Main Content Start-->
+<div class="tnit-main-content">
+    <!--Video Section Start-->
+    <section class="tnit-video-section tnit-video-section_v2 pd-tb70">
+        <div class="container">
+            <!--Inner Video Outer Start-->
+            <div class="tnit-video-inner-outer">
+                <!--Heading Outer start-->
+                <div class="row" id="video">
+                    @if (ViewBag.videolist!=null)
+                    {
+                    foreach (YourWorldWithin.Models.Property item in ViewBag.videolist)
+                    {
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!--Video Item Start-->
+                            <div class="tnit-video-item">
+                                <figure class="video-thumb">
+                                    <video style="width: 262px;height:196px;" src="@Url.Content("~/DataImages/Videos/" + item.VideoFile)" poster="@Url.Action("Images", "DataImages", new { @Id = @item.ImageFile })" controls preload="none"></video>
+                                    @*<video src="@Url.Content("~/DataImages/Videos/"+item.VideoFile)" alt="">*@
+                                    <figcaption class="tnit-caption">
+                                        <div class="bottom-text">
+                                            <a class="icon-box" href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                            </a>
+                                            
+                                            <ul class="tnit-meta-listed">
+                                                <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> @item.creationdate</li>
+                                               
+                                            </ul>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <div class="tnit-text-outer">
+                                    <h4><a href="@Url.Action("MVDetails", "MotivationalVedio", new { @Id = item.VideoId })">@item.Title</a></h4>
+                                </div>
+                            </div><!--Video Item End-->
+                        </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <h4 class="text-center">No Videos Uploaded</h4>
+                            </div>
+                            }
+                            <div id='pagetoken'></div>
+
+                        </div>
+                <button id="btn" class="btn btn-success text-right btn-lg" style="display:none;">Load More</button>
+            </div><!--Inner Video Outer End-->
+        </div>
+    </section><!--Video Section End-->
+
+</div><!--Main Content End-->
+@section scripts{
+    <script>
+        var APIkey = "AIzaSyAVQ8D4ep3jggt5IEOhMRMUUXTt0VW61Bc"; //"AIzaSyAVQ8D4ep3jggt5IEOhMRMUUXTt0VW61Bc"; //"AIzaSyCqhjgrPTPSOFyLyos5gfN47TJ0HnNA_LA";
+        var ChannelId = "UCZSFzP3302RUCqPNXFGlVFw";//"UCdWmvXgnlHKhRQnqLV8e2Fg";//"UCZSFzP3302RUCqPNXFGlVFw";//"UCdWmvXgnlHKhRQnqLV8e2Fg";
+   
+        //"UUpRmvjdu3ixew5ahydZ67uA";
+   
+        //"UUpRmvjdu3ixew5ahydZ67uA";
+        //$(document).ready(function()
+        //{
+        //    var i = 0;
+        //    var titles = '';
+        
+        //        var nextPageToken = "";
+        //        var url = "";
+        //        var d0 = "AEIMQUYcgkosw048"; 
+        //        var d1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //        var d2 = d1;
+        //        var d1c = 0;
+        //        var d2c = 0;
+        //        var overflowSuffix = "Q";
+        //        var direction = "AA";
+        //        var d2OverflowCounter = 0;
+        //        var pageSize = 5;
+        //        var maxsize = 300;
+
+        //        //for (i = 0; i < maxsize; i++) {
+        //        //    if (i % pageSize == 0)
+        //        //    {
+        //                nextPageToken = "C" + d1.charAt((d1c / d0.length) % d1.length) + d0.charAt(i % d0.length) + overflowSuffix + direction;
+        //                var videos = '';
+        //                $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + APIkey + '&channelId=' + ChannelId + '&part=snippet,id&order=date&maxResults=' + pageSize + '', function (data) {
+        //                    //var nextPageToken=data.nextPageToken;
+        //                    //var totalResults = data.pageInfo.totalResults;
+                          
+
+        //                    $.each(data.items, function (i, item) {
+        //                        var videodate = item.snippet.publishedAt; // date time published
+        //                        var newdate = new Date(Date.parse((videodate + " (ISO 8601)").replace(/ *\(.*\)/, "")));
+        //                        var min = newdate.getMinutes();
+        //                        if (min < 10) {
+        //                            min = "0" + min;
+        //                        }
+        //                        if (newdate.getHours() > 12) {
+        //                            newdate = newdate.getMonth() + 1 + "/" + newdate.getDate() + "/" + newdate.getFullYear() + " " + (newdate.getHours() - 12) + ":" + min + " PM";
+        //                        } else if (newdate.getHours() == 12) {
+        //                            newdate = newdate.getMonth() + 1 + "/" + newdate.getDate() + "/" + newdate.getFullYear() + " " + newdate.getHours() + ":" + min + " PM";
+        //                        } else {
+        //                            newdate = newdate.getMonth() + 1 + "/" + newdate.getDate() + "/" + newdate.getFullYear() + " " + newdate.getHours() + ":" + min + " AM";
+        //                        }
+        //                        if (typeof (item) != 'undefined' || typeof (item) != null || typeof (item) != '') {
+        //                            // var url2 ="https://i.ytimg.com/vi/BC9QqpHTUrM/default.jpg";
+        //                            // var url = "https://www.youtube.com/embed/" + item.contentDetails.videoId;
+        //                            //var url2 = "https://i.ytimg.com/vi/" + item.id.videoId + "/maxresdefault.jpg";
+        //                            var url2 = item.snippet.thumbnails.high.url;
+        //                            var videoid = item.id.videoId;
+        //                            videos += '<div class="col-md-3 col-sm-6 col-xs-12">';
+        //                            videos += '<div class="tnit-video-item">';
+        //                            videos += '<figure class="video-thumb">';
+        //                            videos += '<img src="' + url2 + '" alt="">';
+        //                            videos += '<figcaption class="tnit-caption">';
+        //                            videos += '<div class="bottom-text">';
+        //                            videos += '<a class="icon-box">';
+        //                            videos += '<i class="fa fa-play-circle" aria-hidden="true"></i>';
+        //                            videos += '</a>';
+
+        //                            videos += '<ul class="tnit-meta-listed">';
+        //                            videos += '<li style="font-size:13px;"><i class="fa fa-calendar-minus-o" aria-hidden="true" ></i>' + newdate + '</li>';
+        //                            videos += '<li><i class="fa fa-comments-o" aria-hidden="true"></i> 3</li>';
+        //                            videos += '</ul>';
+
+        //                            videos += '</div>';
+        //                            videos += '</figcaption>';
+        //                            videos += '</figure>';
+        //                            videos += '<div class="tnit-text-outer">';
+        //                            videos += '<h4><a href="/MVDetails/MotivationalVedio/"' + videoid + '"">"' + item.snippet.title + '"</a></h4>';
+        //                            videos += '</div>';
+        //                            videos += '</div>';
+        //                            videos += '</div>';
+        //                        }
+        //                        //videos += "<div style='width:50; height:100;float:left;margin:5px;font-size:20px;border:2px solid black;'><h4>" + item.snippet.title + "</h4><iframe width='50' height='100' src='" + url + "' frameborder='0'></iframe>";
+        //                        //videos += "<h5>" + item.snippet.description + "</h5>";
+
+        //                        //$.getJSON('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ item.contentDetails.videoId+'&key='+APIkey+'', function (data1) {
+        //                        //    $.each(data1.items, function (i, item1) {
+        //                        //       // alert(item1.statistics.viewCount);
+        //                        //        videos += "<h5>viewCount:" + item1.statistics.viewCount + " ";
+        //                        //        videos += "likeCount:" + item1.statistics.likeCount + "</h5>";
+        //                        //        console.log("<h5>viewCount:" + item1.statistics.viewCount + " "+
+        //                        //        "likeCount:" + item1.statistics.likeCount + "</h5>");
+        //                        //    });
+
+        //                        //});
+        //                        $("#video").html(videos);
+        //                    });
+
+        //                });
+        //        //    }
+        //        //    if (++d1c % (1 << 8) == 0) d1c = 1 << 7;
+        //        //    if (++d2c % (1 << 7) == 0) overflowSuffix = d2.charAt(++d2OverflowCounter) + "E";
+        //        //}
+
+        //    });
+        
+        function abc(url1) {
+             var videos = '';
+            $.getJSON(url1, function (data) {
+                //var nextPageToken=data.nextPageToken;
+                //var totalResults = data.pageInfo.totalResults;
+               
+                $.each(data.items, function (i, item) {
+                    if (typeof (item) != 'undefined' || typeof (item) != null || typeof (item) != '') {
+                        // var url2 ="https://i.ytimg.com/vi/BC9QqpHTUrM/default.jpg";
+                        // var url = "https://www.youtube.com/embed/" + item.contentDetails.videoId;
+                        //var url2 = "https://i.ytimg.com/vi/" + item.id.videoId + "/maxresdefault.jpg";
+                                              
+                        var url2 = item.snippet.thumbnails.high.url;
+                        videos += '<div class="col-md-3 col-sm-6 col-xs-12">';
+                        videos += '<div class="tnit-video-item">';
+                        videos += '<figure class="video-thumb">';
+                        videos += '<img src="' + url2 + '" alt="">';
+                        videos += '<figcaption class="tnit-caption">';
+                        videos += '<div class="bottom-text">';
+                        videos += '<a class="icon-box" href="@Url.Action("MVDetails","MotivationalVedio")">';
+                        videos += '<i class="fa fa-play-circle" aria-hidden="true"></i>';
+                        videos += '</a>';
+
+                        videos += '<ul class="tnit-meta-listed">';
+                        videos += '<li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i>"' + item.snippet.publishedAt + '"</li>';
+                        videos += '<li><i class="fa fa-comments-o" aria-hidden="true"></i> 3</li>';
+                        videos += '</ul>';
+
+                        videos += '</div>';
+                        videos += '</figcaption>';
+                        videos += '</figure>';
+                        videos += '<div class="tnit-text-outer">';
+                        videos += '<h4><a href="~/MVDetails/MotivationalVedio/"'+videoid+'">"' + item.snippet.title + '"</a></h4>';
+                        videos += '</div>';
+                        videos += '</div>';
+                        videos += '</div>';
+                    }
+                    //videos += "<div style='width:50; height:100;float:left;margin:5px;font-size:20px;border:2px solid black;'><h4>" + item.snippet.title + "</h4><iframe width='50' height='100' src='" + url + "' frameborder='0'></iframe>";
+                    //videos += "<h5>" + item.snippet.description + "</h5>";
+
+                    //$.getJSON('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ item.contentDetails.videoId+'&key='+APIkey+'', function (data1) {
+                    //    $.each(data1.items, function (i, item1) {
+                    //       // alert(item1.statistics.viewCount);
+                    //        videos += "<h5>viewCount:" + item1.statistics.viewCount + " ";
+                    //        videos += "likeCount:" + item1.statistics.likeCount + "</h5>";
+                    //        console.log("<h5>viewCount:" + item1.statistics.viewCount + " "+
+                    //        "likeCount:" + item1.statistics.likeCount + "</h5>");
+                    //    });
+
+                    //});
+                    $("#video").html(videos);
+                });
+
+            });
+        }
+      
+        function getvideo(videoid)
+        {
+            window.Location.href = '/MVDetails/MotivationalVedio/'+videoid;
+        }
+    </script>
+    }

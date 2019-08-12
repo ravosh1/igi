@@ -1,0 +1,550 @@
+﻿@model YourWorldWithin.Models.Property
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="HTML5 and CSS3 Mind Folio Responsive Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YourWorldWithin</title>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/owl-carousel.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/theme-color.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/animate.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/jquery.scrollbar.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" media='all'>
+    <link rel="stylesheet" href="@Url.Content("~/css/icomoon.css")" media='all'>
+
+</head>
+<body>
+
+    <!--Wrapper Content Start-->
+    <div class="tnit-wrapper">
+        <div class="tnit-popup-outer">
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success fade in blue-alert" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong>@TempData["success"]</strong>
+                </div>
+            }
+            else if (TempData["error"] != null)
+            {
+                <div class="alert alert-warning fade in blue-alert" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong>@TempData["error"]</strong>
+                </div>
+            }
+            <!-- Modal Box Start-->
+            <div class="modal fade tnit-modal-outer" id="tnit-modallogin" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="col-md-12" style="min-height:350px;">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-10">
+                                <div class="modal-header">
+                                    <div class="top">
+                                        <h5 class="modal-title">New to site? <a href="#" data-toggle="modal" id="model1" data-target="#tnit-modal" data-dismiss="modal">Register Here</a></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <h3>Login</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <!--Modal Form Start-->
+                                    @using (Html.BeginForm("UserLogin", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
+                                    {
+                                        
+                                        <div class="inner-holder">
+                                            <label>Email</label>
+                                            @Html.TextBoxFor(model => model.Email, new { @type = "Email", @placeholder = "Email", @required = "required", @class = "input-lg form-control" })
+
+                                        </div>                                       
+                                        <div class="inner-holder">
+                                            <label>Password</label>
+                                            @Html.TextBoxFor(model => model.Password, new { @type = "password", @placeholder = "Password", @required = "required", @class = "input-lg form-control"})
+
+
+                                        </div>
+                                       
+                                        <div class="inner-holder text-center">
+                                            <div class="col-sm-6">
+                                                <input value="Login" id="btnregister1" class="btn-register" type="submit" style="margin-top:20px;">
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input value="Close" class="btn-register" data-dismiss="modal" type="button" style="margin-top:20px;background-color:darkseagreen">
+
+                                            </div>
+                                        </div>
+                                    }<!--Modal Form End-->
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- Modal Box End-->
+        </div>
+        <!--Popup Overlay Outer Start-->
+        <div class="tnit-popup-outer">
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success fade in blue-alert" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong>@TempData["success"]</strong>
+                </div>
+            }
+            else if (TempData["error"] != null)
+            {
+                <div class="alert alert-warning fade in blue-alert" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong>@TempData["error"]</strong>
+                </div>
+            }
+            <!-- Modal Box Start-->
+            <div class="modal fade tnit-modal-outer" id="tnit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="col-md-12">
+                          <div class="col-md-1">
+                          </div>
+                          <div class="col-md-10">
+                              <div class="modal-header">
+                                  <div class="top">
+                                      <h5 class="modal-title"><a href="#">New to site?</a> Create an Account</h5>
+                                      <h5 class="modal-title">Already Have An Account?<a href="#" style="color:green;font-weight:bold;" data-toggle="modal" id="model2" data-target="#tnit-modallogin" data-dismiss="modal">Login Here</a></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <h3>Register</h3>
+                              </div>
+                              <div class="modal-body">
+                                  <!--Modal Form Start-->
+                                  @using (Html.BeginForm("UserRegister", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
+                                  {
+                                      <div class="inner-holder">
+                                          <label>Name</label>
+                                          @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name", @required = "required", @class = "form-control input-lg" })
+
+                                      </div>
+                                      <div class="inner-holder">
+                                          <label>Email</label>
+                                          @Html.TextBoxFor(model => model.Email, new { @type = "Email", @placeholder = "Email", @required = "required", @class = "input-lg form-control" })
+
+                                      </div>
+                                      <div class="inner-holder">
+                                          <label>Phone</label>
+                                          @Html.TextBoxFor(model => model.Phone, new { @placeholder = "Phone", @required = "required", @class = "input-lg form-control", @onkeypress = "return isNumber(event,this);" })
+
+
+                                      </div>
+                                      <div class="inner-holder">
+                                          <label>Password</label>
+                                          @Html.TextBoxFor(model => model.Password, new { @type = "password", @placeholder = "Password", @required = "required", @class = "input-lg form-control",@id= "Password",@onchange= "passwordmatch()", @onfocus = "passwordmatch()" })
+
+
+                                      </div>
+                                      <div class="inner-holder">
+                                          <label>Confirm Password</label>
+                                          @Html.TextBoxFor(model => model.ConPassword, new { @type = "Password", @placeholder = "Confirm Password", @required = "required", @class = "input-lg form-control", @id = "ConfirmPassword", @onchange = "passwordmatch()", @onfocus = "passwordmatch()" })
+                                         <span style="color:red;font-size:14px;" id="p1"></span>
+                                      </div>
+                                      <div class="inner-holder text-center">
+                                          <div class="col-sm-6">
+                                              <input value="Register" id="btnregister1" class="btn-register" type="submit" style="margin-top:20px;">
+
+                                          </div>
+                                          <div class="col-sm-6">
+                                              <input value="Close" class="btn-register" data-dismiss="modal" type="button" style="margin-top:20px;background-color:darkseagreen">
+
+                                          </div>
+                                      </div>
+                                  }<!--Modal Form End-->
+                              </div>
+                          </div>
+                             
+                          <div class="col-md-1">
+                          </div>
+                          </div>
+
+                    </div>
+                </div>
+            </div><!-- Modal Box End-->
+        </div><!--Popup Overlay Outer End-->
+        <!--Header Content Start-->
+        <header class="tnit-header tnit-inner-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <!--Logo Start-->
+                        <strong class="tnit-logo">
+                            <a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/images/logo.png")" alt=""></a>
+                        </strong><!--Logo End-->
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-1">
+                        <!--Topbar content Start-->
+                        <div class="tnit-topbar-holder">
+                            <!--Top Left Box Start-->
+                            <ul class="tp-left-listed">
+                                <li><i class="fa fa-phone" aria-hidden="true"></i> +00 123 456 789</li>
+                                <li>
+                                    <a href="mailto:info@yourworldwithin.com"><i class="fa fa-envelope" aria-hidden="true"></i> info@yourworldwithin.com</a>
+                                </li>
+                            </ul> <!--Top Left Box End-->
+                            <!--Top Right Start-->
+                            <div class="tp-right">
+                                <a href="#" class="btn-account" data-toggle="modal" id="model1" data-target="#tnit-modal">My Account</a>
+                                <!--Socail Links start-->
+                                <ul class="tnit-social-links">
+                                    <li>
+                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul><!--Socail Links End-->
+                            </div>
+                        </div>
+                        <!--Topbar content End-->
+                        <!--Nav Holder Start-->
+                        <div class="tnit-navbar-holder">
+
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tnit-navbar-collapse" aria-expanded="false"> <span class="sr-only">Menu</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="tnit-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                        <li><a href="@Url.Action("Index","MotivationalVedio")">Motivational Videos</a></li>
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">Video Marketing</a></li>
+                                                <li><a href="javascript:void(0);">Hire Eddie to Speak</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0);">Store</a></li>
+                                        <li><a href="javascript:void(0);">Blog</a></li>
+                                        <li><a href="@Url.Action("Index","About")">About</a></li>
+                                        <li><a href="@Url.Action("Index","Contact")">Contact Me</a></li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </nav>
+                            <!--Nav Right Start-->
+                            <ul class="tnit-nav-right">
+                                <li class="tnit-search-box">
+                                    <a href="#" id="trigger-tnit-search"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <!-- Search Form Outer Start-->
+                                    <form method="get" class="tnit-search-form1">
+                                        <input type="text" placeholder="Type your keywords">
+                                        <button class="btn-submit" type="submit">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </form><!-- Search Form Outer End-->
+                                </li>
+                            </ul>
+                            <!--Nav Right End-->
+                        </div><!--Nav Holder End-->
+                    </div>
+                </div>
+            </div>
+        </header><!--Header Content End-->
+
+        @RenderBody()
+        <footer class="tnit-footer">
+            <!--Footer Top Row start-->
+            <div class="tnit-footer-tprow">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <!--Widget About Start-->
+                            <div class="widget widget-about">
+                                <strong class="ft-logo">
+                                    <a href="index.html"><img src="@Url.Content("~/images/footer_logo.png")" alt=""></a>
+                                </strong>
+                                <ul class="about-info-listed">
+                                    <li>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        9311 Sherman Ave. Groton,  CT 06340
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <a href="tel:+00123456789">+00 123 456 789</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <a href="mailto:info@yourworldwithin.com">info@yourworldwithin.com</a>
+                                    </li>
+                                </ul>
+                            </div><!--Widget About End-->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget">
+                                <h4>Services</h4>
+                                <!--Widget Listed Start-->
+                                <ul class="widget-listed">
+                                    <li><a href="#">Time Management</a></li>
+                                    <li><a href="#">Personal Development</a></li>
+                                    <li><a href="#">Leadership</a></li>
+                                    <li><a href="#">Business Training</a></li>
+                                    <li><a href="#">Public Speaking</a></li>
+                                </ul><!--Widget Listed End-->
+                            </div><!--Widget End-->
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget">
+                                <h4>Social Links</h4>
+                                <!--Widget Listed Start-->
+                                <ul class="widget-listed">
+                                    <li><a href="#"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+                                    <li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
+                                    <li><a href="#"><i class="fa fa-youtube-square"></i> YouTube</a></li>
+                                </ul><!--Widget Listed End-->
+                            </div><!--Widget End-->
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget widget-appointment">
+                                <h4>Subscribe Us</h4>
+                                <form method="get" class="tnit-appointment-form">
+                                    <div class="inner-holder">
+                                        <input type="email" placeholder="Enter Your Mail  ID">
+                                    </div>
+                                    <div class="inner-holder">
+                                        <button class="btn-submit" type="submit">SUBSCRIBE</button>
+                                    </div>
+                                </form>
+                            </div><!--Widget End-->
+                        </div>
+                    </div>
+                </div>
+            </div><!--Footer Top Row End-->
+            <!--CopyRight Row Start-->
+            <div class="tnit-copyright-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <p>Copyright © 2019 <span class="th-color">YourWorldWithin</span>, Design by <a href="https://www.goigi.com/">GOIGI</a>.</p>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!--Socail Links start-->
+                            <ul class="tnit-social-links tnit-social-links_v2">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                </li>
+                            </ul><!--Socail Links End-->
+                        </div>
+                    </div>
+                </div>
+            </div><!--CopyRight Row End-->
+        </footer><!--Footer Content End-->
+
+        <!--Footer Content Start-->
+        @*<footer class="tnit-footer">
+            <!--Footer Top Row start-->
+            <div class="tnit-footer-tprow">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <!--Widget About Start-->
+                            <div class="widget widget-about">
+                                <strong class="ft-logo">
+                                    <a href="index.html"><img src="" @Url.Content("~/images/ft-logo.png") " alt=""></a>
+                                </strong>
+                                <p>Suspendisse nec est nunc. Sed sed sem in libero lacinia suscipit non ac neque. Integer scelerisque tellus est.</p>
+                                <ul class="about-info-listed">
+                                    <li>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        9311 Sherman Ave. Groton,  CT 06340
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <a href="tel:+00123456789">+00 123 456 789</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <a href="mailto:info@yourworldwithin.com">info@yourworldwithin.com</a>
+                                    </li>
+                                </ul>
+                            </div><!--Widget About End-->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget">
+                                <h4>Services</h4>
+                                <!--Widget Listed Start-->
+                                <ul class="widget-listed">
+                                    <li><a href="#">Time Management</a></li>
+                                    <li><a href="#">Personal Development</a></li>
+                                    <li><a href="#">Leadership</a></li>
+                                    <li><a href="#">Business Training</a></li>
+                                    <li><a href="#">Public Speaking</a></li>
+                                    <li><a href="#">Sales Training</a></li>
+                                </ul><!--Widget Listed End-->
+                            </div><!--Widget End-->
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget">
+                                <h4>Social Links</h4>
+                                <!--Widget Listed Start-->
+                                <ul class="widget-listed">
+                                    <li><a href="#"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+                                    <li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin-square"></i> LinkedIn</a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus-square"></i> Google+</a></li>
+                                    <li><a href="#"><i class="fa fa-youtube-square"></i> YouTube</a></li>
+                                </ul><!--Widget Listed End-->
+                            </div><!--Widget End-->
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <!--Widget Start-->
+                            <div class="widget widget-appointment">
+                                <h4>Subscribe Us</h4>
+                                <form method="get" class="tnit-appointment-form">
+                                    <div class="inner-holder">
+                                        <input type="email" placeholder="Enter Your Mail  ID">
+                                    </div>
+                                    <div class="inner-holder">
+                                        <button class="btn-submit" type="submit">SUBSCRIBE</button>
+                                    </div>
+                                </form>
+                            </div><!--Widget End-->
+                        </div>
+                 
+                    </div>
+                </div>
+            </div><!--Footer Top Row End-->
+            <!--CopyRight Row Start-->
+            <div class="tnit-copyright-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12">
+                            <p>Copyright © 2019 <span class="th-color">YourWorldWithin</span>, Design by <a href="https://www.goigi.com/">GOIGI</a>.</p>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <!--Socail Links start-->
+                            <ul class="tnit-social-links tnit-social-links_v2">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                </li>
+                            </ul><!--Socail Links End-->
+                        </div>
+                    </div>
+                </div>
+            </div><!--CopyRight Row End-->
+        </footer>*@<!--Footer Content End-->
+
+    </div><!--Wrapper Content End-->
+
+    <!--JQuery Files Start-->
+   
+    <script src="@Url.Content("~/js/jquery-3.1.1.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/html5shiv.js")"></script>
+    <script src="@Url.Content("~/js/owl-carousel.js")"></script>
+    <script src="@Url.Content("~/js/modernizr.custom.js")"></script>
+    <script src="@Url.Content("~/https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.counterup.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.scrollbar.js")"></script>
+    <script src="@Url.Content("~/js/video-player.js")"></script>
+    <script src="@Url.Content("~/js/jquery.circliful.js")"></script>
+    <script src="@Url.Content("~/https://maps.googleapis.com/maps/api/js?key=AIzaSyAPf96eskAPXvkyDLPyYhxSCAKIziCUG_E")"></script>
+    <script src="@Url.Content("~/js/map.js")"></script>
+    <script src="@Url.Content("~/js/script.js")"></script>
+    <script>
+        $(document).ready(function () {
+           if('@TempData["msg"]'=="1")
+           {
+            $("#model1").click();
+
+           }
+       
+        });
+        function passwordmatch() {
+            if ($("#Password").val() != $("#ConfirmPassword").val())
+            {               
+                $("#p1").html('Confirm Password Not Match');
+               // $("#btnregister1").prop('disabled', true);
+            }
+            else {
+                $("#p1").html('');
+                //$("#btnregister1").prop('disabled', false);;
+            }
+        }
+        
+        //$("#model2").click(function () {
+        //    $("#tnit-modal").hide();
+        //})
+    </script>
+    <script type="text/javascript">
+
+    function isNumber(evt, element) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (
+            (charCode != 46 || $(element).val().indexOf('.') != 0) &&      // “.” CHECK DOT, AND ONLY ONE.
+            (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

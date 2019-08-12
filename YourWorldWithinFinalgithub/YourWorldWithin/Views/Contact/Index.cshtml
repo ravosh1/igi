@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Header Content Start-->
+
+<!--Inner Banner Content Start-->
+<div class="tnit-inner-banner tnit-banner-image_v2">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <!--BreadCrumb Listed Start-->
+        <ul class="breadcrumb tnit-breadcrumb-holder">
+            <li class="breadcrumb-item"><a href="@Url.Action("index","Home")">Home</a></li>
+            <li class="breadcrumb-item active">Contact Me</li>
+        </ul><!--BreadCrumb Listed End-->
+    </div>
+</div><!--Inner Banner Content End-->
+<!--Main Content Start-->
+<div class="tnit-main-content">
+    <!--Contact Section Start-->
+    <section class="tnit-contact-section pd-tb70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <!--Leave Review Outer Start-->
+                    <div class="tl-review-outer">
+                        <h3>Leave A Message</h3>
+                        <!--Review Form Start-->
+                        <form method="get" class="tl-review-form">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <label>Full Name <i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input type="text">
+                                    </div><!--Inner Holder End-->
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <label>Email <i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input type="email">
+                                    </div><!--Inner Holder End-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <label>Phone </label>
+                                        <input type="tel">
+                                    </div><!--Inner Holder End-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <label>Subject <i class="fa fa-star" aria-hidden="true"></i></label>
+                                        <input type="text">
+                                    </div><!--Inner Holder End-->
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <label>Message </label>
+                                        <textarea name="message"></textarea>
+                                    </div><!--Inner Holder End-->
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!--Inner Holder Start-->
+                                    <div class="inner-holder">
+                                        <button class="btn-submit" type="submit">Submit</button>
+                                    </div><!--Inner Holder End-->
+                                </div>
+                            </div>
+                        </form><!--Review Form End-->
+                    </div><!--Leave Review Outer End-->
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <!--Sidebar Outer Start-->
+                    <aside class="tnit-sidebar-outer tnit-sidebar-outer_v2">
+                        <div class="widget widget-contact">
+                            <h3>Contact Details</h3>
+                            <p>Vivamus ac purus pharetra, laoreet libero eu, pellentesque purus. Nam lobortis odio vitae ex egestas, et volutpat justo ultrices.</p>
+                            <ul class="about-info-listed about-info-listed_v2">
+                                <li>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    9311 Sherman Ave. Groton,  CT 06340
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <a href="tel:+00123456789">+00 123 456 789</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <a href="mailto:info@myvoice.com">info@myvoice.com</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-skype" aria-hidden="true"></i>
+                                    <a href="tel:+00123456789">+00 123 456 987</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <a href="#">www.myvoice.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section><!--Contact Section End-->
+    <!--Map Section Start-->
+    <section class="tnit-map-section">
+        <div id="tnit-map"></div>
+    </section><!--Map Section End-->
+
+</div><!--Main Content End-->

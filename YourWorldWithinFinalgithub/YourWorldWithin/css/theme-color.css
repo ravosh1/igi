@@ -1,0 +1,31 @@
+/*==============================================*/
+/*Theme Color Css*/
+/*==============================================*/
+.btn-appiontment:before,.tnit-feature-item:before,.video-thumb .icon-box,.date-box,.tnit-social-links_v2 li a:before,.tnit-footer .widget-about,
+#tnit-blog-slider .owl-controls .owl-nav [class*="owl-"]:after,.tnit-event-item:before,.tnit-event-item::before,.tnit-navbar-holder .navbar-nav li .dropdown-menu li:after,
+.tnit-topbar-holder .btn-cart .num,.tnit-btn-cart,.tnit-btn-download,#tnit-testimonial-slider .owl-controls .owl-nav [class*="owl-"],.tnit-btn-style_v2,
+.tnit-form-search .btn-submit,.widget-tags li a:hover,.btn-enroll,.tl-counter-listed .tl-counter-item,.pro-btn-cart,.tnit-spinner-outer span.spinner > .sub:hover,
+.tnit-spinner-outer span.spinner > .add:hover,.btn-inner-holder:hover .fa,.btn-checkout,.tl-review-form .inner-holder .btn-submit,.btn-proceed,.btn-register,.tnit-navbar-holder .navbar-default .navbar-toggle,.btn-cart2:hover{
+	background-color: #f92020;
+}
+
+
+.tnit-navbar-holder .navbar .navbar-nav > li > a:hover,.banner-caption h4 span,.tnit-social-box .fa,.tnit-btn-readmore:before,.tnit-btn-readmore:hover,
+.tnit-social-links li a:hover .fa,.tnit-feature-item .icon-box,.facts-item .icomoon,.tnit-rating,.widget-listed li:hover a,.th-color,.tnit-event-item .tnit-btn-style1:hover,
+.tweet-item .bottom .link,.tweet-item .link,.tnit-qualities-listed li:before,.audio-text .btn-play,.audio-text .th-color,.tnit-breadcrumb-holder li.active,.tnit-testimonial-item .fa,
+.widget-categories .widget-listed li:hover:before,.tnit-rating .fa,.widget-book > span,ul.tnit-tabs-nav li.active a,ul.tnit-tabs-nav li:hover a,.tnit-pagination-row .pagination li:hover a,
+.tnit-pagination-row .pagination li.active a,.btn-sale,.about-info-listed_v2 li .fa,.tnit-error-inner .title,.tp-left-listed li:hover,.tp-left-listed li:hover a,.btn-account:hover,.tnit-login-listed > li .fa,.tnit-login-listed > li a,
+.tnit-modal-outer .top h5 a,.tnit-event-item .tnit-text span .fa{
+	color: #f92020;
+}
+
+
+#tnit-blog-slider .owl-controls .owl-nav [class*="owl-"]:hover,.tnit-event-item:hover,.tnit-navbar-holder .navbar-nav li .dropdown-menu li:hover,
+#tnit-testimonial-slider .owl-controls .owl-nav [class*="owl-"],.tnit-video-inner-outer,.widget-tags li a:hover,.tl-tabs-outer .nav-tabs li:before,.tnit-pagination-row .pagination li:before,
+.tnit-pagination-row .pagination li:first-child:after,.tnit-pagination-row .pagination li:last-child:after,.btn-sale,.tnit-navbar-holder .navbar-default .navbar-toggle,.tnit-video-section_v2 .tnit-video-inner-outer{
+	border-color: #f92020;
+}
+
+.btn-sale:after{
+	border-top-color: #f92020;
+}

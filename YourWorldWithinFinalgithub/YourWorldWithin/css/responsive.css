@@ -1,0 +1,666 @@
+/*------------------------------------------------
+Media Quires 360px For Small Mobile/Device
+-------------------------------------------------*/
+@media (max-width: 360px) {
+ .tl-event-thumb .tl-caption .top-holder{
+ 	display: none;
+ } 
+
+
+}
+
+/*------------------------------------------------
+Media Quires For Mobile
+-------------------------------------------------*/
+@media (max-width: 480px) {
+.tnit-banner .tnit-social-row .container .row > .col-md-3{
+	width: 100%;
+}
+#tnit-banner-slider .banner-caption .top-text{
+	bottom: 10px;
+}
+.tp-right .tnit-social-links{
+	margin-left: 0;
+	margin-right: 0;
+}
+#tnit-banner-slider .banner-caption h2{
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+#tnit-banner-slider .banner-caption h4{
+	font-size: 14px;
+}
+.btn-appiontment{
+	font-size: 12px;
+	padding: 12px 20px;
+}
+.tnit-header .tnit-logo{
+	margin-bottom: 20px;
+}
+.tl-tabs-outer .nav-tabs li{
+	width: 100%;
+	margin-bottom: 0;
+}
+.tnit-login-listed > li{
+	padding: 15px 12px;
+	font-size: 12px;
+}
+.credit-listed > li img{
+	display: block;
+	margin: 10px 0;
+}
+
+
+}
+
+
+@media (max-width: 559px) {
+.banner-man-img{
+	display: none;
+}
+.tnit-cart-listed{
+	width: 260px;
+}
+.tnit-pro-btn-listed > li{
+	width: 100%;
+	margin-bottom: 30px;
+}
+.tnit-pro-btn-listed > li:before,.tnit-pro-btn-listed > li:after{
+	display: none;
+}
+.tnit-cart-table th, .tnit-cart-table td{
+	font-weight: 400;
+}
+.tnit-cart-table .tb-product span{
+	display: none;
+}
+.tnit-cart-table .tb-quantity{
+	display: none;
+}
+.coupon-form input[type="text"]{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.tnit-cart-table .left-holder{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.tnit-cart-table .btn-cart2{
+	width: 100%;
+}
+.tnit-courses-section .tl-tabs-list-outer .tnit-text .inner-holder,.tnit-courses-section .tnit-courses-detail-info .tnit-text .inner-holder{
+	width: 100%;
+	padding: 0;
+	margin-bottom: 10px;
+	border: none;
+}
+
+
+}
+
+/*------------------------------------------------
+Media Quires 640px For Mobile Devices
+-------------------------------------------------*/
+@media (max-width: 640px) {
+.tnit-banner .tnit-social-row .row > .col-md-3{
+	width: 50%;
+	margin-bottom: 15px;
+}
+.tnit-video-text .top h3{
+	float: none;
+	margin-bottom: 15px;
+}
+.tnit-tags-outer{
+	margin-bottom: 15px;
+}
+.bottom-text .tnit-btns-listed,.tnit-video-text .top .tnit-meta-listed{
+	float: left;
+	width: 100%;
+}
+.tl-tabs-outer .nav-tabs li a{
+	padding: 15px 30px;
+	font-weight: 400;
+}
+.tnit-cart-table .right-holder{
+	float: left;
+	width: 100%;
+}
+.tnit-order-outer{
+	padding: 30px 20px;
+}
+.order-listed li{
+	font-size: 14px;
+	line-height: 14px;
+}
+.tl-event-thumb .tnit-meta-listed li{
+	font-size: 12px;
+}
+.tl-event-thumb .tnit-btns-listed{
+	display: none;
+}
+
+
+}
+
+
+/*------------------------------------------------
+Media Quires 767px For Small Tablet
+-------------------------------------------------*/
+@media (max-width: 767px) {
+.tnit-logo img{
+	width:50%
+}
+#tnit-partners-slider{
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.tnit-social-row .row > .col-md-3{
+	width: 25%;
+}
+.banner-caption h2{
+	font-size: 30px;
+}
+.banner-caption h4{
+	font-size: 18px;
+	margin: 0 0 12px;
+}
+.banner-caption .top-text{
+	padding-left: 30px;
+}
+.tnit-social-box::before{
+	display: none;
+}
+.tnit-navbar-holder .tnit-nav-right{
+	margin-top: -40px;
+}
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: #fff;
+}
+.tnit-navbar-holder .navbar{
+	width: 100%;
+}
+.tnit-navbar-holder .navbar-default .navbar-toggle{
+	float: left;
+}
+.tnit-social-box .fa{
+	font-size: 26px;
+}
+.tnit-social-box .tnit-text{
+	padding-left: 45px;
+	font-size: 14px;
+}
+.tnit-social-box .tnit-text strong{
+	font-size: 20px;
+}
+.tnit-navbar-holder .navbar-nav > li:first-child{
+	padding-left: 0px;
+}
+.tnit-navbar-holder .navbar-nav > li{
+	border-bottom: 1px solid #ccc;
+}
+.tnit-navbar-holder .navbar-nav li .dropdown-menu{
+	position: static;
+	width: 100%;
+	display: none;
+	margin: 15px 0;
+	padding: 0;
+	background-color: #f0f0f0;
+	box-shadow: none;
+}
+.tnit-navbar-holder .navbar-nav li:hover .dropdown-menu{
+	display: block;
+}
+.tnit-navbar-holder .navbar-nav > li{
+	padding: 14px 0px;
+}
+.tnit-navbar-holder .navbar .navbar-nav > li > a{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.tnit-navbar-holder .navbar-nav li .dropdown-menu li a{
+	padding: 13px 25px;
+}
+.tnit-banner .tnit-social-row{
+	position: static;
+	background-color: rgba(255,255,255,0.95);
+}
+.banner-caption .banner-man-img{
+	width: 45%;
+}
+.banner-caption .top-text{
+	bottom: 50px;
+}
+.tnit-feature-item .icon-box{
+	line-height: 50px;
+}
+.tnit-features-section{
+	padding-top: 65px;
+}
+ul.tnit-facts-listed > li{
+	width: 100%;
+	text-align: center;
+}
+.facts-item .icomoon,.tnit-event-item .tnit-btn-style1{
+	float: none;
+}
+.tnit-event-item{
+	text-align: center;
+}
+.tnit-event-item .date-box,.tnit-event-item .tnit-text{
+	margin-bottom: 10px;
+}
+.tnit-tweetes-box{
+	height: auto;
+}
+#tnit-partners-slider .owl-item{
+	margin-right: 20px !important;
+}
+.tnit-navbar-holder .navbar-nav{
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 50px;
+}
+.tp-left-listed{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.tp-right{
+	width: 100%;
+	text-align: center;
+}
+.tp-right .tnit-social-links{
+	float: none;
+	position: static;
+}
+.tp-right .tnit-cart-holder{
+	float: none;
+	display: inline-block;
+}
+.tnit-facts-listed{
+	padding: 0;
+}
+.tnit-heading-outer h2{
+	font-size: 20px;
+	line-height: 24px;
+}
+.tnit-event-item .date-box{
+	border-right: none;
+}
+.tnit-event-item{
+	padding: 20px;
+}
+#tnit-blog-slider .owl-controls{
+	top: -30px;
+}
+.facts-item{
+	padding: 0 10px;
+}
+.tnit-about-text h2{
+	font-size: 24px;
+	line-height: 30px;
+	margin-bottom: 20px;
+}
+.tnit-about-section{
+	padding-top: 50px;
+}
+body h2{
+	font-size: 24px;
+}
+.tnit-qualities-text h2{
+	margin-bottom: 15px;
+}
+.tnit-qualities-listed li::before{
+	float: left;
+	height: 30px;
+}
+.tnit-book-text .inner-holder{
+	padding-right: 10px;
+}
+.tnit-footer .tnit-social-links{
+	width: 100%;
+	margin-top: 10px;
+}
+.tnit-inner-banner h2{
+	font-size: 30px;
+}
+.widget .tnit-social-row_v2 .tnit-social-box.mb-0{
+	margin-bottom: 20px;
+}
+.tnit-video-holder iframe{
+	height: 250px;
+}
+.tnit-pro-btn-listed > li::before{
+	width: 50px;
+	right: -15px;
+}
+.tnit-pro-btn-listed > li::after{
+	right: -75px;
+}
+.tnit-product-detail-item .tnit-text-outer,.tnit-product-detail-item .tnit-thumb{
+	width: 100%;
+	float: left;
+}
+.tnit-product-detail-item .tnit-thumb{
+	margin: 0 0 30px;
+}
+.tnit-404-section{
+	padding: 80px 0;
+}
+.tnit-error-inner .title{
+	font-size: 80px;
+	line-height: 80px;
+}
+.tnit-error-inner p{
+	font-size: 18px;
+	line-height: 36px;
+	margin-bottom: 25px;
+}
+.tnit-error-inner .tnit-btn-style1{
+	font-size: 16px;
+	padding: 10px 40px;
+}
+.tl-tabs-list-outer .tnit-thumb{
+	width: 100%;
+}
+.tl-tabs-list-outer .tnit-text{
+	width: 100%;
+	padding: 30px 0 0;
+}
+.tl-tabs-outer .tab-content{
+	padding-bottom: 0;
+}
+.tnit-course-top-outer .tnit-heading-outer,.tnit-course-top-outer .tnit-tabs-rightouter{
+	width: 100%;
+}
+.tnit-course-top-outer .tnit-tabs-rightouter{
+	margin-bottom: 15px;
+	border: none;
+	padding: 0;
+}
+.tl-tabs-list-outer .tnit-text h3, .tnit-courses-detail-info .tnit-text h3{
+	font-size: 20px;
+}
+.tl-tabs-list-outer .tnit-text .inner-holder, .tnit-courses-detail-info .tnit-text .inner-holder{
+	padding: 0 10px;
+}
+.tl-tabs-outer{
+	margin-bottom: 25px;
+}
+.tnit-features-box{
+	padding: 15px;
+}
+.tnit-event-outer .tl-counter-listed{
+	width: 100%;
+}
+.tl-event-thumb .tl-caption .bottom-text{
+	padding: 15px 15px 10px;
+}
+.tl-counter-listed .tl-counter-item{
+	margin-right: 10px;
+}
+.tl-event-thumb .tnit-meta-listed li{
+	margin-right: 12px;
+}
+.tl-counter-listed .tl-counter-item{
+	width: 65px;
+}
+.tnit-counter{
+	font-size: 26px;
+}
+.tl-counter-item .info{
+	text-transform: none;
+}
+.tnit-blog-item.tnit-blog-item_v2 .tnit-text{
+	padding: 20px;
+}
+#tnit-map{
+	height: 250px;
+}
+
+
+  
+}
+
+/*------------------------------------------------
+Media Quires 991px
+-------------------------------------------------*/
+@media (max-width: 991px) {
+.tnit-header{
+	position: static;
+	background:#232323;
+}
+.tnit-header .tnit-logo{
+	display: block;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.tnit-about-section::before{
+	display: none;
+}
+.video-thumb img{
+	width: 100%;
+}
+.tnit-facts-listed > li{
+	width: 50%;
+}
+.facts-item::before{
+	display: none;
+}
+.tnit-btn-style_v2.btn-event{
+	margin-bottom: 30px;
+}
+.tnit-footer .widget-about{
+	margin-bottom: 20px;
+}
+.tnit-footer .widget{
+	padding-top: 20px;
+}
+.intagram-listed > li{
+	width: 16.66%;
+}
+.tnit-social-links{
+	float: right;
+}
+.tp-right .tnit-cart-holder{
+	margin-left: 10px;
+}
+.intagram-listed li a img{
+	width: 100%;
+}
+.tnit-book-text{
+	padding-left: 0;
+}
+.tnit-circle::before{
+	display: none;
+}
+.tnit-book-thumb{
+	margin-bottom: 20px;
+}
+.screen-img > img{
+	width: 100%;
+}
+.tnit-social-box{
+	margin-bottom: 15px;
+}
+.tnit-about-thumb img{
+	width: 100%;
+	height: auto;
+}
+.tnit-about-section_v2 .tnit-about-text{
+	padding-top: 30px;
+}
+.tnit-sidebar-outer{
+	padding-left: 0;
+	border-left: none;
+}
+
+
+}
+
+/*------------------------------------------------
+Media Quires 1040px For Small Desktop
+-------------------------------------------------*/
+@media (min-width: 768px) and (max-width: 1040px) {
+.tnit-navbar-holder .navbar-nav > li{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.tnit-navbar-holder .navbar .navbar-nav li a{
+	font-size: 13px;
+}
+.banner-caption .top-text{
+	bottom: 120px;
+}
+.banner-caption .banner-man-img{
+	width: 72%;
+}
+.banner-caption h2{
+	font-size: 40px;
+}
+.banner-caption h4{
+	font-size: 20px;
+	margin-bottom: 15px;
+}
+.tnit-social-row{
+	padding: 15px 0;
+}
+.tnit-social-box .fa{
+	font-size: 30px;
+}
+.tnit-social-box .tnit-text{
+	padding-left: 45px;
+}
+.tnit-social-box .tnit-text strong{
+	font-size: 18px;
+}
+.tnit-social-box .tnit-text{
+	font-size: 14px;
+}
+.tnit-feature-item .icon-box{
+	font-size: 40px;
+	width: 60px;
+	line-height: 45px;
+}
+.tnit-feature-item{
+	padding: 20px 15px 15px 70px;
+}
+.tnit-video-item h4{
+	font-size: 16px;
+}
+.tnit-facts-listed{
+	padding-left: 20px;
+}
+.tnit-about-thumb > img{
+	width: 100%;
+}
+.tnit-about-section_v2 .tnit-about-text{
+	padding-top: 40px;
+}
+.tnit-circle::before{
+	width: 107px;
+	height: 110px;
+	left: 34px;
+	top: 34px;
+}
+.tnit-book-text{
+	padding-left: 0;
+}
+.tl-tabs-list-outer .tnit-text .inner-holder, .tnit-courses-detail-info .tnit-text .inner-holder{
+	padding: 0 15px;
+}
+.tl-tabs-outer{
+	margin-bottom: 25px;
+}
+.tnit-event-outer .tl-counter-listed{
+	width: 100%;
+}
+.tl-event-thumb .tl-caption .bottom-text{
+	padding: 15px 15px 10px;
+}
+.tl-counter-listed .tl-counter-item{
+	margin-right: 10px;
+}
+.tl-event-thumb .tnit-meta-listed li{
+	margin-right: 12px;
+}
+.widget .tnit-social-row_v2 .tnit-social-box .fa{
+	font-size: 20px;
+}
+.widget .tnit-social-row_v2 .tnit-social-box .tnit-text{
+	padding-left: 30px;
+}
+
+
+}
+
+/*------------------------------------------------
+Media Quires 1400px For Large Screen/Devices
+-------------------------------------------------*/
+@media (min-width: 1400px) {
+
+.tnit-container-after:after{
+	right: -110px;
+}
+.tnit-container-before:before{
+	left: -110px;	
+}
+.tnit-about-section:before{
+	width: 575px;
+	height: 480px;
+	top: 50px;
+	bottom: inherit;
+	display: block;
+}
+.tnit-error-inner .title{
+	font-size: 168px;
+	display: block;
+	line-height: 150px;
+}
+.tnit-modal-outer.modal.in .modal-dialog{
+    top: 250px;
+}
+.tnit-skill-outer{
+	padding-left: 26px;
+}
+.tnit-cart-table td:nth-child(1),.tnit-cart-table th:nth-child(1){
+    width: 5%;
+}
+.tnit-cart-table td:nth-child(2),.tnit-cart-table th:nth-child(2){
+    width: 50%;
+}
+.tnit-cart-table td:nth-child(3),.tnit-cart-table th:nth-child(3){
+    width: 15%;
+}
+.tnit-cart-table td:nth-child(4),.tnit-cart-table th:nth-child(4){
+    width: 18%;
+}
+.tnit-cart-table td:nth-child(5),.tnit-cart-table th:nth-child(5){
+    width: 10%;
+}
+
+
+}
+/*------------------------------------------------
+Media Quires 1600px For Large Screen/Devices
+-------------------------------------------------*/
+@media (min-width: 1600px){
+
+.banner-caption .banner-man-img{
+	width: auto;
+	margin-bottom: -30px;
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	-o-transform: translateY(0);
+	transform: translateY(0);
+}
+.banner-caption .top-text{
+	bottom: 300px;
+}
+.tnit-social-row{
+	padding: 45px 0 40px;
+}
+
+
+}

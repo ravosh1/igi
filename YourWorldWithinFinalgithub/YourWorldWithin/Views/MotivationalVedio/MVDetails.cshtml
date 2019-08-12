@@ -1,0 +1,278 @@
+﻿@model YourWorldWithin.Models.Property
+@{
+    ViewBag.Title = "MVDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Inner Banner Content Start-->
+<div class="tnit-inner-banner tnit-banner-image_v2">
+    <div class="container">
+        <h2>Video Detail</h2>
+        <!--BreadCrumb Listed Start-->
+        <ul class="breadcrumb tnit-breadcrumb-holder">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Video Detail</li>
+        </ul><!--BreadCrumb Listed End-->
+    </div>
+</div><!--Inner Banner Content End-->
+<!--Main Content Start-->
+<div class="tnit-main-content">
+    <!--Video Section Start-->
+    <section class="tnit-video-section tnit-video-section-detail pd-tb70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <!--Video Holder Start-->
+                    @*<div class="tnit-video-holder" >*@
+                        
+                        <video style="width: 100%;" controls src="@Url.Content("~/DataImages/Videos/"+Model.VideoFile)" preload="none"></video>
+
+                    @*</div>*@
+                    <!--Video Holder End-->
+                    <!--Video Text Start-->
+                    <div class="tnit-video-text">
+                        <div class="top">
+                            <h3>@Model.Title</h3>
+                            <ul class="tnit-meta-listed">
+                                <li>
+                                    <i class="fa fa-user" aria-hidden="true"></i> <a href="#">Eddie Pinero</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-calendar-minus-o" aria-hidden="true"></i> @Model.creationdate
+                                </li>
+                            </ul>
+                        </div>
+                        <p>@Model.Description</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <!--Sidebar Outer Start-->
+                    <aside class="tnit-sidebar-outer">
+                        <!--Widget Start-->
+                        <div class="widget widget-search">
+                            <!--Widget Form Start-->
+                            <form method="get" class="tnit-form-search">
+                                <input type="text" placeholder="Search...">
+                                <button class="btn-submit" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form><!--Widget Form End-->
+                        </div><!--Widget End-->
+                        <!--Widget About Start-->
+                        <div class="widget widget-book">
+                            <img src="images/widget-book-img.png" alt="">
+                            <h5>New 2017 Book From Eddie Pinero</h5>
+                            <span>Available From June 12th 2017</span>
+                            <a href="#" class="tnit-btn-download"><i class="fa fa-download" aria-hidden="true"></i> Download Book</a>
+                        </div><!--Widget End-->
+                        <!--Widget Start-->
+                        <div class="widget widget-tweets">
+                            <h3>Follow Me</h3>
+                            <div class="row tnit-social-row_v2">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Socail Box Start-->
+                                    <div class="tnit-social-box after-line">
+                                        <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                        <div class="tnit-text">
+                                            <strong>1,43,000</strong>
+                                            <span>Subscribers</span>
+                                        </div>
+                                    </div><!--Socail Box End-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Socail Box Start-->
+                                    <div class="tnit-social-box">
+                                        <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                                        <div class="tnit-text">
+                                            <strong>17,000</strong>
+                                            <span>Fans</span>
+                                        </div>
+                                    </div><!--Socail Box End-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Socail Box Start-->
+                                    <div class="tnit-social-box after-line mb-0">
+                                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                        <div class="tnit-text">
+                                            <strong>1,22,000</strong>
+                                            <span>Followers</span>
+                                        </div>
+                                    </div><!--Socail Box End-->
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!--Socail Box Start-->
+                                    <div class="tnit-social-box mb-0">
+                                        <a href="#"><i class="fa fa-spotify" aria-hidden="true"></i></a>
+                                        <div class="tnit-text">
+                                            <strong>31,000</strong>
+                                            <span>Listeners</span>
+                                        </div>
+                                    </div><!--Socail Box End-->
+                                </div>
+                            </div>
+                        </div><!--Widget End-->
+                        <!--Widget Start-->
+                        <div class="widget widget-tags mb-0">
+                            <h3>Tags</h3>
+                            <!--Widget Tags Start-->
+                            <ul class="widget-tags">
+                                <li>
+                                    <a href="#">Motivational</a>
+                                </li>
+                                <li>
+                                    <a href="#">Business</a>
+                                </li>
+                                <li>
+                                    <a href="#">Training</a>
+                                </li>
+                                <li>
+                                    <a href="#">Persoanal</a>
+                                </li>
+                                <li>
+                                    <a href="#">Public</a>
+                                </li>
+                                <li>
+                                    <a href="#">Leadership</a>
+                                </li>
+                                <li>
+                                    <a href="#">Motivational</a>
+                                </li>
+                                <li>
+                                    <a href="#">Business</a>
+                                </li>
+                                <li>
+                                    <a href="#">Training</a>
+                                </li>
+                            </ul><!--Widget Tags End-->
+                        </div><!--Widget End-->
+                    </aside><!--Sidebar Outer End-->
+                </div>
+            </div>
+        </div>
+    </section><!--Video Section End-->
+    <!--Video Section Start-->
+    <section class="tnit-video-section tnit-video-section-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!--Inner Video Outer Start-->
+                    <div class="tnit-video-inner-outer border-none">
+                        <!--Heading Outer start-->
+                        <div class="tnit-heading-outer">
+                            <h2>Related videos</h2>
+                        </div><!--Heading Outer End-->
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <!--Video Item Start-->
+                                <div class="tnit-video-item">
+                                    <figure class="video-thumb">
+                                        <img src="images/video-img-01.jpg" alt="">
+                                        <figcaption class="tnit-caption">
+                                            <div class="bottom-text">
+                                                <a class="icon-box" href="video.html">
+                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                </a>
+                                                <!--Meta Listed Start-->
+                                                <ul class="tnit-meta-listed">
+                                                    <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> 12 Jun, 2017</li>
+                                                    <li><i class="fa fa-comments-o" aria-hidden="true"></i> 3</li>
+                                                </ul><!--Meta Listed End-->
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="tnit-text-outer">
+                                        <h4><a href="video.html">How To Make Better Life</a></h4>
+                                    </div>
+                                </div><!--Video Item End-->
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <!--Video Item Start-->
+                                <div class="tnit-video-item">
+                                    <figure class="video-thumb">
+                                        <img src="images/video-img-02.jpg" alt="">
+                                        <figcaption class="tnit-caption">
+                                            <div class="bottom-text">
+                                                <a class="icon-box" href="video.html">
+                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                </a>
+                                                <!--Meta Listed Start-->
+                                                <ul class="tnit-meta-listed">
+                                                    <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> 15 Jun, 2017</li>
+                                                    <li><i class="fa fa-comments-o" aria-hidden="true"></i> 42</li>
+                                                </ul><!--Meta Listed End-->
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="tnit-text-outer">
+                                        <h4><a href="video.html">Autumn Meeting 2017</a></h4>
+                                    </div>
+                                </div><!--Video Item End-->
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <!--Video Item Start-->
+                                <div class="tnit-video-item">
+                                    <figure class="video-thumb">
+                                        <img src="images/video-img-03.jpg" alt="">
+                                        <figcaption class="tnit-caption">
+                                            <div class="bottom-text">
+                                                <a class="icon-box" href="video.html">
+                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                </a>
+                                                <!--Meta Listed Start-->
+                                                <ul class="tnit-meta-listed">
+                                                    <li><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> 24 Jun, 2017</li>
+                                                    <li><i class="fa fa-comments-o" aria-hidden="true"></i> 65</li>
+                                                </ul><!--Meta Listed End-->
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="tnit-text-outer">
+                                        <h4><a href="video.html">Good Intentions & Results?</a></h4>
+                                    </div>
+                                </div><!--Video Item End-->
+                            </div>
+                        </div>
+                    </div><!--Inner Video Outer End-->
+                </div>
+            </div>
+        </div>
+    </section><!--Video Section End-->
+
+</div><!--Main Content End-->
+@section scripts{
+    <script>
+        var APIkey = "AIzaSyAVQ8D4ep3jggt5IEOhMRMUUXTt0VW61Bc"; //"AIzaSyCqhjgrPTPSOFyLyos5gfN47TJ0HnNA_LA";
+        var ChannelId = "UCZSFzP3302RUCqPNXFGlVFw";//"UCdWmvXgnlHKhRQnqLV8e2Fg";//"UCZSFzP3302RUCqPNXFGlVFw";//"UCdWmvXgnlHKhRQnqLV8e2Fg";
+
+        //"UUpRmvjdu3ixew5ahydZ67uA";
+        $(document).ready(function()
+        {
+            var i = 0;
+            var titles = '';
+                var url = "";
+              
+                        var videos = '';
+                        $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + APIkey + '&channelId=' + ChannelId + '&part=snippet,id&order=date&maxResults=1', function (data) {
+                          
+                            $.each(data.items, function (i, item) {
+                               
+                                if (typeof (item) != 'undefined' || typeof (item) != null || typeof (item) != '') {
+                                    var url = "https://www.youtube.com/embed/VY_26zGqKZ4" //+ item.contentDetails.videoId;
+                                    //var url2 = "https://i.ytimg.com/vi/" + item.id.videoId + "/maxresdefault.jpg";
+                                    var url2 = item.snippet.thumbnails.high.url;
+                                    videos = '<iframe src="'+url+'"></iframe>';
+                                    
+                                }
+                                $("#video").html(videos);
+                            });
+
+                        });                       
+            });
+
+        
+        
+    </script>
+}
+
+
+

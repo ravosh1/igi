@@ -1,0 +1,210 @@
+﻿@model YourWorldWithin.Models.Property
+ @{
+    ViewBag.Title = "EditVideo";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .star{
+        color:red;
+    }
+
+</style>
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                  Edit Uploaded Video
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("EditVideo", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
+                    {
+
+                        <div class="form-body pal">
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="alert alert-success fade in blue-alert" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <strong>@TempData["success"]</strong>
+                                </div>
+                            }
+                            else if (TempData["error"] != null)
+                            {
+                                <div class="alert alert-warning fade in blue-alert" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <strong>@TempData["error"]</strong>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Video Title  </label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.Title, new { @placeholder = "Video Title", @required = "required", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Category  </label>
+                                        <div class="input-icon right">
+                                            <span class="tg-select">
+                                                @Html.DropDownListFor(model => model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.VideoCategorylist, "Category", new { @class = "form-control", @required = "true" })
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tags</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.Tags, new { @placeholder = "Tags", @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Description</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Video File </label>
+                                        <div class="input-icon right">
+                                            <input id="tg-photoandlogo" class="tg-fileinput" type="file" name="VideoFile" accept="/video.*/" onchange="checkVideoFileExtension(this)" required>
+
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Image File  </label>
+                                        <div class="input-icon right">
+                                            <input id="tg-photoandlogo" class="tg-fileinput" type="file" name="ImageFile" accept="/image.*/" onchange="showMyImage(this)">
+
+                                           
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">                                  
+                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                            <img class="" src="@Url.Content(ViewBag.image)" alt="Video Image" style="width:100px;height:80px;" id="thumbnil">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group text-right">
+                                        <input type="submit" class="btn btn-lg" value="Update" name="submit" style="background-color:#0a819c;color:white;">
+
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+                                </div>
+
+                                }
+                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        function checkImageFileExtension(elem) {
+            var filePath = elem.value;
+
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+
+            validExtensions[0] = 'jpg';
+            validExtensions[1] = 'jpeg';
+            validExtensions[2] = 'bmp';
+            validExtensions[3] = 'png';
+            validExtensions[4] = 'gif';
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+
+
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = null;
+            return false;
+        }
+
+        function checkVideoFileExtension(elem) {
+            var filePath = elem.value;
+
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+
+            validExtensions[0] = 'mp4';
+            validExtensions[1] = '3gp';
+            validExtensions[2] = '3gp2';
+            validExtensions[3] = 'ogg';
+            validExtensions[4] = 'wmv';
+            validExtensions[5] = 'webm';
+            validExtensions[6] = 'flv';
+            validExtensions[7] = 'AVI';
+            validExtensions[8] = 'QuickTime';
+            validExtensions[9] = 'oga';
+            validExtensions[10] = 'ogv';
+            validExtensions[11] = 'm4a';
+            validExtensions[12]= 'm4v';
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+
+
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = null;
+            return false;
+        }
+        
+        function showMyImage(fileInput) {
+
+            if (checkImageFileExtension(fileInput) == true) {
+                var files = fileInput.files;
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var imageType = /image.*/;
+                    if (!file.type.match(imageType)) {
+                        continue;
+                    }
+                    var img = document.getElementById("thumbnil");
+                    img.file = file;
+                    var reader = new FileReader();
+                    reader.onload = (function (aImg) {
+                        return function (e) {
+                            aImg.src = e.target.result;
+                        };
+                    })(img);
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+</script>

@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Admin Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Dashboard1"] = "class=" + "active";
+    TempData["PageTitle"] = "Dashboard";
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+<style>
+    .icon2 {
+         color: #777777; 
+        font-size: 36px;
+        margin-bottom: 0px;
+        float: right;
+    }
+    .realstate {
+        display: block;
+        max-width: 67%;
+        height: auto
+    }
+</style>
+<!--BEGIN CONTENT-->
+<div class="page-content">
+    <div id="tab-general">
+        <div id="sum_box" class="row mbl">
+
+            <div class="col-sm-6 col-md-3">
+                <div class="panel visit db mbm">
+                    <div class="panel-body">
+                        <a href="@Url.Action("AddVideo","Admin")">
+                            <p class="icon">
+                                <i class="icon fa fa-video-camera" style="font-size:33px;"></i>
+                            @*<img src="@Url.Content("~/img/br-icon-car.png")" width="50" height="21" class="img-responsive hidden-xs">*@
+                        </p>
+                        <h4 class="value"><span>Upload Video</span></h4>
+                        <p class="description"></p>
+                        <div class="progress progress-sm mbn">
+                            <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" class="progress-bar progress-bar-warning">
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="panel profit db mbm">
+                    <a href="@Url.Action("UserList","Admin")">
+                        <div class="panel-body">
+                            <p class="icon">
+                                <i class="icon fa fa-user" style="font-size:33px;"></i>
+                              
+                            </p>
+                            <h4 class="value">
+                                <span data-counter="" data-start="10" data-end="50" data-step="1" data-duration="0"></span>
+                                <span>User</span>
+                            </h4>
+                            <p class="description"></p>
+                            <div class="progress progress-sm mbn">
+                                <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" class="progress-bar progress-bar-success">
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+</div>
+            </div>
+
+            @*<div class="col-sm-6 col-md-3">
+                <div class="panel income db mbm">
+                    @*<a href="@Url.Action("Boat","Admin")">
+                        <div class="panel-body">
+                            <p class="icon">
+                                <i class="icon fa fa-globe" style="font-size:30px;"></i>
+                                @*<i class="icon fa fa-group"></i>
+                                @*<img src="@Url.Content("~/img/br-icon-boat.png")" width="50" height="21" class="icon img-responsive  hidden-xs">
+
+                            </p>
+                            <h4 class="value">
+                                <span> </span>
+
+                            </h4>
+                            <p class="description"></p>
+                            <div class="progress progress-sm mbn">
+                                <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" class="progress-bar progress-bar-info">
+                                </div>
+                            </div>
+                        </div>
+                        @*</a>*@
+@*</div>
+            </div>*@
+            @*<div class="col-sm-6 col-md-3">
+                <div class="panel task db mbm">*@
+                    @*<a href="@Url.Action("Electronics","Admin")">
+                        <div class="panel-body">
+                            <p class="icon">
+                                <i class="icon fa fa-globe"></i>
+                                @* <i class="icon2 fa fa-signal"></i>*@
+                                @*<img src="@Url.Content("~/img/Electronics-icon.png")" width="50" height="21" class="icon img-responsive  hidden-xs">
+                                @*<i class="icon2 fa fa-laptop" aria-hidden="true"></i>
+                            </p>
+                            <h4 class="value"><span></span></h4>
+                            <p class="description"></p>
+                            <div class="progress progress-sm mbn">
+                                <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" class="progress-bar progress-bar-danger">
+                                </div>
+                            </div>
+                        </div>
+                        @*</a>
+</div>
+            </div>*@
+
+        </div>
+
+       
+                          <h1 class="text-center">Welcome To Your World Within</h1>  
+                    
+
+    </div>
+</div>
+<!--END CONTENT-->
+
+@section scripts{
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.categories.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.pie.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.tooltip.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.resize.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.stack.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.spline.js"></script>
+    <script src="/admin_assets/vendors/calendar/zabuto_calendar.min.js"></script>
+    <script src="/admin_assets/vendors/sco.message/sco.message.js"></script>
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/js/index.js"></script>
+
+}

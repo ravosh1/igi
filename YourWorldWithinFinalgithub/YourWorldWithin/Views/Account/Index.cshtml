@@ -1,0 +1,137 @@
+﻿@model YourWorldWithin.Models.Property
+@{
+    ViewBag.Title = "Account";
+    ViewBag.PageHeading = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .marginbttm
+{
+        margin-bottom:20px;
+}
+    </style>
+<div class="content">
+
+    <div class="wrapper about-us">
+        <div class="container">
+
+            
+            @if (TempData["MSG"] != null)
+            {
+                <div class="alert alert-warning fade in blue-alert" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong>@TempData["MSG"]</strong>
+                </div>
+            }
+
+            <div class="row" id="customer_login" style="background-image:url('/img/bg.jpg')">
+                              
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+
+
+                    <h1 class="list-head-bg label-img text-center">Admin Login</h1>
+                    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { @class = "horizontal-form" }))
+                    {
+
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <label class="hidden-xs mileagelabel">Email address <span class="required">*</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.EmailID, new { @Value="Admin",@placeholder = "Email ID", @autocomplete = "off", @required = "required", @class = "form-control input-lg forUnfinished group_model marginbttm", @type = "text" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <label class="hidden-xs mileagelabel">Password <span class="required">*</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.PasswordFor(model => model.Password, new { @Value="123456",@placeholder = "Password", @required = "required", @class = "form-control input-lg forUnfinished group_model marginbttm" })
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+
+                        <div class="col-md-6">
+
+                            <input type="submit" class="btn btn-success pull-right marginbttm" name="login" value="Login"/>
+                        </div>
+                        <div class="col-md-3"></div>
+                        @*
+                            <p class="lost_password">
+                                <a href="/Account/Forget_Password">Lost your password?</a>
+                            </p>*@
+                    }
+
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type='text/javascript' src='/wp-content/themes/Avada/js/main.min.js'></script>
+<script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+<script type="text/jscript">
+    $('#EmailID').blur(function () {
+        var url = "/Account/Ext_EmailID_Check";
+        var name = $('#EmailID').val();
+        if (name.trim() == "") {
+            $("#MSG").html("");
+            // $("#MSG").css('display', 'none');
+            $("#EmailID").css('background-color', '');
+            $("#EmailID").css('color', '#555');
+            document.getElementById("NewReg").disabled = true;
+        }
+        else {
+            $.get(url, { Id: name }, function (data) {
+                if (data == "Available") {
+                    $("#MSG").html("");
+                    //$("#MSG").css('display', 'none');
+                    $("#EmailID").css('background-color', '');
+                    $("#EmailID").css('color', '#555');
+                    document.getElementById("NewReg").disabled = false;
+                }
+                else {
+                    $("#MSG").html("Email ID Already Exists.");
+                    //$("#MSG").css('display', 'block');
+                    $("#EmailID").css('background-color', '#e97878');
+                    $("#EmailID").css('color', '#fff');
+                    document.getElementById("EmailID").value = "";
+                    document.getElementById("NewReg").disabled = true;
+                }
+            });
+        }
+    })
+
+</script>
+<script type="text/javascript">
+    function checkPass() {
+
+        var pass1 = document.getElementById('Password');
+        var pass2 = document.getElementById('CnfPassword');
+        var btn = document.getElementById('NewReg');
+
+        var message = document.getElementById('MSG');
+
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+
+        if (pass1.value == pass2.value) {
+            pass2.style.backgroundColor = "#fff";
+            message.style.color = goodColor;
+            btn.disabled = false;
+            message.innerHTML = "Password Match!"
+
+        } else {
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            btn.disabled = true;
+            message.innerHTML = "Password Do Not Match!"
+        }
+    }
+</script>
