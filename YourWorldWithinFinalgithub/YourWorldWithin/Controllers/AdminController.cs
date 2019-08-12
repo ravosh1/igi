@@ -248,18 +248,18 @@ namespace YourWorldWithin.Controllers
         {
             Property p = new Property();
             List<Property> plist = new List<Property>();
-            DataSet ds = dl.usp_getVideo(p);
+            DataSet ds = dl.usp_getAudio(p);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     Property pp = new Property();
-                    pp.VideoId = ds.Tables[0].Rows[i]["videoid"].ToString();
+                    pp.AudioId = ds.Tables[0].Rows[i]["Audioid"].ToString();
                     pp.Title = ds.Tables[0].Rows[i]["Title"].ToString();
                     pp.Description = ds.Tables[0].Rows[i]["Description"].ToString();
                     pp.Tags = ds.Tables[0].Rows[i]["Tags"].ToString();
-                    pp.VideoFile = ds.Tables[0].Rows[i]["VideoFile"].ToString();
+                    pp.AudioFile = ds.Tables[0].Rows[i]["AudioFile"].ToString();
                     pp.ImageFile = ds.Tables[0].Rows[i]["ImageFile"].ToString();
                     pp.creationdate = ds.Tables[0].Rows[i]["createdatetime"].ToString();
                     pp.CategoryId = ds.Tables[0].Rows[i]["Category"].ToString();
@@ -267,7 +267,7 @@ namespace YourWorldWithin.Controllers
                     plist.Add(pp);
                 }
 
-                ViewBag.videolist = plist;
+                ViewBag.Audiolist = plist;
             }
 
 

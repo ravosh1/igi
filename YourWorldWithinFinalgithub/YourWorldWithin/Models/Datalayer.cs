@@ -296,6 +296,20 @@ namespace YourWorldWithin.Models
                 throw;
             }
         }
+
+        public DataSet usp_getAudio(Property p)
+        {
+            try
+            {
+                string[] paname = { "@AudioId", "@Title" };
+                string[] pvalue = { p.AudioId, p.Title };
+                return Ds_Process("usp_getAudio", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public DataSet usp_getUser(Property p)
         {
             try
