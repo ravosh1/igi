@@ -37,7 +37,7 @@
                                 </div>
                             }
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label"><span class="star">*</span>Video Title  </label>
                                         <div class="input-icon right">
@@ -64,6 +64,16 @@
 
                                             @Html.TextBoxFor(model => model.Tags, new { @placeholder = "Tags", @class = "form-control", @required = "required" })
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Subscription Plan  </label>
+                                        <div class="input-icon right">
+                                            <span class="tg-select">
+                                                @Html.DropDownListFor(model => model.planid, (IEnumerable<SelectListItem>)ViewBag.subscriptionplanlist, "Subscription", new { @class = "form-control", @required = "true" })
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

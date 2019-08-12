@@ -193,14 +193,14 @@
 
                                     </ul>
                                 </li>*@
-                                <li @TempData["User"]>
+                                <li class="@TempData["User"]">
                                     <a href="#">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <span class="menu-title">User</span>
                                         <span class="fa arrow"></span>
                                     </a>
                                     <ul class="nav nav-second-level">
-                                        <li @TempData["Userlist"]>
+                                        <li class="@TempData["Userlist"]">
                                             <a href="@Url.Action("Userlist", "Admin")">
                                                 <i class="fa fa-user" aria-hidden="true"></i>
                                                 <span class="submenu-title">User List</span>
