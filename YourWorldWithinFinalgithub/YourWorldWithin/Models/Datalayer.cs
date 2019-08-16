@@ -338,7 +338,35 @@ namespace YourWorldWithin.Models
                 throw;
             }
         }
-        
+
+        public DataSet usp_getProductCategory(Property p)
+        {
+            try
+            {
+                string[] paname = { "@ProductCategoryId" };
+                string[] pvalue = { p.CategoryId };
+                return Ds_Process("usp_getProductCategory", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public DataSet usp_getProduct(Property p)
+        {
+            try
+            {
+                string[] paname = { "@ProductId","@ProductCategoryId" };
+                string[] pvalue = { p.productid,p.CategoryId };
+                return Ds_Process("usp_getProduct", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public int usp_setVideo(Property p)
         {
@@ -383,6 +411,22 @@ namespace YourWorldWithin.Models
                 throw;
             }
         }
+
+        public int usp_setProduct(Property p)
+        {
+            try
+            {
+                string[] paname = { "@ProductId","@ProductName","@ProductCategoryId"
+                , "@ProductDescription", "@Image","@Price", "@Discount"};
+                string[] pvalue = { p.productid, p.product,p.CategoryId, p.Description, p.ImageFile, p.price, p.discount };
+                return Int_Process("usp_setProduct", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public string NewSaveSingleImages(string directory, HttpPostedFileBase f, string oldfile)
         {
             string path = "", retpath = "";

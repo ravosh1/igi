@@ -1,0 +1,206 @@
+﻿@{
+    string userid = "", name = "";
+    HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
+    if (loginCookie_Costoracle_USER != null)
+    {
+        userid = loginCookie_Costoracle_USER["UserId"];
+        name = loginCookie_Costoracle_USER["Name"];
+    }
+}
+
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>User|@ViewBag.Title</title>
+    <meta name="description" content="Costoracle">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/img/favicon.png")">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/owl.carousel.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/fontawesome-all.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/slick.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/animate.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/meanmenu.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/icofont.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/default.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+$(window).on('load', function() { // makes sure the whole site is loaded
+  $('#status').fadeIn(); // will first fade out the loading animation
+  $('#preloader').delay(1000).fadeOut('slow'); // will fade out the white DIV that covers the website.
+  $('body').delay(2000).css({'overflow':'visible'});
+})
+    </script>
+
+</head>
+<body>
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <div class="roots">
+
+        <div class="menu-style-2 d-md-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="logo"> <a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/img/logo/logo.png")" alt="" class="img-fluid"></a> </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9">
+                        <div class="main-menu menu-white text-right">
+
+                            <a href="@Url.Action("Dashboard","User")"><i class="fa fa-user" aria-hidden="true"></i> @userid</a>
+                        </div>
+                        <div class="mobile-menu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-style-2 d-md-block hii">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-3">
+                        <h3 class="jd">Hello @name</h3>
+                    </div>
+                    <div class="col-xl-9 col-lg-9">
+                        <div class="main-menu menu-white text-right">
+                            <nav>
+                                <ul>
+                                    <li class="normal-user"><a href="@Url.Action("insurance","services")">Place New Request</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="your-request">
+                    <div class="col-md-12">
+                        <h4>Your Request</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @RenderBody()
+    </div>
+
+    <!-- footer start -->
+    <footer>
+
+        <div class="copyright-area theme-bg pt-15 pb-15">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3">
+                        <ul class="link">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="about-us.html">Help</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class="footer-spcial text-center">
+                            <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="copyright">
+                            <p>Copyright © 2018 costoracle.com</p>
+                            <p>Costoracle.com is a product of DataNexus Ltd | All Rights Reserved. | RC: 1451928</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-3">
+                        <div class="copyright text-md-right footer-right">
+                            <p>Designed & Developed By : <a href="https://www.goigi.com/" target="_blank" style="color:#276ef1;">GOIGI</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- JS here -->
+    <script src="@Url.Content("~/js/vendor/modernizr-3.5.0.min.js")"></script>
+    <script src="@Url.Content("~/js/vendor/jquery-1.12.4.min.js")"></script>
+    <script src="@Url.Content("~/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/js/isotope.pkgd.min.js")"></script>
+    <script src="@Url.Content("~/js/slick.min.js")"></script>
+    <script src="@Url.Content("~/js/ajax-form.js")"></script>
+    <script src="@Url.Content("~/js/imagesloaded.pkgd.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/js/plugins.js")"></script>
+
+    <script>
+$(document).ready(function() {
+   $('[data-toggle="popover"]').popover({
+      placement: 'right',
+      trigger: 'hover'
+   });
+});
+    </script>
+
+    <script>
+$(document).ready(function() {
+    $("input[name$='vehicle']").click(function() {
+        var test = $(this).val();
+
+        $("div.desc").hide();
+        $("#vehicle" + test).show();
+    });
+});
+    </script>
+    <script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+    if(scroll >= 90) {
+      $("header").addClass("sticky");
+    } else {
+      $("header").removeClass("sticky");
+    }
+  });
+
+  $(document).ready(function() {
+  $('input[name=colorCheckbox]:radio').change(function(e) {
+    let value = e.target.value.trim()
+
+    $('[class^="form"]').css('display', 'none');
+
+    switch (value) {
+      case 'red':
+        $('.form-a').show()
+        break;
+		 case 'blue':
+        $('.form-c').show()
+        break;
+      case 'green':
+        $('.form-b').show()
+        break;
+      default:
+        break;
+    }
+  })
+})
+
+    </script>
+</body>
+</html>

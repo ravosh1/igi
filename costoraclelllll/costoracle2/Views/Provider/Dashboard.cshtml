@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutProvider.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="tabe" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="request.html">
+                            <h4 class="vp">Requests</h4>
+                            <br> <i>Respond to request from prospective customers</i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="active-job.html">
+                            <h4 class="vp">Active jobs</h4>
+                            <br><i>View and manage active jobs</i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="@Url.Action("setquote","provider")">
+                            <h4 class="vp">Set quote </h4>
+                            <br><i>Create automatics quotes for your customers</i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="history.html">
+                            <h4 class="vp">History </h4>
+                            <br><i>View history of complete jobs</i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="job-finder.html">
+                            <h4 class="vp">Job Finder </h4>
+                            <br><i>View requests outside your default coverage</i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="setting-document.html">
+                            <h4 class="vp">Settings and document</h4>
+                            <br><i> Configure your skills and area of operation</i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>

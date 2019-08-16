@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "ItemDelivery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["ItemDelivery"] = "active";
+}
+
+@Html.Partial("_IteamDelevery")
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 hds">
+            <span>
+                Where are you sending to?
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="padding-bottom: 8%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-5 rs">
+                    <a href="@Url.Action("itemform","services")">
+                        <label class="pf">
+                            <img src="@Url.Content("~/img/respec/Nigeria.png")" style="width:240px; margin-left:35px; margin-top:1px;">
+                            <h class="side">Within Nigeria</h>
+                        </label>
+                    </a>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="">
+                        <h style="padding-top:92px; padding-left:55px;">Or</h>
+                    </label>
+                </div>
+
+                <div class="col-md-5">
+                    <a href="@Url.Action("itemform","services")">
+                        <label>
+                            <img src="@Url.Content("~/img/respec/Globes.png")" style="margin-left:53px; margin-top:-9px; width:231px;">
+                            <h class="sides">Overseas</h>
+                        </label>
+                    </a>
+                </div>
+            </div>
+            <form method="post" action="@Url.Action("Itemform","Services")">
+                <div class="offset-md-1 col-md-10 ups">
+                    <div class="form-a" style="display: none">
+                        <h4 class="ps">Destination address</h4>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">Name:</label>
+                            <input type="text" id="Name" class="col-md-9 form-control k1" name="Name">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3 ">Address:</label>
+                            <input type="text" id="Address" class="col-md-9 form-control k1" name="Address">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3 ">Latitude:</label>
+                            <input type="text" id="Latitude" class="col-md-9 form-control k1" name="Latitude">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">Longitude:</label>
+                            <input type="text" id="Longitude" class="col-md-9 form-control k1" name="Longitude">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">City:</label>
+                            <input type="text" id="City" class="col-md-9 form-control k1" name="City">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">Country:</label>
+                            <input type="text" id="Country" class="col-md-9 form-control k1" name="Country">
+                        </div>
+                        <a href="package.html">
+                            <button type="submit" class="btn btn-primary boot1">
+                                Next
+                            </button>
+                        </a>
+                    </div>
+                    <div class="form-b" style="display: none">
+                        <h4 class="ps">Pick up address</h4>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3 ">Address:</label>
+                            <input type="text" id="Addresspick" class="col-md-9 form-control k1" name="Addresspick">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3 ">Latitude:</label>
+                            <input type="text" id="Latitudepick" class="col-md-9 form-control k1" name="Latitudepick">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">Longitude:</label>
+                            <input type="text" id="Longitudepick" class="col-md-9 form-control k1" name="Longitudepick">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">City:</label>
+                            <input type="text" id="Citypick" class="col-md-9 form-control k1" name="Citypick">
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-md-3">Country:</label>
+                            <input type="text" id="Countrypick" class="col-md-9 form-control k1" name="Countrypick">
+                        </div>
+                        <a href="package.html">
+                            <button type="submit" class="btn btn-primary boot1">
+                                Next
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+          
+
+        </div>
+    </div>
+</div>
+

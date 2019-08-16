@@ -1,0 +1,69 @@
+﻿@model costoracle2.Models.InsuranceRequestModel
+@{
+    ViewBag.Title = "YourInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["YourInfo"]= "active";
+}
+@Html.Partial("_VehicleMenu")
+<div class="container">
+    <div class="row ty">
+        <div class="col-md-12">
+            <span class="hd">
+                Your information
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form action="@Url.Action("YourInfo", "Services")" method="post">
+
+            <div class="tps">
+
+                    <div class="form-group">
+                        <input type="hidden" name="date2" id="date2" />
+                        <label for="" class="col-md-5 col-form-label food">Driver First Name:</label>
+                        @Html.TextBoxFor(model => model.DriverFirstName, new {@class = "col-md-6 form-control fd", @autocomplete = "off", @required = "true" })
+                        <div class="clearfix too ty"></div>
+
+                        <label for="" class="col-md-5 col-form-label food">Driver Last Name:</label>
+                       
+                        @Html.TextBoxFor(model => model.DriverLastName, new { @class = "col-md-6 form-control fd", @autocomplete = "off", @required = "true" })
+
+
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-5 lb food">Driver Date of Birth:</label>
+                        @Html.DropDownListFor(model => model.Day, new SelectList(ViewBag.Days, "Value", "Text"), "Day", new {  @class = "col-md-1 form-control form-control-lg",@style= "padding:4px;margin:0px 20px 0px 0px;", @required = "true" })
+                        @Html.DropDownListFor(model => model.Month, new SelectList(ViewBag.Months, "Value", "Text"), "Month", new {  @class = "col-md-2 form-control form-control-lg", @style = "padding:4px;margin:0px 20px 0px 0px;", @required = "true" })
+                        @Html.DropDownListFor(model => model.Year, new SelectList(ViewBag.Years, "Value", "Text"), "Year", new {  @class = "col-md-1 form-control form-control-lg", @style = "padding:4px;", @required = "true" })
+                        @*@Html.TextBoxFor(model => model.DriverDOB, new { @id = "datetimepicker", @placeholder = "Select Date",
+                                @class = "col-md-6 form-control", @readonly = "readonly", @autocomplete = "off" })
+                       
+                        @Html.ValidationMessageFor(model => model.DriverDOB)*@
+                       
+
+                        <div class="clearfix too ty"></div>
+                    </div>
+               
+            </div>
+           
+                <a href="javascript:void(0)" onclick="backbtn();" class="btn btn-primary boots">Back</a>
+            <button type="submit" class="btn btn-primary boot">
+                Next
+            </button>
+            </form>
+            <div class="clearfix too ty"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function backbtn() {
+        location.href='@Url.Action("AddVehicleInfo", "Services")';
+    }
+</script>

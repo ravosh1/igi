@@ -1,0 +1,62 @@
+﻿@model costoracle2.Models.Itemdelivery
+
+@{
+    ViewBag.Title = "iteminfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="roots">
+
+
+
+    <div class="parcel">
+        <div class="container">
+            <div class="row">
+                <div class="offset-md-2 col-md-8">
+                    <h4 class="modal-titles">Parcel</h4>
+                    <form method="post" action="@Url.Action("Itemform","Services")">
+
+                        <div class="form-a">
+                            <div class="row form-group">
+                                <label for="" class="col-md-3">Number Of Items:</label>
+                                @Html.TextBoxFor(model => model.noofitem, new { @type = "number", @class = "col-md-6 form-control k1", @placeholder = "Number Of Items" })
+
+                            </div>
+                            <div class="row form-group">
+                                <label for="" class="col-md-3">Total Weight (kg) :</label>
+
+                                @Html.TextBoxFor(model => model.weight, new { @type = "number", @class = "col-md-6 form-control k1", @placeholder = "Weight" })
+                                <div class="checkbox col-md-3">
+                                    <label><input type="checkbox" value="0">I Don't Know</label>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="" class="col-md-3">Dimension :</label>
+                                @Html.TextBoxFor(model => model.width, new { @type = "number", @class = "col form-control k1s", @placeholder = "W (cm)" })
+                                @Html.TextBoxFor(model => model.height, new { @type = "number", @class = "col form-control k1s", @placeholder = "H (cm)" })
+                                @Html.TextBoxFor(model => model.length, new { @type = "number", @class = "col form-control k1s", @placeholder = "L (cm)" })
+
+
+                                <div class="checkbox col-md-3">
+                                    <label><input type="checkbox" value="0">I Don't Know</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary boots">
+                                Back
+                            </button>
+
+
+
+                            <button type="submit" class="btn btn-primary boot1">
+                                Next
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

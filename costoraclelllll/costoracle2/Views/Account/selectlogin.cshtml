@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "selectlogin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="login-s">SELECT AN OPTION</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="tabs" class="project-tab">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 margin">
+                <nav>
+                    <div class="nav nav-tabs nav-fill tabs" id="nav-tab" role="tablist">
+                        <a class="themeBtn4" data-toggle="" href="@Url.Action("Login", "Account")" role="tab">User Login</a>
+
+                        <a class="themeBtn3" data-toggle="" href="@Url.Action("serviceproviderlogin", "Account")" role="tab">Service Provider Login</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Provider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            <h4 class="text-center" style="color:#0062cc;">@TempData["msg"]</h4>
+                <h3 class="fons">Service Provider Registration</h3>
+                <form action="@Url.Action("Provider","Services")" method="post" class="login-form-2" style="margin-bottom:15px;">
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Business Name *" name="businessname" required/>
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Main contact name *" name="maincontactname" required/>
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Address *" name="address" required/>
+                    </div>
+                    <div class="form-group ft">
+                        <input type="number" class="form-control fe" placeholder="Telephone *" name="contactno" required/>
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Website *" name="website" required/>
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Costoracle Division *" name="division" required/>
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Business RC number *" name="Rcno" required/>
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Sub Category Tag *" name="subcattag" required/>
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Email Id *" name="EmailId" id="EmailId" required />
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Password *" name="Password" id="Password" required />
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Confirm Password *" name="ConfirmPassword" id="ConfirmPassword" required />
+                    </div>
+
+                    <div class="msgemail" style="color:red;"></div>
+
+                    <div class="form-group ft">
+                        <input type="submit" class="btnSubmit" id="submit" value="Sign up">
+                    </div>
+                    <div class="form-group ft">
+                        <a href="@Url.Action("register","account")" class="btn btn-primary bts1">Back</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<script src="@Url.Content("~/js/vendor/jquery-1.12.4.min.js")"></script>
+<script>
+    var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+    $("#EmailId").keyup(function () {
+        if ($(this).val() == '') {
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled', true);
+            $(".msgemail").html("* You have to enter your email address!");
+        }
+        else {
+            if (testEmail.test($(this).val())) {
+                //  $('.msgemail').html('');
+                $(this).css("border-color", "#2eb82e");
+                $('#submit').attr('disabled', false);
+                $(".msgemail").html("");
+            }
+            else {
+                $(this).css("border-color", "#FF0000");
+                $('#submit').attr('disabled', true);
+                $('.msgemail').html('Please Enter valid Email Id');
+            }
+        }
+    });
+
+    $("#Password").keyup(function () {
+        if ($(this).val() == '') {
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled', true);
+            $(".msgemail").html("* You have to enter the password!");
+        }
+        else if ($("#Password").val().length < 6) {
+            $(this).css("border-color", "#FF0000");
+            $('#submit').attr('disabled', true);
+            $(".msgemail").html("* Length of password Should Be atleast 6");
+        }
+        else {
+            $(this).css({ "border-color": "#2eb82e" });
+            $('#submit').attr('disabled', false);
+            $(".msgemail").html("");
+
+        }
+    });
+
+
+    $('#EmailId').blur(function () {
+        var url = '@Url.Content("~/Services/Ext_EmailID_Check")';
+        var name = $('#EmailId').val();
+        if (name.trim() == "") {
+            $(".msgemail").html("");
+            // $("#MSG").css('display', 'none');
+            $("#EmailId").css('background-color', '');
+            $("#EmailId").css('color', '#555');
+            //document.getElementById("NewReg").disabled = true;
+        }
+        else {
+            $.get(url, { Id: name }, function (data) {
+                if (data == "Available") {
+                    $(".msgemail").html("");
+                    //$("#MSG").css('display', 'none');
+                    $("#EmailId").css('background-color', '');
+                    $("#EmailId").css('color', '#555');
+                    //document.getElementById("NewReg").disabled = false;
+                }
+                else {
+                    $(".msgemail").html("Email ID Already Exists.").css('color', 'red');
+                    //$("#MSG").css('display', 'block');
+                    $("#EmailId").css('background-color', '#e97878');
+                    $("#EmailId").css('color', '#fff');
+                    document.getElementById("EmailId").value = "";
+                    //document.getElementById("NewReg").disabled = true;
+                }
+            });
+        }
+    })
+
+</script>
+<script type="text/javascript">
+    $('#ConfirmPassword').keyup(function () {
+        var pass1 = document.getElementById('Password');
+        var pass2 = document.getElementById('ConfirmPassword');
+        var btn = document.getElementsByClassName('btnSubmit');
+
+       // var message = document.getElementsByClassName('msgemail');
+
+       // var goodColor = "green";
+       // var badColor = "red";
+
+        if (pass1.value == pass2.value) {
+            $('.msgemail').css('color','green');
+           // message.style.color = goodColor;
+            $('.btnSubmit').attr("disabled", false);
+            $('.msgemail').html('');
+        } else {
+            $('.msgemail').css('color', 'red');
+            $('.btnSubmit').attr("disabled",true);
+            $('.msgemail').html('Password Do Not Match!');
+           // message.innerHTML = "Password Do Not Match!"
+        }
+    })
+</script>

@@ -1,0 +1,276 @@
+﻿@model costoracle2.Models.RegisterModel
+@{
+    ViewBag.Title = "ResToGetPrices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="padding-bottom: 10%;padding-top: 4%">
+                <h3 class="fons">Register to get prices</h3>
+                @using (Html.BeginForm("ResToGetPrices", "Account", FormMethod.Post, new { @class = "login-form-1" }))
+                {
+                    if (TempData.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty((string)TempData["registersuccess"]))
+                        {
+                            <div class="alert alert-success fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-check alert-icon"></i>
+                                <strong>Success!</strong> @TempData["registersuccess"]
+                            </div>
+                        }
+                        @*else if (!string.IsNullOrEmpty(TempData["registererror"].ToString()))
+                        {
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="glyphicon glyphicon-ban-circle alert-icon"></i>
+                                @TempData["registererror"]
+                            </div>
+                        }*@
+                    }
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Name, new
+                        {
+                            @placeholder = "Your Name *",
+                            @class = "form-control",
+                            @required = "true"
+
+                        })
+                        @Html.ValidationMessageFor(model => model.Name)
+
+
+                        @*<input type="text" class="form-control" placeholder="Your Name *" value="" />*@
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.EmailId, new
+                   {
+                       @placeholder = "Your Email *",
+                       @class = "form-control",
+                       @required = "true",
+                       @type = "email"
+                       
+
+                   })
+                        @*<input type="text" class="form-control" placeholder="Your Email *" value="" />*@
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.PhoneNo, new
+                        {
+                            @placeholder = " Telephone *",
+                            @class = "form-control",
+                            @required = "true"
+
+                        })
+                        @Html.ValidationMessageFor(model => model.PhoneNo)
+
+
+                        @*<input type="text" class="form-control" placeholder="Telephone *" value="" />*@
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Password, new
+                        {
+                            @placeholder = " Password *",
+                            @class = "form-control",
+                            @required = "true",
+                            @type = "password"
+
+                        })
+                        @Html.ValidationMessageFor(model => model.Password)
+
+
+                        @*<input type="text" class="form-control" placeholder="Your Password *" value="" />*@
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.ConfirmPassword, new
+                        {
+                            @placeholder = "Confirm Password *",
+                            @class = "form-control",
+                            @required = "true",
+                            @type = "password"
+
+                        })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+
+
+                        @*<input type="text" class="form-control" placeholder="Confirm Password *" value="" />*@
+                    </div>
+                    @*<div class="form-group">
+                        <label for="">Age group</label>
+                        @Html.DropDownListFor(model => model.AgeGroup,
+                     new List<SelectListItem>{new SelectListItem
+                                       { Text = "16-24", Value = "16-24" },
+                                                         new SelectListItem { Text = "25-29", Value = "25-29" },
+                                           new SelectListItem { Text = "30-39", Value = "30-39" }
+                                           ,new SelectListItem { Text = "40-49", Value = "40-49" },
+                                           new SelectListItem { Text = "50+", Value = "50+" }}, "Age group",
+                                       new
+                                       {
+                                           @class = "form-control abki",
+                                           @required = "true"
+
+                                       })
+                        @Html.ValidationMessageFor(model => model.AgeGroup)
+
+
+
+                    </div>*@
+
+                    <div class="msgemail" style="color:red;"></div>
+
+                    <button class="btn btn-lg btn-block purple-bg al" id="btnSubmit" type="submit">Sign up</button>
+                    <div class="or-boxs">
+                        <span class="or">OR</span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 row-block">
+                            <a href="https://www.facebook.com/" target="_blank" class="btn btn-facebook btn-block">Facebook</a>
+                        </div>
+                        <div class="col-md-6 row-block">
+                            <a href="https://www.gmail.com/" target="_blank" class="btn btn-google btn-block">Google</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <a href="@Url.Action("Register", "Account")" class="btn btn-primary bts">Back</a>
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<script src="@Url.Content("~/js/vendor/jquery-1.12.4.min.js")"></script>
+<script>
+    var testEmail = /^[A-Z0-9._%+-]+@@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+    $("#EmailId").keyup(function () {
+        if ($(this).val() == '') {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").html("* You have to enter your email address!");
+        }
+        else {
+            if (testEmail.test($(this).val())) {
+                //  $('.msgemail').html('');
+                $(this).css("border-color", "#2eb82e");
+                $('#btnSubmit').attr('disabled', false);
+                $(".msgemail").html("");
+            }
+            else {
+                $(this).css("border-color", "#FF0000");
+                $('#btnSubmit').attr('disabled', true);
+                $('.msgemail').html('Please Enter valid Email Id');
+            }
+        }
+    });
+
+    $("#Password").keyup(function () {
+        if ($(this).val() == '') {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").html("* You have to enter the password!");
+        }
+        else if ($("#Password").val().length < 6) {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").html("* Length of password Should Be atleast 6");
+        }
+        else {
+            $(this).css({ "border-color": "#2eb82e" });
+            $('#btnSubmit').attr('disabled', false);
+            $(".msgemail").html("");
+
+        }
+    });
+
+
+    $('#EmailId').blur(function () {
+        var url = '@Url.Content("~/Services/Ext_EmailID_Checks")';
+        var name = $('#EmailId').val();
+        if (name.trim() == "") {
+            $(".msgemail").html("");
+            // $("#MSG").css('display', 'none');
+            $("#EmailId").css('background-color', '');
+            $("#EmailId").css('color', '#555');
+            //document.getElementById("NewReg").disabled = true;
+        }
+        else {
+            $.get(url, { Id: name }, function (data) {
+                if (data == "Available") {
+                    $(".msgemail").html("");
+                    //$("#MSG").css('display', 'none');
+                    $("#EmailId").css('background-color', '');
+                    $("#EmailId").css('color', '#555');
+                    //document.getElementById("NewReg").disabled = false;
+                }
+                else {
+                    $(".msgemail").html("Email ID Already Exists.").css('color', 'red');
+                    //$("#MSG").css('display', 'block');
+                    $("#EmailId").css('background-color', '#e97878');
+                    $("#EmailId").css('color', '#fff');
+                    document.getElementById("EmailId").value = "";
+                    //document.getElementById("NewReg").disabled = true;
+                }
+            });
+        }
+    })
+
+</script>
+<script>
+    $("#PhoneNo").keyup(function () {
+        $pho = $("#PhoneNo").val();
+        if ($(this).val() == '') {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").text("* You have to enter your Phone Number!");
+        }
+        else if ($pho.length > 10) {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").text("* Length of Mobile Number Should Be Ten");
+        }
+        else if (!$.isNumeric($pho)) {
+            $(this).css("border-color", "#FF0000");
+            $('#btnSubmit').attr('disabled', true);
+            $(".msgemail").text("* Mobile Number Should Be Numeric");
+        }
+        else {
+            $(this).css({ "border-color": "#2eb82e" });
+            $('#btnSubmit').attr('disabled', false);
+            $(".msgemail").text("");
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('#ConfirmPassword').keyup(function () {
+        var pass1 = document.getElementById('Password');
+        var pass2 = document.getElementById('ConfirmPassword');
+        var btn = document.getElementsByClassName('btnSubmit');
+
+       // var message = document.getElementsByClassName('msgemail');
+
+       // var goodColor = "green";
+       // var badColor = "red";
+
+        if (pass1.value == pass2.value) {
+            $('.msgemail').css('color','green');
+           // message.style.color = goodColor;
+            $('#btnSubmit').attr("disabled", false);
+            $('.msgemail').html('');
+        } else {
+            $('.msgemail').css('color', 'red');
+            $('#btnSubmit').attr("disabled", true);
+            $('.msgemail').html('Password Do Not Match!');
+           // message.innerHTML = "Password Do Not Match!"
+        }
+    })
+</script>

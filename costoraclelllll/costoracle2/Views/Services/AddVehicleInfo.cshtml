@@ -1,0 +1,214 @@
+﻿@model costoracle2.Models.InsuranceRequestModel
+
+@{
+    ViewBag.Title = "AdiVehicleInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["AddVehicleInfo"] = "active";
+    HttpCookie insuranceRequestCookies = new HttpCookie("insuranceRequestCookies");
+    var state = "";
+    var address = "";
+    var mileage = "";
+    // var miles = "";
+    if (insuranceRequestCookies["LGAId"] != null)
+    {
+        address = insuranceRequestCookies["LGAId"];
+        state= insuranceRequestCookies["StateId"];
+    }
+    else
+    {
+        state = "";
+        address = "";
+    }
+
+    //if (insuranceRequestCookies != null)
+    //{
+    //    mileage = insuranceRequestCookies["Mileunit"];
+    //}
+    //else
+    //{
+    //    mileage = "";
+    //}
+
+}
+@Html.Partial("_VehicleMenu")
+<div class="container">
+    <div class="row ty">
+        <div class="col-md-12">
+            <span class="hd">
+                Additional vehicle information
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <form action="@Url.Action("AddVehicleInfo","Services")" method="post">
+                <div class="tps">
+
+                    <div class="form-group">
+                        <label for="validationCustom03" class="col-md-5 lb food">Where is car kept overnight:</label>
+
+                        @Html.DropDownListFor(model => model.ParkingId, new SelectList(ViewBag.Parking, "Value", "Text")
+                         //new List<SelectListItem>
+                         //{
+                         //new SelectListItem { Text = "Secured compound", Value = "Secured compound" },
+                         //new SelectListItem { Text = "Carpark", Value = "Carpark" },
+                         //new SelectListItem { Text = "Street", Value = "Street" }
+                         //}
+
+                         , "Please select",
+                         new { @class = "col-md-7 form-control form-control-lg", @required = "true" }
+                         )
+
+                        @Html.ValidationMessageFor(model => model.ParkingId)
+
+
+                        <div class="clearfix too ty"></div>
+                        <label for="validationCustom03" class="col-md-5 lb food">State</label>
+                        @Html.DropDownListFor(model => model.StateId, new SelectList(ViewBag.ListLGA, "Value", "Text"), "Select State", new
+                        {
+                            @class = "col-md-7 form-control form-control-lg",
+                            @Id = "LGAstate",
+                            @onchange = "FillLGAListByState()",
+                            @required = "true"
+                        })
+
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-5 lb food">Local Government Area</label>
+                        @Html.DropDownListFor(model => model.LGAId, new List<SelectListItem> { new SelectListItem { Text = "Please Select LGA", Value = "" } }, new { @id = "LGAaddId", @class = "col-md-7 form-control form-control-lg", @required = "true" })
+
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-5 lb food">Car Value :</label>
+                        @Html.TextBoxFor(model => model.CarValue, new {@type="number",@class= "col-md-7 form-control form-control-lg", @placeholder = "Enter Price", @required = "required", @autocomplete = "off",@style="padding-left:38px;" })
+                        <img src="@Url.Content("~/img/nn copy.png")" style="width: 18px;height: 15px;position: absolute;z-index: 10;top: 188px;left: 421px;">
+                        @Html.ValidationMessageFor(model => model.CarValue)
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-5 lb food">Mileage :</label>
+                        @Html.TextBoxFor(model => model.Mileage, new { @type = "number", @class = "col-md-2 form-control k1s", @placeholder = "0", @required = "required", @autocomplete = "off" })
+
+                        @Html.ValidationMessageFor(model => model.Mileage)
+
+                        <div id="radioBtn" class="btn-group  col-md-3">
+                            <a class="btn btn-primary btn-sm active yess" data-toggle="" data-title="Y">Km</a>
+                            <a class="btn btn-primary btn-sm notActive yes" data-toggle="" data-title="N">Miles</a>
+                        </div>
+                        <input type="hidden" name="Mileunit" id="Mileunit" />
+                        @Html.ValidationMessageFor(model => model.Mileunit)
+
+                        <script>
+                            $('#radioBtn a').on('click', function () {
+                                var sel = $(this).data('title');
+                                var tog = $(this).data('toggle');
+                                $('#' + tog).prop('value', sel);
+
+                                $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+                                $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+                            })
+
+/**/</script>
+
+                        <div class="clearfix too"></div>
+                    </div>
+
+                </div>
+
+                @*<button type="submit" class="btn btn-primary boots">
+                    Back
+                </button>*@
+                <a href="javascript:void(0)" onclick="backbtn();" class="btn btn-primary boots">Back</a>
+                <button type="submit" class="btn btn-primary boot">
+                    Next
+                </button>
+            </form>
+            <div class="clearfix too ty"></div>
+        </div>
+    </div>
+</div>
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+@*<script>
+    $(document).ready(function () {
+        FillLGAListByState();
+    })
+</script>*@
+<script>
+    function FillLGAListByState() {
+        
+        var id = "";
+        var text = "";
+        if ('@state' != "") {
+
+        id = '@state';
+        }
+        else {
+            id = $('#LGAstate').val();
+            text = $('#LGAstate option:selected').text();
+        }
+        
+        $.ajax({
+            url: '@Url.Action("LGAlistByState", "Services")',
+            type: 'POST',
+            data: { id: id },
+            success: function (data) {
+                
+                var item = "<option value=''>Select Local Government Area Of " + text + "</option>";
+               
+                $.each(data, function (i, sli) {
+                    item += "<option value='" + sli.Value + "'>" + sli.Text + "</option>";
+                })
+                $('#LGAaddId').html(item);             
+              $('#LGAaddId').val('@address');
+            },
+            error: function (req, status, error) {
+            },
+        });
+    }
+</script>
+<script>
+    $('.yess').click(function () {
+        $('#Mileunit').val($('.yess').html());
+    })
+    $('.yes').click(function () {
+        $('#Mileunit').val($('.yes').html());
+    })
+</script>
+
+<script>
+    $(function () {
+        if('@Model.Mileunit'!=""){
+            if ('@Model.Mileunit' == 'Km') {
+                $('#Mileunit').val('km');
+                $('.yess').addClass('active');
+                $('.yes').removeClass('active');
+            }
+            else {
+                $('#Mileunit').val('Miles');
+                $('.yes').addClass('active').removeClass('notActive');
+                $('.yess').removeClass('active');
+            }
+        }
+        else {
+
+            if ($('#radioBtn .active').html() == 'Km') {
+                $('#Mileunit').val('km');
+            }
+            else {
+                $('#Mileunit').val('Miles');
+            }
+           // alert('else');
+
+        }
+
+
+
+    })
+</script>
+<script>
+    function backbtn() {
+        location.href='@Url.Action("Insurance", "Services")';
+    }
+</script>

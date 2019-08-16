@@ -1,0 +1,74 @@
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+}
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1200px) {
+}
+
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+.top-bar-menu ul li {
+	margin-left: 10px;
+}
+.top-bar-menu ul li a::before {
+	display: none;
+}
+.main-menu ul li ul.submenu {
+	left: -60px;
+}
+.main-menu ul li {
+	margin-right: 10px;
+}
+.logo-top img {
+	width: 150px;
+}
+.logo-top {
+	margin-top: -15px;
+}
+
+}
+@media (max-width: 991px) {
+.box-line:before {
+	content: "";
+	width: 100%;
+	position: absolute;
+	left: 50%;
+	height: 75px;
+	top: 0;
+	display:none;
+}
+}
+
+/* small mobile :320px. */
+@media (max-width: 767px) {
+.logo img {
+	max-width: 80%;
+}
+.copyright-area{
+	text-align:center;
+	}
+footer ul.link {
+	list-style-type: none;
+	padding: 10px 0 0 0;
+	margin: 0;
+	text-align: center;
+}
+.footer-right p {
+	padding-top: 5px;
+}
+.mean-container .mean-nav ul li li a i{
+	margin-right:8px;
+	float:left;
+	display:inline-block;
+}
+
+}
+
+/* Large Mobile :480px. */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+
+
+}

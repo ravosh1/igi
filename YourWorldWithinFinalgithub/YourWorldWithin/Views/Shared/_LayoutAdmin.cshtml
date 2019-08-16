@@ -144,7 +144,7 @@
 
                                 <li class="@TempData["Video"]">
                                     <a href="#">
-                                        <i class="fa fa-cogs fa-fw"></i>
+                                        <i class="fa fa-file-video-o"></i>
                                         <span class="menu-title">Video</span>
                                         <span class="fa arrow"></span>
                                     </a>
@@ -167,7 +167,7 @@
                                 </li>
                                 <li class="@TempData["Audio"]">
                                     <a href="#">
-                                        <i class="fa fa-cogs fa-fw"></i>
+                                        <i class="fa fa-cogs"></i>
                                         <span class="menu-title">Audio</span>
                                         <span class="fa arrow"></span>
                                     </a>
@@ -188,6 +188,28 @@
 
                                     </ul>
                                 </li>
+
+                                <li class="@TempData["Product"]">
+                                    <a href="#">
+                                        <i class="fa fa-cogs fa-fw"></i>
+                                        <span class="menu-title">Category</span>
+                                        <span class="fa arrow"></span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
+
+                                        <li class="@TempData["AddProduct"]">
+                                            <a href="@Url.Action("AddProduct", "Admin")">
+                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="submenu-title">Upload Product</span>
+                                            </a>
+                                        </li>
+                                        <li class="@TempData["ProductList"]">
+                                            <a href="@Url.Action("ProductList", "Admin")">
+                                                <i class="fa fa-angle-up" aria-hidden="true"></i><span class="submenu-title">Product List</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
                                 <li class="@TempData["User"]">
                                     <a href="#">
                                         <i class="fa fa-user" aria-hidden="true"></i>

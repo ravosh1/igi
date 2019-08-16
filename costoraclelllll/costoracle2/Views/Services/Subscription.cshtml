@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Subscription";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="roots">
+
+    <div class="menu-style-2 d-md-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-3 col-lg-3">
+                    <div class="logo"> <a href="index.html"><img src="@Url.Content("~/img/logo/logo.png")" alt="" class="img-fluid"></a> </div>
+                </div>
+                <!--- <div class="col-xl-9 col-lg-9">
+                 <div class="main-menu menu-white text-right">
+                    <a href=""><i class="fa fa-user" aria-hidden="true"></i> Goigi</a>
+                 </div>
+                 <div class="mobile-menu"></div>
+                </div> ---->
+            </div>
+        </div>
+    </div>
+
+    <div class="subscription">
+        <div class="container">
+            <div class="row">
+                <div class="offset-md-2 col-md-8">
+                    <div class="sub-head col-md-6">
+                        <h5>Pay Monthly</h5>
+                        <img src="img/nn copy.png" class="ii1"><span>1,000</span>
+                        <h6>Per Month</h6>
+                        <a href="@Url.Action("Serviceproviderlogin","Account")" class="btn boom">Try For Free ></a>
+                        <p>Provide you access to consumers for a period of 1 month, cancel whenever you want or <u>pay nothing now try for free.</u></p>
+                    </div>
+                    <div class="sub-heads col-md-6">
+                        <h5>Pay Annually</h5>
+                        <img src="img/nn copy.png" class="ii1"><span>10,000</span>
+                        <h6>Per Month</h6>
+                        <a href="@Url.Action("Serviceproviderlogin","Account")" class="btn boom">Try For Free ></a>
+                        <p>Provide you access to consumers for a period of 12 month, cancel whenever you want or <u>pay nothing now try for free.</u></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,475 @@
+﻿@{
+    Layout = null;
+    //string To = (string)ViewBag.email;
+    string Message = (string)ViewBag.Message;
+    //string To = (string)ViewBag.email;
+    //string Password = (string)ViewBag.password;
+
+    string serverpath = (string)ViewBag.serverpath;
+  
+}
+
+<html xmlns="">
+<head>
+
+    <title>@ViewBag.Subject</title>
+    <style type="text/css">
+        body {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            -webkit-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            -webkit-font-smoothing: antialiased !important;
+        }
+
+        .tableContent img {
+            border: 0 !important;
+            display: block !important;
+            outline: none !important;
+        }
+
+        a {
+            color: #382F2E;
+        }
+
+        p, h1, ul, ol, li, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        td, table {
+            vertical-align: top;
+        }
+
+            td.middle {
+                vertical-align: middle;
+            }
+
+        h2 {
+            color: #000000;
+            margin: 0;
+            font-size: 22px;
+            font-weight: normal;
+        }
+
+        p {
+            color: #555555;
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        a.link1 {
+            font-size: 13px;
+            line-height: 19px;
+            color: #999999;
+            text-decoration: none;
+        }
+
+        a.link2 {
+            background: #dc0011;
+            color: #ffffff;
+            font-size: 15px;
+            padding: 8px 12px;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            text-decoration: none;
+        }
+
+        a.link3 {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 15px;
+            background: #4c7891;
+            padding: 8px 12px;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+        }
+
+        a.link4 {
+        }
+
+        @@media only screen and (max-width:480px) {
+
+            table[class="MainContainer"], td[class="cell"] {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            td[class="specbundle"] {
+                width: 100% !important;
+                float: left !important;
+                font-size: 13px !important;
+                line-height: 17px !important;
+                display: block !important;
+            }
+
+            td[class="specbundle1"] {
+                width: 100% !important;
+                float: left !important;
+                font-size: 13px !important;
+                line-height: 17px !important;
+                display: block !important;
+                padding-bottom: 20px !important;
+            }
+
+            td[class="specbundle2"] {
+                width: 90% !important;
+                float: left !important;
+                font-size: 14px !important;
+                line-height: 18px !important;
+                display: block !important;
+                padding-left: 5% !important;
+                padding-right: 5% !important;
+            }
+
+            td[class="specbundle3"] {
+                width: 90% !important;
+                float: left !important;
+                font-size: 14px !important;
+                line-height: 18px !important;
+                display: block !important;
+                padding-left: 5% !important;
+                padding-right: 5% !important;
+                padding-bottom: 20px !important;
+            }
+
+            td[class="spechide"] {
+                display: none !important;
+            }
+
+            img[class="banner"] {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            td[class="left_pad"] {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+        }
+
+        @@media only screen and (max-width:540px) {
+
+            table[class="MainContainer"], td[class="cell"] {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            td[class="specbundle"] {
+                width: 100% !important;
+                float: left !important;
+                font-size: 13px !important;
+                line-height: 17px !important;
+                display: block !important;
+            }
+
+            td[class="specbundle1"] {
+                width: 100% !important;
+                float: left !important;
+                font-size: 13px !important;
+                line-height: 17px !important;
+                display: block !important;
+                padding-bottom: 20px !important;
+            }
+
+            td[class="specbundle2"] {
+                width: 90% !important;
+                float: left !important;
+                font-size: 14px !important;
+                line-height: 18px !important;
+                display: block !important;
+                padding-left: 5% !important;
+                padding-right: 5% !important;
+            }
+
+            td[class="specbundle3"] {
+                width: 90% !important;
+                float: left !important;
+                font-size: 14px !important;
+                line-height: 18px !important;
+                display: block !important;
+                padding-left: 5% !important;
+                padding-right: 5% !important;
+                padding-bottom: 20px !important;
+            }
+
+            td[class="spechide"] {
+                display: none !important;
+            }
+
+            img[class="banner"] {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            td[class="left_pad"] {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+            .font {
+                font-size: 18px !important;
+                line-height: 26px !important;
+            }
+        }
+    </style>
+    <script type="colorScheme" class="swatch active">
+{
+    "name":"Default",
+    "bgBody":"d1d3d4",
+    "link":"000000",
+    "color":"999999",
+    "bgItem":"d1d3d4",
+    "title":"ffffff"
+}
+    </script>
+
+    <style type="text/css">
+        .btn-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+<body paddingwidth="0" paddingheight="0" bgcolor="#d1d3d4" style="padding-top: 0; padding-bottom: 0; padding-top: 0; padding-bottom: 0; background-repeat: repeat; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased;" offset="0" toppadding="0" leftpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableContent" align="center" bgcolor="#EAEAEA" style="font-family: helvetica, sans-serif;">
+        <tbody>
+            <!-- ================ header=============== -->
+            <tr>
+                <td height="20" bgcolor="#EAEAEA"></td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" class="MainContainer">
+                        <tbody>
+                            @*<tr style="background: #ffffff">
+                                <td height="45"></td>
+                            </tr>*@
+
+                            <!-- ================ END header =============== -->
+                            <tr>
+                                <td class="movableContentContainer">
+                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative; background: rgba(194, 198, 201, 0.39);">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+
+                                                                    <td align="center">
+                                                                        <div class="contentEditableContainer contentImageEditable" style="height: 100px; background-color: #fff;">
+                                                                            <div class="contentEditable">
+                                                                                <img src="http://site.goigi.technology/eculaw/Content/Theme/assets/images/demo-content/smartphone/logo-light.png" style="padding-bottom: 38px;height: 85px;padding-top: 8px;" alt="Comprehensive Emergency Response System" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr />
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="40">&nbsp;</td>
+                                                <td valign="top">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td height="38"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="contentEditableContainer contentTextEditable">
+                                                                        <div class="contentEditable">
+                                                                            <p style="font-size: 12px; color: #999999;"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="5"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="contentEditableContainer contentTextEditable">
+                                                                        <div class="contentEditable">
+                                                                            <h2></h2>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="12"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="contentEditableContainer contentTextEditable">
+                                                                        <div class="contentEditable">
+                                                                            
+                                                                            <p>
+                                                                                @Html.Raw(Message)
+
+                                                                            </p>
+                                                                            <br />
+                                                                            <br />
+                                                                            <br />
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <br />
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                             <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="color: #555555; font-size: 14px; text-align: left;">
+                                                                                <img src="http://site.goigi.technology/eculaw/Content/Theme/assets/images/demo-content/smartphone/logo-light.png" style="height: 32px; float: left;" />
+                                                                            </p>
+
+                                                                            <p style="color: #555555; font-size: 14px; text-align: left; margin-top: 35px;">
+                                                                               @* THANKS AND REGARDS, *@
+                                                                                Kind regards,
+                                                                            </p>
+                                                                            <p style="color: #555555; font-size: 14px; text-align: left;">
+                                                                                @*C.R.A.P.S,*@
+                                                                                Comprehensive Emergency Response System 
+                                                                            </p>
+                                                                           @* <p style="color: #555555; font-size: 14px; text-align: left;">
+                                                                               Visit Us at:- <a href="http://crapsaus.com.au/">crapsaus.com.au</a>
+                                                                            </p>*@
+
+                                                                            @*<p style="color: #555555; font-size: 14px; text-align: left;">
+                                                                                Email: <span>info@crapsaus.com.au</span>
+                                                                            </p>*@
+
+                                                                            @*<br />
+                                                                            <br />
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="line-height: 12px; text-align: left";></p>
+                                                                            <p style="color: #555555; font-size: 14px; line-height: 22px; text-align: center; margin-top: 30px;font-weight: 800;">
+                                                                               Comprehensive Emergency Response System 
+                                                                                <br />
+                                                                                <small style="font-size: 8px;">To facilitate access to justice for all</small>
+                                                                            </p>*@
+                                                                            @*<p style="color: #555555; font-size: 12px; text-align: left;">
+                                                                                C.R.A.P.S is a consumer based platform, which allows individuals to voice their concerns about the poor customer service received from both public and private businesses.
+                                                                            </p>*@
+                                                                            <br />
+                                                                            @*<p style="line-height: 12px; text-align: left";></p>*@
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            @*<tr>
+                                                                <td height="25"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="37"></td>
+                                                            </tr>*@
+                                                            <tr>
+                                                                <td>
+                                                                    <div style="border: 1px solid #EBE3E3"></div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td width="40">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bgItem">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="40">&nbsp;</td>
+                                                    <td valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td height="60" align="center">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+
+                                                                                <tr>
+                                                                                    <td align="center"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td height="10"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" style="font-size: 13px; color: #999999;">
+                                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                                            <div class="contentEditable">
+                                                                                                <p style="text-align: center;">Copyright ©<a href="http://site.goigi.technology/eculaw/" style="color: #000000; text-decoration: none; text-align: center;" target="_blank">Comprehensive Emergency Response System  </a>| 2017 All Right Reserved</p>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td width="40">&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

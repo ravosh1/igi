@@ -1,0 +1,229 @@
+﻿@model costoracle2.Models.InsuranceRequestModel
+@{
+    /**/
+
+    ViewBag.Title = "Insurance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["Insurance"] = "active";
+    HttpCookie insuranceRequestCookies = new HttpCookie("insuranceRequestCookies");
+    var info = "";
+    var info1 = "";
+    //if (insuranceRequestCookies["Make"].ToString()!= null)
+    if (insuranceRequestCookies != null)
+    {
+        info = insuranceRequestCookies["Make"];
+        info1 = insuranceRequestCookies["Model"];
+    }
+    else
+    {
+        info = "";
+        info1 = "";
+    }
+
+}
+@Html.Partial("_VehicleMenu")
+
+
+<div class="container">
+    <div class="row ty" style="padding-bottom:0px;">
+        <div class="col-md-12 ">
+
+            @if (TempData["SesonTimout"] != null)
+            {
+                <h6 style="text-align: center;color: #276ef1;margin-bottom: 15px">@TempData["SesonTimout"]</h6>
+            }
+
+            <span class="hd">
+                Vehicle details
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<form action="@Url.Action("Insurance", "Services")" method="post">
+    @*<div class="container">
+            <div class="ty">
+
+            </div>
+        </div>*@
+
+    <div id="vehicle3" class="desc">
+        <div class="container">
+            <div class="main">
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Product to be insured:</label>
+                    <div class="col-md-6">
+
+                        @Html.DropDownListFor(model => model.VehicleTypeId, (IEnumerable<SelectListItem>)ViewBag.VehicleType, "Please select", new { @class = "form-control form-control-lg", @required = "true" })
+                        @Html.ValidationMessageFor(model => model.VehicleTypeId)
+
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="email_address" class="col-md-6 lb food">Enter registration number:</label>
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(model => model.RegistrationNumber, new { @class = "form-control frms upr", @name = "Vehicle Reg No", @required = "true" })
+                        <img src="@Url.Content("~/img/log.png")" alt="Nigerian Flag" class="lgs" style="width:40px; height:38px">
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Make:</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.MakeId, new SelectList(ViewBag.make, "Value", "Text"), "Please Select Make", new
+                   {
+                       //@id = "MakeId",
+                       @class = "form-control form-control-lg",
+                       @required = "true",
+                       @onchange = "FillModlList()"
+                   })
+                        
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Model:</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.ModelId, new List<SelectListItem> { new SelectListItem
+                   { Text = "Please Select Make First", Value = "" } }, new {  @class = "form-control form-control-lg", @required = "true" })
+                        @Html.ValidationMessageFor(model => model.Models)
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Year:</label>
+                    <div class="col-md-6">
+
+                        <div class="checkbox" style="margin-bottom:0px; margin-top:7px">
+                            @Html.DropDownListFor(model => model.VehicleAge, new SelectList(ViewBag.VehicleYear, "Value", "Text"), "Please Select Vehicle Year", new
+                      {
+                          @id = "MakeId",
+                          @class = "form-control form-control-lg",
+                          @required = "true",
+
+                      })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.VehicleAge)
+
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Transmission:</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.TransmissionType, new SelectList(ViewBag.TransmissionLst, "Value", "Text"), "Please Select Transmission", new
+                   {
+                       @class = "form-control form-control-lg",
+                       @required = "true"
+                   })
+                        @Html.ValidationMessageFor(model => model.TransmissionType)
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Fuel type:</label>
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.FuelType,
+new List<SelectListItem>{
+                               new SelectListItem { Text = "Petrol", Value = "Petrol" },
+                               new SelectListItem { Text = "Diesel", Value = "Diesel" }
+                               ,new SelectListItem { Text = "Hybrid", Value = "Hybrid" },
+                               new SelectListItem { Text = "Electric", Value = "Electric" }},
+"Please select",
+new
+{
+    @class = "form-control form-control-lg ",
+    @required = "true"
+
+})
+                        @Html.ValidationMessageFor(model => model.FuelType)
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    @*<div class="clearfix too ty"></div>*@
+                    <button type="submit" class="btn btn-primary boot" style="margin-right: 16px">
+                        Confirm vehicle
+                    </button>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script>
+    $('#iDontKnw').click(function () {
+        if ($('#iDontKnw:checked').length) {
+            $('#VehclAge').attr('readonly', true); //If checked - Read only
+            $('#VehclAge').val('0');
+        } else {
+            $('#VehclAge').attr('readonly', false);//Not Checked - Normal
+        }
+    });
+</script>
+
+
+
+<script>
+    function FillModlList() {
+        var id = '';
+        if ('@info' != "") {
+            id = '@info';
+        }
+        else {
+
+            id = $('#MakeId').val();
+        }
+        // alert(id)
+        $.ajax({
+            url: '@Url.Action("GetModelByMake", "Services")',
+            type: 'POST',
+            data: { id: id },
+            success: function (data) {
+                var item = "<option value=''>Please Select Any Model Of " + data[0].Text + "</option>";
+                //var item = '';
+                // alert(data[0].Text);
+                $.each(data, function (i, sli) {
+                    item += "<option value='" + sli.Value + "'>" + sli.Text + "</option>";
+                })
+                $('#ModelId').html(item);
+                $('#MakeId').val(id);
+                $('#ModelId').val('@info1');
+
+            },
+            error: function (req, status, error) {
+            },
+        });
+    }
+
+    $('#MakeId').change(function () {
+        if ('@info' != null) {
+            FillModlList();
+        }
+    });
+
+    $(document).ready(function () {
+        if ('@info' != null) {
+            FillModlList();
+        }
+    }
+    );
+</script>
+
+
+
+
+

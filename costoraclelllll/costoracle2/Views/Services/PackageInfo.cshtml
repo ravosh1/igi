@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "PackageInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["packageinfo"] = "active";
+}
+
+@Html.Partial("_IteamDelevery")
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 hds">
+            <span>
+                What are you sending?
+            </span>
+            <h6 class="gps">Select An Option</h6>
+        </div>
+    </div>
+</div>
+
+
+<div class="down">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 rs">
+                <div class="col-md-4">
+                    <a href="@Url.Action("iteminfo","services")">
+                        <img src="@Url.Content("~/img/respec/Documents.png")" style="width:138px;">
+                        <h6 class="side1">Documents</h6>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="@Url.Action("iteminfo","services")">
+                        <img src="@Url.Content("~/img/Parcel copy 1.png")" style="width:190px;">
+                        <h6 class="side2">Parcel</h6>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="@Url.Action("iteminfo","services")">
+                        <img src="@Url.Content("~/img/Heavy Items 2 .png")" style="width:180px;">
+                        <h6 class="side1">Heavy items</h6>
+                    </a>
+                </div>
+            </div>
+
+            <div class="offset-md-4 col-md-4">
+                <a href="@Url.Action("itemform","services")">
+                    <button type="submit" class="btn btn-primary bon">
+                        Back
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>

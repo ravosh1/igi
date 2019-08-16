@@ -1,0 +1,525 @@
+﻿@model costoracle2.Models.providermodellist
+@using System.Data
+@{
+    ViewBag.Title = "SetQuote";
+    Layout = "~/Views/Shared/_LayoutProvider.cshtml";
+    DataSet ds = (DataSet)ViewBag.vehiclevaluegroup;
+    DataTable dt = new DataTable();
+
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+
+    DataSet ds1 = (DataSet)ViewBag.vehiclemileagegroup;
+    DataTable dt1 = new DataTable();
+
+    if (ds1 != null && ds1.Tables[0].Rows.Count > 0)
+    {
+        dt1 = ds1.Tables[0];
+    }
+
+    DataSet ds2 = (DataSet)ViewBag.vehicleparking;
+    DataTable dt2 = new DataTable();
+
+    if (ds2 != null && ds2.Tables[0].Rows.Count > 0)
+    {
+        dt2 = ds2.Tables[0];
+    }
+
+    DataSet ds3 = (DataSet)ViewBag.vehiclecovertype;
+    DataTable dt3 = new DataTable();
+
+    if (ds3 != null && ds3.Tables[0].Rows.Count > 0)
+    {
+        dt3 = ds3.Tables[0];
+    }
+
+    DataSet ds4 = (DataSet)ViewBag.vehicletype;
+    DataTable dt4 = new DataTable();
+
+    if (ds4 != null && ds4.Tables[0].Rows.Count > 0)
+    {
+        dt4 = ds4.Tables[0];
+    }
+
+    DataSet ds5 = (DataSet)ViewBag.getlgaprice;
+    DataTable dt5 = new DataTable();
+
+    if (ds5 != null && ds5.Tables[0].Rows.Count > 0)
+    {
+        dt5 = ds5.Tables[0];
+    }
+
+    DataSet ds6 = (DataSet)ViewBag.ClaimYearFactor;
+    DataTable dt6 = new DataTable();
+
+    if (ds6 != null && ds6.Tables[0].Rows.Count > 0)
+    {
+        dt6 = ds6.Tables[0];
+    }
+
+
+    DataSet ds7 = (DataSet)ViewBag.GetDriverAgeGroup;
+    DataTable dt7 = new DataTable();
+
+    if (ds7 != null && ds7.Tables[0].Rows.Count > 0)
+    {
+        dt7 = ds7.Tables[0];
+    }
+
+}
+
+
+
+
+<style>
+    .pad6both {
+        padding: 0 30px;
+    }
+
+    .marbotm {
+        margin-bottom: 10px;
+    }
+    label {
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+</style>
+<div class="set">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               <div class="row">
+                   <div class="tabl col-md-12">
+                       <form action="" method="">
+                           <div class="form-group">
+                               <label for="email_address" class="col-md-3 col-form-label food lk">Message template:</label>
+                               <div class="col-md-6">
+                                   <input type="text" id="" class="form-control frms" name="email-address">
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+
+
+            <div class="row">
+                <div class="tab2 col-md-6 pad6both">
+                    <form action="@Url.Action("SetQuote","Provider")" method="post">
+                        <div class="form-group">
+                            <h3 class="text-center" style="color:#696969;">Mileage</h3>
+                        </div>
+
+
+                        <div class="tuta">
+                            <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="tara">
+                                        <th style="display:none;"></th>
+                                        <th>Mileage</th>
+                                        <th>Cost</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @for (int i = 0; i < dt1.Rows.Count; i++)
+                                    {
+                                        <tr>
+                                            <td style="display:none;">
+                                                @Html.HiddenFor(model => model.ServiceProvider[i].vehiclemileagegroupid, new { @Value = @dt1.Rows[i]["VehicleMileageGroupId"] })
+                                            </td>
+                                            <td>
+                                                @Html.HiddenFor(model => model.ServiceProvider[i].Rangemileage, new { @Value = @dt1.Rows[i]["range"] })
+                                                <span>@dt1.Rows[i]["range"]</span>
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(model => model.ServiceProvider[i].ServiceProvidercost, new { @Value = @dt1.Rows[i]["price"] })
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <div class="tab2 col-md-6 pad6both">
+                    <form action="@Url.Action("SetQuote","Provider")" method="post">
+                        <div class="form-group">
+
+                            <h3 class="text-center" style="color:#696969;">Vehicle Value</h3>
+
+
+                        </div>
+
+
+                        <div class="tuta">
+                            <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr class="tara">
+                                        <th style="display:none;"></th>
+                                        <th>Car Value(N)</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (dt != null)
+                                    {
+                                        for (int i = 0; i < dt.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                <td style="display:none;">
+
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].vehiclevaluegroupid, new { @Value = @dt.Rows[i]["vehiclevaluegroupid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].Range, new { @Value = @dt.Rows[i]["range"] })
+                                                    <span>@dt.Rows[i]["range"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].ServiceProviderprice, new { @Value = @dt.Rows[i]["price"] })
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+                <div class="row">
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">Vehicle Parking</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>Parking</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt2.Rows.Count; i++)
+                                    {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].parkingid, new { @Value = @dt2.Rows[i]["parkingid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].parking, new { @Value = @dt2.Rows[i]["parking"] })
+                                                    <span>@dt2.Rows[i]["parking"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].ServiceProviderparkingprice, new { @Value = @dt2.Rows[i]["price"] })
+                                                </td>
+                                            </tr>
+                                    }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">Vehicle Cover</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>Cover Type</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt3.Rows.Count; i++)
+                                    {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].vehiclecovertypeid, new { @Value = @dt3.Rows[i]["vehiclecovertypeid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].vehiclecovertype, new { @Value = @dt3.Rows[i]["vehiclecovertype"] })
+                                                    <span>@dt3.Rows[i]["vehiclecovertype"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].ServiceProvidercoverFactor, new { @Value = @dt3.Rows[i]["Factor"] })
+                                                </td>
+                                            </tr>
+                                    }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">Vehicle Type</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>Vehicle Type</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt4.Rows.Count; i++)
+                                    {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].VehicleTypeId, new { @Value = @dt4.Rows[i]["VehicleTypeId"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].vehicletype, new { @Value = @dt4.Rows[i]["VehicleType"] })
+                                                    <span>@dt4.Rows[i]["VehicleType"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].ServiceProvidervtypeFactor, new { @Value = @dt4.Rows[i]["Factor"] })
+                                                </td>
+                                            </tr>
+                                    }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">LGA Price</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta" style="height:500px;overflow:scroll;">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>LGA Name</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt5.Rows.Count; i++)
+                                    {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].lgaid, new { @Value = @dt5.Rows[i]["lgaid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].lganame, new { @Value = @dt5.Rows[i]["lganame"] })
+                                                    <span>@dt5.Rows[i]["lganame"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].lgaprice, new { @Value = @dt5.Rows[i]["price"] })
+                                                </td>
+                                            </tr>
+                                    }
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">No Claim Year</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>No Claim Year</th>
+                                            <th>Factor</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt6.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].noclaimyrid, new { @Value = @dt6.Rows[i]["noclaimyearid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].noclaimyr, new { @Value = @dt6.Rows[i]["noclaimyear"] })
+                                                    <span>@dt6.Rows[i]["noclaimyear"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].noclaimfactor, new { @Value = @dt6.Rows[i]["factor"] })
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+            
+                    <div class="tab2 col-md-6 pad6both">
+
+                        <form action="@Url.Action("SetQuote","Provider")" method="post">
+                            <div class="form-group">
+
+                                <h3 class="text-center" style="color:#696969;">Driver Age</h3>
+
+
+                            </div>
+
+
+                            <div class="tuta">
+                                <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="tara">
+                                            <th style="display:none;"></th>
+                                            <th>Range</th>
+                                            <th>Factor</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @for (int i = 0; i < dt7.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                <td style="display:none;">
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].driverageid, new { @Value = @dt7.Rows[i]["driveragegroupid"] })
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(model => model.ServiceProvider[i].driveragerange, new { @Value = @dt7.Rows[i]["range"] })
+                                                    <span>@dt7.Rows[i]["range"]</span>
+                                                </td>
+                                                <td>
+                                                    @Html.TextBoxFor(model => model.ServiceProvider[i].driveragefactor, new { @Value = @dt7.Rows[i]["factor"] })
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Apply" style="float:right;" class="col-md-2 btn btn-primary faltu marbotm" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                </div>
+        </div>
+    </div>
+
+</div>
+@*<iframe width="853" height="480" src="https://www.youtube.com/embed/bORvti3SxKg?&controls=0&modestbranding=1&autohide=1&showinfo=0&rel=0&fs=0&cc_load_policy=0&iv_load_policy=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>*@
+

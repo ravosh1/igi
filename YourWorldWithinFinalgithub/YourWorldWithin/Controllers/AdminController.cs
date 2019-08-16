@@ -123,6 +123,7 @@ namespace YourWorldWithin.Controllers
 
             return View(pp);
         }
+
         public ActionResult VideoList()
         {
             Property p = new Property();
@@ -249,7 +250,6 @@ namespace YourWorldWithin.Controllers
             Property p = new Property();
             List<Property> plist = new List<Property>();
             DataSet ds = dl.usp_getAudio(p);
-
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -263,14 +263,10 @@ namespace YourWorldWithin.Controllers
                     pp.ImageFile = ds.Tables[0].Rows[i]["ImageFile"].ToString();
                     pp.creationdate = ds.Tables[0].Rows[i]["createdatetime"].ToString();
                     pp.CategoryId = ds.Tables[0].Rows[i]["Category"].ToString();
-
                     plist.Add(pp);
                 }
-
                 ViewBag.Audiolist = plist;
             }
-
-
             return View();
         }
 
@@ -323,6 +319,127 @@ namespace YourWorldWithin.Controllers
 
         }
 
+
+        public ActionResult AddProduct()
+        {
+            Fillcategory();
+           // Fillcategory();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddProduct(Property p, HttpPostedFileBase ImageFile)
+        {
+            Fillcategory();
+            string Image = "";
+            try
+            {
+                if (ImageFile != null)
+                {
+                    Image = dl.NewSaveSingleImages("~/DataImages/Images/", ImageFile, Image);
+                }
+               
+                p.ImageFile = Image;
+                
+               // int i = 0;
+                if (p.subCategoryId != "")
+                {
+                    p.CategoryId = p.subCategoryId;
+                }
+                else
+                {
+                    p.CategoryId = p.CategoryId;
+                }
+
+                int i = dl.usp_setProduct(p);
+                if (i > 0)
+                {
+                    TempData["success"] = "Product Uploaded Successfully..";
+                }
+                else
+                {
+                    TempData["error"] = "Product Not Uploaded!";
+                }
+
+                ModelState.Clear();
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Product Not Uploaded!";
+            }
+
+            return View();
+        }
+
+        public void Fillcategory()
+        {
+            Property p = new Models.Property();
+            List<SelectListItem> categorylist = new List<SelectListItem>();
+            DataSet ds = dl.usp_getProductCategory(p);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    SelectListItem sl = new SelectListItem();
+                    sl.Text = ds.Tables[0].Rows[i]["producrcategory"].ToString();
+                    sl.Value = ds.Tables[0].Rows[i]["productcategoryid"].ToString();
+                    categorylist.Add(sl);
+                }
+            }
+
+            ViewBag.Categorylist = new SelectList(categorylist, "Value", "Text");
+        }
+
+        public JsonResult Fillsubcategory(string id)
+        {
+            Property p = new Models.Property();
+            List<SelectListItem> categorylist = new List<SelectListItem>();
+            p.CategoryId = id;
+            DataSet ds = dl.usp_getProductCategory(p);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    SelectListItem sl = new SelectListItem();
+                    sl.Text = ds.Tables[0].Rows[i]["producrcategory"].ToString();
+                    sl.Value = ds.Tables[0].Rows[i]["productcategoryid"].ToString();
+                    categorylist.Add(sl);
+                }
+            }
+
+            ViewBag.subCategorylist = new SelectList(categorylist, "Value", "Text");
+            return Json(ViewBag.subCategorylist,JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult ProductList()
+        {
+            Property p = new Property();
+            List<Property> plist = new List<Property>();
+            p.productid = "0";
+            p.CategoryId = "0";
+            DataSet ds = dl.usp_getProduct(p);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Property pp = new Property();
+                    pp.productid = ds.Tables[0].Rows[i]["ProductId"].ToString();
+                    pp.CategoryId = ds.Tables[0].Rows[i]["ProductCategoryId"].ToString();
+                    pp.Description = ds.Tables[0].Rows[i]["ProductDescription"].ToString();
+                    pp.subCategoryId = ds.Tables[0].Rows[i]["ProductCategory"].ToString();
+                    pp.product = ds.Tables[0].Rows[i]["ProductName"].ToString();
+                    pp.ImageFile = ds.Tables[0].Rows[i]["Image"].ToString();
+                    pp.displayprice = ds.Tables[0].Rows[i]["DisplayPrice"].ToString();
+                    pp.price = ds.Tables[0].Rows[i]["Price"].ToString();
+                    pp.discount = ds.Tables[0].Rows[i]["Discount"].ToString();
+                    plist.Add(pp);
+                }
+                ViewBag.ProductList = plist;
+            }
+            return View();
+        }
 
     }
 }

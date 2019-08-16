@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Service Provider Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form action="subscription-2.html" class="login-form-2" style="margin-bottom:65px; margin-top:65px; border-radius: 12px">
+
+                    <h3 class="fons" style="padding-top:0px !important;padding-bottom:19px !important">Service Provider Registration</h3>
+                    @if (TempData["SrvcTyp"] != null)
+                    {
+                        <h5 style="color:#fff; text-align:center;margin-bottom: 25px">Your Service : @TempData["SrvcTyp"]</h5>
+                    }
+                    else
+                    {
+                        <h5 style="color:#fff; text-align:center;margin-bottom: 25px">Something going wrong! Back & tyr again.</h5>
+                    }
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Business Name *" value="" />
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Main contact name *" value="" />
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Address *" value="" />
+                    </div>
+                    <div class="form-group ft">
+                        <input type="number" class="form-control fe" placeholder="Telephone *" value="" />
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Website *" value="" />
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Costoracle Division *" value="" />
+                    </div>
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Business RC number *" value="" />
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="text" class="form-control fe" placeholder="Sub Category Tag *" value="" />
+                    </div>
+
+                    <div class="form-group ft">
+                        <input type="submit" class="btnSubmit" value="Sign up">
+                    </div>
+                    <div class="form-group ft">
+                        <a href="@Url.Action("ServProvdrTyp", "Account")" class="btn btn-primary bts1">Back</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

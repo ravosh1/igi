@@ -1,0 +1,44 @@
+﻿
+
+
+<div class="container" style="padding-top:2%">
+    <div class="row">
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs wizard">
+                <li class="@TempData["Insurance"]">
+                    <a href="@Url.Action("Insurance","Services")" class="tub" aria-expanded="false">
+                        1. Vehicle information
+                    </a>
+                </li>
+
+                <li class="@TempData["AddVehicleInfo"]">
+                    <a href="@Url.Action("AddVehicleInfo","Services")" class="tub" aria-expanded="false">
+                        2. Additional vehicle information
+                    </a>
+                </li>
+                <li class="@TempData["YourInfo"]">
+                    <a href="@Url.Action("YourInfo","Services")" class="tub" aria-expanded="false">
+                        3. Your information
+                    </a>
+                </li>
+                <li class="@TempData["CoverInfo"]">
+                    <a href="@Url.Action("CoverInfo","Services")" class="tub" aria-expanded="false">
+                        4. Cover information
+                    </a>
+                </li>
+                <li class="@TempData["Review"]">
+                    <a href="@Url.Action("Review","Services")" class="tub" aria-expanded="false">
+                        5. Review
+                    </a>
+                </li>
+                <li class="@TempData["Results"]">
+                    <a href="@Url.Action("Results","Services")" class="tub" aria-expanded="true">
+                        6. Results
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+﻿@model costoracle2.Models.InsuranceRequestModel
+@{
+    ViewBag.Title = "CoverInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["CoverInfo"] = "active";
+}
+
+
+@Html.Partial("_VehicleMenu")
+
+
+<div class="container">
+    <div class="row ty">
+        <div class="col-md-12">
+            <span class="hd">
+                Cover Information
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <form action="@Url.Action("CoverInfo", "Services")" method="post">
+                <div class="tps">
+
+                    <div class="form-group">
+                        <label for="validationCustom03" class="col-md-4 lb food">Start Date:</label>
+                        @Html.DropDownListFor(model => model.Day, new SelectList(ViewBag.Days, "Value", "Text"), "Day", new { @class = "col-md-1 form-control form-control-lg", @style = "padding:4px;margin:0px 20px 0px 0px;", @required = "true" })
+                        @Html.DropDownListFor(model => model.Month, new SelectList(ViewBag.Months, "Value", "Text"), "Month", new { @class = "col-md-2 form-control form-control-lg", @style = "padding:4px;margin:0px 20px 0px 0px;", @required = "true" })
+                        @Html.DropDownListFor(model => model.Year, new SelectList(ViewBag.Years, "Value", "Text"), "Year", new { @class = "col-md-1 form-control form-control-lg", @style = "padding:4px;", @required = "true" })
+                        @*@Html.TextBoxFor(model => model.CoverStartDate, new { @id = "datetimepicker",@placeholder = "Select Date", @class = "col-md-6 form-control", @readonly = "readonly", @autocomplete = "off" })*@
+                        @*<input type="text" id="datetimepicker" placeholder="Select Date" class="col-md-6 form-control" readonly autocomplete="off" name="startdate">*@
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-4 lb food">Insurance Duration:</label>
+
+                        @Html.DropDownListFor(model => model.Duration,
+                                    new List<SelectListItem>{
+                                   new SelectListItem { Text = "1 month", Value = "1 month" },
+                                   new SelectListItem { Text = "6 month", Value = "6 month" },
+                                        new SelectListItem { Text = "1 year", Value = "1 year" }
+                                    },
+                                    "Please select",
+                                    new
+                                    {
+                                        @class = "col-md-6 form-control form-control-lg",
+                                        @required = "true"
+
+                                    })
+                        @Html.ValidationMessageFor(model => model.Duration)
+                        <div class="clearfix too ty"></div>
+                        <label for="validationCustom03" class="col-md-4 lb food">Cover level :</label>
+                        @Html.DropDownListFor(model => model.CoverLableId,
+
+                         new SelectList(ViewBag.CoverLevel, "Value", "Text"),
+                                    // new List<SelectListItem>{
+
+
+                                    //new SelectListItem { Text = "Comprehensive", Value = "Comprehensive" },
+                                    //new SelectListItem { Text = "Third-Party", Value = "Third-Party" }
+
+                                    // },
+                                    "Please select",
+                                    new
+                                    {
+                                        @class = "col-md-6 form-control form-control-lg",
+                                        @required = "true"
+
+                                    })
+                        @Html.ValidationMessageFor(model => model.CoverLableId)
+
+                        <span class="col-md-2 buttons"><i class="fa fa-info tg " aria-hidden="true"></i></span>
+                        <div style="display:none" class="hr">
+                            <b>Comprehensive:</b>  Your vehicle is covered as well as other parties involved in an accident <br>
+                            Third Party: Only the other party's vehicle is covered, your bear the cost for your vehicle, this results in cheaper quotes
+                        </div>
+
+                        <div class="clearfix too ty"></div>
+
+                        <label for="validationCustom03" class="col-md-4 lb food">Years of no claims:</label>
+                        @Html.DropDownListFor(model => model.NoClaimYearId,
+
+                         new SelectList(ViewBag.noclaimlist, "Value", "Text"),
+                                    // new List<SelectListItem>{
+
+
+                                    //new SelectListItem { Text = "Comprehensive", Value = "Comprehensive" },
+                                    //new SelectListItem { Text = "Third-Party", Value = "Third-Party" }
+
+                                    // },
+                                    "Please select",
+                                    new
+                                    {
+                                        @class = "col-md-6 form-control form-control-lg",
+                                        @required = "true"
+
+                                    })
+                        @*@Html.DropDownListFor(model => model.NoClaimYearId,
+                             new List<SelectListItem>{
+                            new SelectListItem { Text = "0", Value = "0" },
+                            new SelectListItem { Text = "1", Value = "1" },
+                            new SelectListItem { Text = "2", Value = "2" },
+                            new SelectListItem { Text = "3", Value = "3" },
+                            new SelectListItem { Text = "4", Value = "4" },
+                            new SelectListItem { Text = "5+", Value = "5" },
+                            new SelectListItem { Text = "I don't know", Value = "-1" }
+                             },
+                             "Please select",
+                             new
+                             {
+                                 @class = "col-md-6 form-control form-control-lg",
+                                 @required = "true"
+                             })*@
+                        @Html.ValidationMessageFor(model => model.NoClaimYearId)
+
+                        <span class="col-md-2 buttons1"><i class="fa fa-info tg " aria-hidden="true"></i></span>
+                        <div style="display:none;" class="hr1"><b>Number of No Claims:</b>  The amount of years you have been insured and not made a claim. N.b the information you enter might need further evidence from your insurers if needed, upon request.</div>
+
+
+                        <div class="clearfix too ty"></div>
+
+                        <label for="" class="col-md-4 col-form-label food">Voluntary excess :</label>
+                        @Html.TextBoxFor(model => model.VoluntaryExcess, new { @type = "number", @class = "col-md-6 form-control fdk", @autocomplete = "off", @required = "true" })
+                        <img src="@Url.Content("~/img/nn copy.png")" class="imk">
+                        <span class="col-md-2 buttons2"><i class="fa fa-info tg " aria-hidden="true"></i></span>
+                        <div style="display:none;" class="hr2">
+                        <b>Voluntary Excess:</b>  Amount of money you are willing to pay if you have an accident, this will also reduce your insurance quote..</div>
+
+                        <div class="clearfix too ty"></div>
+
+
+                    </div>
+
+                </div>
+
+                <a href="javascript:void(0)" onclick="backbtn();" class="btn btn-primary boots">Back</a>
+
+
+                <button type="submit" class="btn btn-primary boot1">
+                    Next
+                </button>
+
+            </form>
+            <div class="clearfix too ty"></div>
+
+        </div>
+    </div>
+</div>
+<hr>
+
+<script>
+    function backbtn() {
+        location.href = '@Url.Action("YourInfo", "Services")';
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".buttons").click(function () {
+            $(".hr").show();
+            $(".hr1").hide();
+            $(".hr2").hide();
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".buttons1").click(function () {
+            $(".hr1").show();
+            $(".hr").hide();
+            $(".hr2").hide();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".buttons2").click(function () {
+            $(".hr2").show();
+            $(".hr").hide();
+            $(".hr1").hide();
+        });
+    });
+</script>

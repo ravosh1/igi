@@ -1,0 +1,721 @@
+﻿@model costoracle2.Models.InsuranceRequestModel
+@{
+
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["Review"] = "active";
+    HttpCookie insuranceRequestCookies = Request.Cookies["insuranceRequestCookies"];
+    var info = "";
+    var info1 = "";
+    if (insuranceRequestCookies["Make"] != null)
+    {
+        info = insuranceRequestCookies["Make"];
+        info1 = insuranceRequestCookies["Model"];
+    }
+    else
+    {
+        info = "";
+        info1 = "";
+    }
+}
+
+@Html.Partial("_VehicleMenu")
+
+<div class="container">
+    <div class="row ty">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <span class="hd">
+                    Review
+                </span>
+            </div>
+                <div class="col-md-10">
+                    <p class="text-center" style="border:2px solid red;border-radius:10px;padding:10px;">Please ensure you have answered the questions honestly, take this opportunity to review any mistakes and correct it if needed, by using the back button at the bottom of the page</p>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row ty">
+        <div class="col-md-12">
+            <span class="hd">
+                Vehicle details
+            </span>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("ItemReview", "Services", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row ty">
+            <div class="col-md-8">
+                <div class="tps">
+                    @Html.HiddenFor(model => model.InsuranceId, new { @class = "form-control col-md-2 k1s", @placeholder = "Enter Vid" })
+                    <div class="form-group">
+                        <label for="validationCustom03" class="col-md-6 lb food">Product to be insured:</label>
+                        <div class="col-md-6">
+
+                            @Html.DisplayFor(model => model.VehicleType)
+                            @Html.HiddenFor(model => model.VehicleTypeId)
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Enter registration number:</label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.RegistrationNumber, new { @class = "form-control frms upr", @name = "Vehicle Reg No", @readonly = "readonly" })
+                                @*<img src="@Url.Content("~/img/log.png")" alt="Nigerian Flag" class="lgs" style="width:40px; height:38px">*@
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix too ty"></div>
+
+                    @*<button type="submit" class="btn btn-primary boot1">
+                            Find vehicle
+                        </button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Make: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Make)
+                              @Html.HiddenFor(model => model.MakeId)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Model: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Models)
+                                @Html.HiddenFor(model => model.ModelId)
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Car Value: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.CarValue)
+                                @*@Html.DropDownListFor(model => model.Models, new List<SelectListItem> {
+                                        new SelectListItem { Text = "Please Select Make First", Value = "" }
+                                    },
+                                        new { @id = "ModelId", @class = "form-control form-control-lg ", @required = "true", @readonly = "readonly" })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <label for="validationCustom03" class="col-md-6 lb food">Year:</label>
+                    <div class="col-md-6">
+                        <div class="col-md-8" style="padding-left:1px">
+
+                            @if (Model.VehicleAge != "-1")
+                            {
+                                <input type="number" id="VehclAge" class="form-control form-control-lg" style="width:50px;padding:10px;font-size: 1.25rem;float:left;" name="VehicleAge" min="0" max="100" placeholder="0" value="@Model.VehicleAge" readonly />
+                                    <span style="margin:10px;">Year(s)</span>
+                                  @*<div class="col-md-2" style="padding-right:0px; font-size:13px;padding-top: 9px;padding-left: 4px">
+                            Year(s) 
+                        </div>*@
+                            }
+
+                            @*else
+                            {
+                                <input type="number" id="VehclAge" class="form-control form-control-lg" style="width:50px;padding:10px;font-size: 1.25rem" name="VehicleAge" min="0" max="100" placeholder="0" value="0" readonly="readonly" />
+                            }*@
+                        @*</div>*@
+                        @*<div class="col-md-8" style="padding-right:1px">*@
+                            @*<div class="checkbox" style="margin-bottom:0px; margin-top:7px">*@
+                                @*@if (Model.VehicleAge != "-1")
+                                {
+                                    <label><input type="checkbox" id="iDontKnw" name="ageother" value="@Model.VehicleAge">I Don't Know Vehicle Age</label>
+                                }*@
+                                else
+                                {
+
+                                    <label><input type="checkbox" id="iDontKnw" name="ageother" value="0" checked="checked">I Don't Know Vehicle Age</label>
+                                }
+                            @*</div>*@
+                            @Html.ValidationMessageFor(model => model.VehicleAge)
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Transmission: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.TransmissionType)
+                                @*@Html.DropDownListFor(model => model.TransmissionType,
+                                        new SelectList(ViewBag.TransmissionLst, "Value", "Text"), "Please Select Transmission Type", new
+                                    {
+                                        @class = "form-control form-control-lg frms1",
+                                        @required = "true",
+                                        @readonly = "readonly"
+                                    })
+                                         @Html.ValidationMessageFor(model => model.TransmissionType)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Fuel Type: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.FuelType)
+                                @*@Html.DropDownListFor(model => model.FuelType,
+                                    new List<SelectListItem>{
+                                                                                                                                                                                                                                                                                                                                                                                                   new SelectListItem { Text = "Petrol", Value = "Petrol" },
+                                                                                                                                                                                                                                                                                                                                                                                                   new SelectListItem { Text = "Diesel", Value = "Diesel" }
+                                                                                                                                                                                                                                                                                                                                                                                                   ,new SelectListItem { Text = "Hybrid", Value = "Hybrid" },
+                                                                                                                                                                                                                                                                                                                                                                                                   new SelectListItem { Text = "Electric", Value = "Electric" }},
+                                    "Please select",
+                                    new
+                                    {
+                                        @class = "form-control form-control-lg ",
+                                        @required = "true",
+                                        @readonly = "readonly"
+
+                                    })
+                                                                    @Html.ValidationMessageFor(model => model.FuelType)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Where is car kept overnight: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Parking)
+                                @Html.HiddenFor(model => model.ParkingId)
+                                @*@Html.DropDownListFor(model => model.ParkingId,
+                                    new List<SelectListItem>{new SelectListItem
+                                    { Text = "AC", Value = "AC" },
+                                    new SelectListItem { Text = "Secured compound", Value = "Secured compound" },
+                                    new SelectListItem { Text = "Carpark", Value = "Carpark" },
+                                    new SelectListItem { Text = "Street", Value = "Street" } },
+                                    "Please select",
+                                    new { @class = "col-md-7 form-control form-control-lg", @required = "true", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.ParkingId)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">State: </label>
+                            <div class="col-md-6">
+                                @Html.HiddenFor(model => model.StateId)
+                                @Html.DisplayFor(model => model.State)
+                                @*@Html.DropDownListFor(model => model.LGAId, new SelectList(ViewBag.ListLGA, "Value", "Text"), "Select LGA State", new
+                                    {
+                                        @class = "col-md-7 form-control form-control-lg",
+                                        @Id = "LGAstate",
+                                        @onchange = "FillLGAListByState()",
+                                        @required = "true"
+                                    })
+
+                                       @Html.ValidationMessageFor(model => model.LGAId)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Address LGA: </label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.LGAaddress)
+                                @Html.HiddenFor(model => model.LGAId)
+                                @*@Html.DropDownListFor(model => model.LGAId, new SelectList(ViewBag.ListLGA, "Value", "Text"), "Select LGA State", new
+                                    {
+                                        @class = "col-md-7 form-control form-control-lg",
+                                        @Id = "LGAstate",
+                                        @onchange = "FillLGAListByState()",
+                                        @required = "true"
+                                    })
+
+                                       @Html.ValidationMessageFor(model => model.LGAId)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*  <div id="vehicle2" class="desc">
+            <div class="container">
+                <div class="row ty">
+                    <div class="col-md-8">
+                        <div class="tps">
+                            <div class="form-group">
+                                <label for="email_address" class="col-md-6 col-form-label food">Address LGA: </label>
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.LGAId, new List<SelectListItem> {
+                                   new SelectListItem { Text = "Please Select LGA State", Value = "" } }, new
+                                                   {
+                                       @id = "LGAaddId",
+                                                       @class = "col-md-7 form-control form-control-lg",
+                                                       @required = "true"
+                                                   })
+                                    @Html.ValidationMessageFor(model => model.LGAId)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix too ty"></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Mileage: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Mileage, new { @class = "form-control col-md-2 k1s", @placeholder = "Enter Mileage", @type = "number", @readonly = "readonly", @style = "border:none;" })
+
+
+                                <div id="radioBtn" class="btn-group  col-md-3">
+                                    <a class="btn btn-primary btn-sm active yess" data-toggle="" data-title="Y">Km</a>
+                                    <a class="btn btn-primary btn-sm notActive yes" data-toggle="" data-title="N">Miles</a>
+                                </div>
+                                <input type="hidden" name="Mileunit" id="Mileunit" />
+                                <script>
+                                    $('#radioBtn a').on('click', function () {
+                                        var sel = $(this).data('title');
+                                        var tog = $(this).data('toggle');
+                                        $('#' + tog).prop('value', sel);
+
+                                        $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+                                        $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+                                    })
+
+
+/**/                             </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Driver First Name: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.DriverFirstName, new { @class = "", @placeholder = "Enter First Name", @readonly = "readonly", @style = "border:none;" })
+                                @Html.ValidationMessageFor(model => model.DriverFirstName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Driver Last Name: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.DriverLastName, new { @class = "", @placeholder = "Enter Last Name", @readonly = "readonly", @style = "border:none;" })
+                                @Html.ValidationMessageFor(model => model.DriverLastName)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Driver Age group: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.DriverDOB, new
+                           {
+                               @id = "datetimepicker1",
+                               @placeholder = "Select Date",
+                               //@class = "col-md-6 form-control",
+                               @readonly = "readonly",
+                               @autocomplete = "off",
+                               @style = "border:none;"
+                           })
+                                @Html.ValidationMessageFor(model => model.DriverDOB)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="validationCustom03" class="col-md-6 lb food">Start Date:</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.CoverStartDate, new { @id = "datetimepicker2", @placeholder = "Select Date", @class = "", @readonly = "readonly", @autocomplete = "off", @style = "border:none;" })
+                                @*<input type="text" id="datetimepicker" placeholder="Select Date" class="col-md-6 form-control" readonly autocomplete="off" name="startdate">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="validationCustom03" class="col-md-6 lb food">Insurance Duration:</label>
+                            <div class="col-md-6">
+                                @Html.DisplayFor(model => model.Duration)
+                                @*@Html.DropDownListFor(model => model.Duration,
+                                                                      new List<SelectListItem>{new SelectListItem
+                                                                                { Text = "1 month", Value = "1 month" },
+                                    new SelectListItem { Text = "6 month", Value = "6 month" },
+                                    new SelectListItem { Text = "1 year", Value = "1 year" },
+
+                                    },
+                                    "Please select",
+                                    new { @class = "col-md-6 form-control form-control-lg", @required = "true", @readonly = "readonly" })
+
+
+                                                                    @Html.ValidationMessageFor(model => model.Duration)*@
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Cover Level: </label>
+                            <div class="col-md-6">
+                                @Html.HiddenFor(model => model.CoverLableId)
+                                @Html.DisplayFor(model => model.CoverLable)
+                                @*@Html.DropDownListFor(model => model.CoverLableId,
+                                    new List<SelectListItem>{
+                                    new SelectListItem { Text = "Comprehensive", Value = "Comprehensive" },
+                                    new SelectListItem { Text = "Third-Party", Value = "Third-Party" },
+                                    },
+                                    "Please select",
+                                    new { @class = "col-md-6 form-control form-control-lg", @required = "true", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.CoverLableId)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Years of No claims: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.NoClaimYearId, new {@readonly="readonly" })
+                               @* @Html.HiddenFor(model => model.NoClaimYearId,new { @id= "NoClaimYearId1" })*@
+                                @*@Html.DropDownListFor(model => model.NoClaimYearId,
+                                    new List<SelectListItem>{
+                                    new SelectListItem { Text = "1", Value = "1" },
+                                    new SelectListItem { Text = "2", Value = "2" },
+                                    new SelectListItem { Text = "3", Value = "3" },
+                                    new SelectListItem { Text = "4", Value = "4" },
+                                    new SelectListItem { Text = "5+", Value = "5" },
+                                    },
+                                    "Please select",
+                                    new { @class = "col-md-6 form-control form-control-lg", @required = "true" })
+                                                                    @Html.ValidationMessageFor(model => model.NoClaimYearId)*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vehicle2" class="desc">
+        <div class="container">
+            <div class="row ty">
+                <div class="col-md-8">
+                    <div class="tps">
+                        <div class="form-group">
+                            <label for="email_address" class="col-md-6 col-form-label food">Voluntary excess Number: </label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.VoluntaryExcess, new { @type = "number", @class = "", @placeholder = "Enter Voluntary excess Number", @readonly = "readonly",@style="border:none;" })
+                                @Html.ValidationMessageFor(model => model.VoluntaryExcess)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix too ty"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix too ty"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="tps">
+                    <a href="javascript:void(0)" onclick="backbtn();" class="btn btn-primary boots">Back</a>
+                    <button type="submit" class="btn btn-primary boot">
+                        Go To Result
+                    </button>
+                </div>
+                <div class="clearfix too ty"></div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+
+
+<script>
+    $('.yess').click(function () {
+        $('#Mileunit').val($('.yess').html());
+    })
+    $('.yes').click(function () {
+        $('#Mileunit').val($('.yes').html());
+    })
+</script>
+
+<script>
+    $(function () {
+        if('@Model.Mileunit'!=""){
+            if ('@Model.Mileunit' == 'Km') {
+                $('#Mileunit').val('km');
+                $('.yess').addClass('active');
+                $('.yes').removeClass('active');
+            }
+            else {
+                $('#Mileunit').val('Miles');
+                $('.yes').addClass('active').removeClass('notActive');
+                $('.yess').removeClass('active');
+            }
+        }
+        else {
+
+            if ($('#radioBtn .active').html() == 'Km') {
+                $('#Mileunit').val('km');
+            }
+            else {
+                $('#Mileunit').val('Miles');
+            }
+           // alert('else');
+
+        }
+
+
+
+    })
+</script>
+
+
+<script>
+    function backbtn() {
+        location.href='@Url.Action("CoverInfo", "Services")';
+    }
+</script>
+<script>
+    $('#iDontKnw').click(function () {
+        if ($('#iDontKnw:checked').length) {
+            $('#VehclAge').attr('readonly', true); //If checked - Read only
+            $('#VehclAge').val('0');
+        } else {
+            $('#VehclAge').attr('readonly', false);//Not Checked - Normal
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        if ($('#NoClaimYearId').val() == '-1') {
+           // alert($('#NoClaimYearId').val());
+            $('#NoClaimYearId').val('I don\'t Know').css('border','none');
+        }
+        else {
+            $('#NoClaimYearId'). css('border', 'none');
+        }
+        FillSubCat();
+    }
+    );
+
+    jQuery('#MakeId').change(function () {
+        FillSubCat();
+    });
+
+    function FillSubCat() {
+        var id = '';
+        if ('@info' != "") {
+            id = '@info';
+        }
+        else {
+
+            id = jQuery('#MakeId').val();
+        }
+        jQuery.getJSON('/Services/RevwGetModelByMake/' + id, function (data) {
+            //alert('@info');
+            //alert('@info1');
+           // var items = '';
+            var items = "<option value=''>Please Select Any Model Of " + id + "</option>";
+            jQuery.each(data, function (i, CID) {
+                items += "<option value='" + CID.Value + "'>" + CID.Text + "</option>";
+            });
+            jQuery('#ModelId').html(items);
+            jQuery('#MakeId').val(id);
+            jQuery('#ModelId').val('@info1');
+            //document.getElementById('SID').value = jQuery('#Subcatid').val();
+            //document.getElementById('CID').value = jQuery('#catid').val();
+            //document.getElementById('shopname').value = jQuery('#shopid').val();
+        });
+    }
+
+</script>
+
+
+

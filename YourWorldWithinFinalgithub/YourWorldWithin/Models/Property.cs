@@ -32,6 +32,7 @@ namespace YourWorldWithin.Models
         [Display(Name = "Title")]
         public string Title { get; set; }
         public string CategoryId { get; set; }
+        public string subCategoryId { get; set; }
         public string planid { get; set; }
         public string plan { get; set; }
         
@@ -49,6 +50,9 @@ namespace YourWorldWithin.Models
         [Display(Name = "ImageFile")]
         public string ImageFile { get; set; }
         public string Status { get; set; }
+        public string displayprice { get; set; }
+        public string price { get; set; }
+        public string discount { get; set; }
 
         //User
         public string UserId { get; set; }
@@ -57,6 +61,8 @@ namespace YourWorldWithin.Models
         public string Phone { get; set; }
         public Boolean EmailVerified { get; set; }
         public string ModifiedDate { get; set; }
+        public string productid { get; set; }
+        public string product { get; set; }
                    
     }
 }

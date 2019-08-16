@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "ServiceDescriptionon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs wizard loc">
+                <li class="active">
+                    <a href="@Url.Action("TradeProfessionals","Services")" class="tub" aria-expanded="false">
+                        1.  Service Required
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("ServiceDescriptionon","Services")" class="tub" aria-expanded="false">
+                        2. Service Description
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ReviewForTrade","Services")" class="tub" aria-expanded="false">
+                        3. Review
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ResultsForTarde","Services")" class="tub" aria-expanded="true">
+                        4. Results
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="tum">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-offset-2 col-md-8">
+                <div class="form-a">
+                    <div class="row form-group maar">
+                        <label class="col-md-3 food">Location :</label>
+                        <textarea name="issues" class="form-control col-md-4 k1" id="iq" placeholder=""></textarea>
+                        <label class="col-md-1 text-center yaa">or</label>
+                        <a href="#">
+                            <button type="submit" class="btn btn-primary bos">
+                                Use Current Location
+                            </button>
+                            <img src="@Url.Action("~/img/CIRCLE WHITE.png")" class="igs">
+                        </a>
+                    </div>
+
+                    <div class="row form-group maar">
+                        <label for="" class="col-md-3 food">Budget :</label>
+                        <input type="text" id="myInput" class="col-md-4 form-control k2" name="" placeholder="">
+                        <img src="img/nn copy.png" class="im">
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 food">Time Frame:</label>
+                        <select class="col-md-4 form-control form-control-lg" id="">
+                            <option value="">Please Select</option>
+                            <option value="Classroom Instruction and Assessment">Job done now</option>
+                            <option value="Curriculum Development and Alignment">Within a week</option>
+                            <option value="District Committee">Within the month</option>
+                            <option value="Meeting">No Urgency</option>
+                        </select>
+
+                    </div>
+
+                    <div class="row form-group maar">
+                        <label class="col-md-3 food">Upload image:</label>
+                        <p>
+                            <span class="btn btn-primary btn-file boom">
+                                browse file <input type="file" onchange="readURL(this);">
+                            </span>
+                        </p>
+                    </div>
+                    <a href="trade-professional.html">
+                        <button type="submit" class="btn btn-primary boots">
+                            Back
+                        </button>
+                    </a>
+                    <a href="#">
+                        <button type="submit" class="btn btn-primary boot1">
+                            Next
+                        </button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+

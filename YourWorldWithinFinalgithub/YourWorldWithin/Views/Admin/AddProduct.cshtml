@@ -1,0 +1,269 @@
+﻿@model YourWorldWithin.Models.Property
+ @{
+     ViewBag.Title = "AddProduct";
+     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Product"] = "active";
+     TempData["AddProduct"] = "active";
+}
+<style>
+    .star{
+        color:red;
+    }
+
+</style>
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                   Upload Product
+                </div>
+
+                <div class="panel-body pan">
+                    @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "register" }))
+                    {
+
+                        <div class="form-body pal">
+                            @if (TempData["success"] != null)
+                            {
+                                <div class="alert alert-success fade in blue-alert" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <strong class="text-success">@TempData["success"]</strong>
+                                </div>
+                            }
+                            else if (TempData["error"] != null)
+                            {
+                                <div class="alert alert-warning fade in blue-alert" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <strong class="text-warning">@TempData["error"]</strong>
+                                </div>
+                            }
+                            <div class="row">
+                                @*<div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Product Title  </label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.Title, new { @placeholder = "Product Title", @required = "required", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Category  </label>
+                                        <div class="input-icon right">
+                                            <span class="tg-select">
+                                                @Html.DropDownListFor(model => model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Categorylist, "Category", new { @class = "form-control", @onchange = "fullsubcategory();", @required = "true" })
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Sub-Category  </label>
+                                        <div class="input-icon right">
+                                            <span class="tg-select">
+                                                @Html.DropDownListFor(model => model.subCategoryId, new List<SelectListItem> { new SelectListItem
+                   { Text = "Sub-Category", Value = "" } }, new { @class = "form-control", @required = "true" })
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Product</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.product, new { @placeholder = "Product", @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Display Price</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.displayprice, new { @placeholder = "Display Price", @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Price</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.price, new { @placeholder = "Price", @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Discount</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextBoxFor(model => model.discount, new { @placeholder = "Discount", @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label"><span class="star">*</span>Description</label>
+                                        <div class="input-icon right">
+
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @required = "required" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Image File  </label>
+                                        <div class="input-icon right">
+                                            <input id="tg-photoandlogo" class="tg-fileinput" type="file" name="ImageFile" accept="/image.*/" onchange="showMyImage(this)">
+
+                                           
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">                                  
+                                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                            <img class="" src="@Url.Content("~/Content/avatar.png")" alt="Video Image" style="width:100px;height:80px;" id="thumbnil">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group text-right">
+                                        <input type="submit" class="btn btn-lg" value="Upload" name="submit" style="background-color:#0a819c;color:white;">
+
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                                </div>
+
+                                }
+                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script>
+        function checkImageFileExtension(elem) {
+            var filePath = elem.value;
+
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+
+            validExtensions[0] = 'jpg';
+            validExtensions[1] = 'jpeg';
+            validExtensions[2] = 'bmp';
+            validExtensions[3] = 'png';
+            validExtensions[4] = 'gif';
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+
+
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = null;
+            return false;
+        }
+
+        function checkVideoFileExtension(elem) {
+            var filePath = elem.value;
+
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+
+            validExtensions[0] = 'mp4';
+            validExtensions[1] = '3gp';
+            validExtensions[2] = '3gp2';
+            validExtensions[3] = 'ogg';
+            validExtensions[4] = 'wmv';
+            validExtensions[5] = 'webm';
+            validExtensions[6] = 'flv';
+            validExtensions[7] = 'AVI';
+            validExtensions[8] = 'QuickTime';
+            validExtensions[9] = 'oga';
+            validExtensions[10] = 'ogv';
+            validExtensions[11] = 'm4a';
+            validExtensions[12]= 'm4v';
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+
+
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = null;
+            return false;
+        }
+        
+        function showMyImage(fileInput) {
+
+            if (checkImageFileExtension(fileInput) == true) {
+                var files = fileInput.files;
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var imageType = /image.*/;
+                    if (!file.type.match(imageType)) {
+                        continue;
+                    }
+                    var img = document.getElementById("thumbnil");
+                    img.file = file;
+                    var reader = new FileReader();
+                    reader.onload = (function (aImg) {
+                        return function (e) {
+                            aImg.src = e.target.result;
+                        };
+                    })(img);
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+</script>
+<script>
+
+    function fullsubcategory() {
+        var id = '';
+        id = $('#CategoryId').val();
+       // alert(id);
+
+        $.getJSON('/Admin/Fillsubcategory/', {id:id}, function (data) {
+
+            var items = "<option value=''>Sub-Category</option>";
+            $.each(data, function (i, CID) {
+                items += "<option value='" + CID.Value + "'>" + CID.Text + "</option>";
+            });
+          //  alert(items);
+            $('#subCategoryId').html(items);
+
+        });
+    }
+
+</script>

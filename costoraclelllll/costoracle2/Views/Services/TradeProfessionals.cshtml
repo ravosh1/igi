@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "TradeProfessionals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="padding-top:8%">
+    <div class="row">
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs wizard loc">
+                <li class="active">
+                    <a href="@Url.Action("TradeProfessionals","Services")" class="tub" aria-expanded="false">
+                        1.  Service Required
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("ServiceDescriptionon","Services")" class="tub" aria-expanded="false">
+                        2. Service Description
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ReviewForTrade","Services")" class="tub" aria-expanded="false">
+                        3. Review
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ResultsForTarde","Services")" class="tub" aria-expanded="true">
+                        4. Results
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 hds">
+            <span>
+                Get Prices From Local Trade Professionals
+            </span>
+            <h6 class="gps">Select An Option Below</h6>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="downs" style="padding-bottom:8%">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="tab" role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class=""><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Car Mechanic</a></li>
+                        <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Plumber</a></li>
+                        <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Carpenter</a></li>
+                        <li role="presentation"><a href="#Section4" aria-controls="text" role="tab" data-toggle="tab">Event Planner</a></li>
+                        <li role="presentation"><a href="#Section5" aria-controls="service" role="tab" data-toggle="tab">Other</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <!--- <div class="tab-content tabs">
+                           <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                               <h3>Section 1</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                           </div>
+                           <div role="tabpanel" class="tab-pane fade" id="Section2">
+                               <h3>Section 2</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                           </div>
+                           <div role="tabpanel" class="tab-pane fade" id="Section3">
+                               <h3>Section 3</h3>
+                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                           </div>
+                       </div>----->
+                </div>
+                <!---  <a href="service-description.html">
+                       <button type="submit" class="btn btn-primary boot1">
+                        Next
+                         </button>
+                      </a>------>
+            </div>
+        </div>
+    </div>
+</div>
+

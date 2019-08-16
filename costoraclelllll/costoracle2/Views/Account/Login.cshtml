@@ -1,0 +1,102 @@
+﻿@model costoracle2.Models.RegisterModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["login"] = "register";
+}
+<section>
+    <div class="log">
+        <div class="container login-container">
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 login-form-1 logs">
+                    <!--img src="img/logo/logo.png" alt="" class="imgs" style="display:none;"><br><br-->
+
+                    @if (TempData["MustLogin"] != null)
+                    {
+                        <h6 style="text-align: center;color: #276ef1;margin-bottom: 15px">@TempData["MustLogin"]</h6>
+                    }
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        //if (TempData.Count > 0)
+                        //{
+                            @*if (!string.IsNullOrEmpty((string)TempData["registersuccess"]))
+                                {
+                                 <div class="alert alert-success fade in">
+                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                     <i class="fa fa-check alert-icon"></i>
+                                     <strong>Success!</strong> @TempData["registersuccess"]
+                                 </div>
+                                }*@
+
+                            if (@TempData["loginerror"]!=null)
+                            {
+                                <div class="alert alert-danger fade in">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="glyphicon glyphicon-ban-circle alert-icon"></i>
+                                    @TempData["loginerror"]
+                                </div>
+                            }
+                        @*}*@
+
+                        <div class="form-group bot">
+                            @Html.TextBoxFor(model => model.EmailId, new
+                            {
+                                @placeholder = "Username *",
+                                @class = "form-control",
+                                @required = "true",
+                                @type = "email"
+
+                            })
+                            @*<input type="text" class="form-control" placeholder="Username *" value="" />*@
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Password, new
+                            {
+                                @placeholder = " Password *",
+                                @class = "form-control",
+                                @required = "true",
+                                @type = "password"
+
+                            })
+                            @*<input type="text" class="form-control" placeholder="Password*" value="" />*@
+                        </div>
+                        <label class="checkbox" style="margin-left: 21px;">
+                            <input type="checkbox" value="remember-me" />
+                            Keep me signed in
+                        </label><br><br>
+                        @*<div class="forgot">
+                                <a href="@Url.Action("ForgotPassword", "Account")">Forgot password?</a>
+                            </div>*@
+
+                        <div class="or-box row-block">
+                            <div class="row">
+                                <div class="col-md-12 row-block">
+                                    <button type="submit" class="btn btn-primary btn-block blo">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="or-box row-block">
+                            <div class="row">
+                                <div class="col-md-12 row-block">
+                                    @if (Session["VID"] != null)
+                                    {
+                                        <a href="@Url.Action("ResToGetPrices", "Account")" class="btn btn-primary btn-block blo">Create New Account (Register)</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-block blo">Create New Account (Register)</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
