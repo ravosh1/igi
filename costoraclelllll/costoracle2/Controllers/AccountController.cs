@@ -181,7 +181,32 @@ namespace costoracle2.Controllers
                         InsReqModel.Mileunit = insuranceRequestCookies["Mileunit"].ToString();
                         Acdl.usp_GetInsurenceRequest(InsReqModel);
                     }
-
+                HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
+                if (itemdeliverycookies != null)
+                {
+                    Itemdelivery d = new Models.Itemdelivery();
+                    itemdeliverycookies["userid"] = loginCookie_Costoracle_USER["UserId"];
+                    Response.Cookies.Add(itemdeliverycookies);
+                    // d.itemtypeid = itemdeliverycookies["itemtypeid"];
+                    //// d.itemtype = ds.Tables[0].Rows[0]["itemtype"].ToString();
+                    // d.Addresspick = itemdeliverycookies["Addresspick"];
+                    // d.Latitudepick = itemdeliverycookies["Latitudepick"];
+                    // d.Longitudepick = itemdeliverycookies["Longitudepick"];
+                    // d.Citypick = itemdeliverycookies["Citypick"];
+                    // d.Countrypick = itemdeliverycookies["Countrypick"];
+                    // d.Name = itemdeliverycookies["Name"];
+                    // d.Address = itemdeliverycookies["Address"];
+                    // d.Latitude = itemdeliverycookies["Latitude"];
+                    // d.Longitude = itemdeliverycookies["Longitude"];
+                    // d.City = itemdeliverycookies["City"];
+                    // d.Country = itemdeliverycookies["Country"];
+                    // d.noofitem = itemdeliverycookies["noofitem"];
+                    // d.width = itemdeliverycookies["width"];
+                    // d.height = itemdeliverycookies["height"];
+                    // d.length = itemdeliverycookies["length"];
+                    // d.weight = itemdeliverycookies["weight"];
+                    return RedirectToAction("ItemReview", "Services");
+                }
                     HttpCookie PrevPagePageCookie = Request.Cookies["StrPrevPageCookie"];
 
                     if (PrevPagePageCookie != null)

@@ -8,7 +8,10 @@ namespace costoracle2.Models
     public class Itemdelivery
     {
         public string Id { get; set; }
+        public string userid { get; set; }
+        public string username { get; set; }
         public string itemtypeid { get; set; }
+        public string itemtype { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Addresspick { get; set; }

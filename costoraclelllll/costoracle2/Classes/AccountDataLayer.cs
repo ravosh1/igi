@@ -538,7 +538,7 @@ namespace Classes
             try
             {
                 string[] paraname = { "@UserId", "@ItemTypeId", "@ToName", "@ToAddress", "@ToLat", "@ToLong", "@ToCity", "@ToCountry", "@FromAddress", "@FromLat", "@FromLong", "@FromCity", "@FromCountry", "@NumberOfItem", "@Weight", "@Width", "@Hight", "@Length"};
-                string[] paravalue = { model.Id,model.itemtypeid, model.Name,model.Address,model.Latitude,model.Longitude,model.City,model.Country,model.Addresspick,model.Latitudepick,model.Longitudepick,model.Citypick,model.Countrypick, model.noofitem,model.weight,model.width,model.height,model.length};
+                string[] paravalue = { model.userid,model.itemtypeid, model.Name,model.Address,model.Latitude,model.Longitude,model.City,model.Country,model.Addresspick,model.Latitudepick,model.Longitudepick,model.Citypick,model.Countrypick, model.noofitem,model.weight,model.width,model.height,model.length};
                 return ExecuteNonproc("usp_SetItemDeliveryRequest", paraname, paravalue);
             }
             catch (Exception ex)

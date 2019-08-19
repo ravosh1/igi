@@ -1327,7 +1327,7 @@ namespace costoracle2.Controllers
             itemdeliverycookies["Citypick"] = model.Citypick;
             Response.Cookies.Add(itemdeliverycookies);
             // }
-            return RedirectToAction("iteminfo");
+            return RedirectToAction("packageinfo");
             // return View();
         }
 
@@ -1342,38 +1342,56 @@ namespace costoracle2.Controllers
             return View();
         }
 
-        public ActionResult iteminfo()
+        public ActionResult iteminfo(int? id = 0)
         {
-            return View();
+            Itemdelivery d = new Itemdelivery();
+            d.itemtypeid = id.ToString();
+            if (id == 1)
+            {
+                d.itemtype = "Documents";
+            }
+            if (id == 2)
+            {
+                d.itemtype = "Parcel";
+            }
+            if (id == 3)
+            {
+                d.itemtype = "Heavy Items";
+            }
+            return View(d);
         }
 
 
-
         [HttpPost]
-        public ActionResult iteminfo(Itemdelivery model)
+        public ActionResult iteminfo(Itemdelivery model, string id = "")
         {
             HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
 
-          //  itemdeliverycookies = new HttpCookie("itemdeliverycookies");
+            itemdeliverycookies["itemtypeid"] = id;
             itemdeliverycookies["noofitem"] = model.noofitem;
             itemdeliverycookies["weight"] = model.weight;
             itemdeliverycookies["width"] = model.width;
             itemdeliverycookies["length"] = model.length;
             itemdeliverycookies["height"] = model.height;
-            
+
             Response.Cookies.Add(itemdeliverycookies);
             return RedirectToAction("ItemReview");
         }
+
+
 
         public ActionResult Reviews()
         {
             return View();
         }
 
+
+
         public ActionResult Result()
         {
             return View();
         }
+
 
         // Item Delivery Part End
         //TradeProfessionals Part Starts
@@ -1540,6 +1558,117 @@ namespace costoracle2.Controllers
 
         public ActionResult ItemReview()
         {
+
+            HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
+            HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
+            DataSet ds = dl.Inline_Process("select itemtype from MTR.M31_Itemtype where itemtypeid='" + @itemdeliverycookies["itemtypeid"] + "'");
+            Itemdelivery d = new Itemdelivery();
+            if (loginCookie_Costoracle_USER != null)
+            {
+                d.userid = loginCookie_Costoracle_USER["UserId"];
+                DataSet ds1 = dl.Inline_Process("select Name from USR.U01_User where userid='" + d.userid + "'");
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+
+                    d.username = ds1.Tables[0].Rows[0]["Name"].ToString();
+                }
+                else
+                {
+                    d.username = "NONE";
+                }
+
+                d.itemtypeid = itemdeliverycookies["itemtypeid"];
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    d.itemtype = ds.Tables[0].Rows[0]["itemtype"].ToString();
+                }
+                else
+                {
+                    d.itemtype = "";
+                }
+
+                d.Addresspick = itemdeliverycookies["Addresspick"];
+                d.Latitudepick = itemdeliverycookies["Latitudepick"];
+                d.Longitudepick = itemdeliverycookies["Longitudepick"];
+                d.Citypick = itemdeliverycookies["Citypick"];
+                d.Countrypick = itemdeliverycookies["Countrypick"];
+                d.Name = itemdeliverycookies["Name"];
+                d.Address = itemdeliverycookies["Address"];
+                d.Latitude = itemdeliverycookies["Latitude"];
+                d.Longitude = itemdeliverycookies["Longitude"];
+                d.City = itemdeliverycookies["City"];
+                d.Country = itemdeliverycookies["Country"];
+                d.noofitem = itemdeliverycookies["noofitem"];
+                d.width = itemdeliverycookies["width"];
+                d.height = itemdeliverycookies["height"];
+                d.length = itemdeliverycookies["length"];
+                d.weight = itemdeliverycookies["weight"];
+                Response.Cookies.Add(itemdeliverycookies);
+            }
+            else
+            {
+                return Redirect(Url.Action("Login","Account"));
+            }
+            
+           
+            // d.Country = itemdeliverycookies["Country"];
+            return View(d);
+        }
+
+        [HttpPost]
+        public ActionResult ItemReview(Itemdelivery d)
+        {
+            HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
+            HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
+            DataSet ds = dl.Inline_Process("select itemtype from MTR.M31_Itemtype where itemtypeid='" + @itemdeliverycookies["itemtypeid"] + "'");
+            //Itemdelivery d = new Itemdelivery();
+            if (loginCookie_Costoracle_USER != null)
+            {
+                d.userid = loginCookie_Costoracle_USER["UserId"];
+
+            }
+            else
+            {
+                d.userid = "0";
+            }
+            DataSet ds1 = dl.Inline_Process("select Name from USR.U01_User where userid='" + d.userid + "'");
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+
+                d.username = ds1.Tables[0].Rows[0]["Name"].ToString();
+            }
+            else
+            {
+                d.username = "";
+            }
+            d.itemtypeid = itemdeliverycookies["itemtypeid"];
+            d.itemtype = ds.Tables[0].Rows[0]["itemtype"].ToString();
+            d.Addresspick = itemdeliverycookies["Addresspick"];
+            d.Latitudepick = itemdeliverycookies["Latitudepick"];
+            d.Longitudepick = itemdeliverycookies["Longitudepick"];
+            d.Citypick = itemdeliverycookies["Citypick"];
+            d.Countrypick = itemdeliverycookies["Countrypick"];
+            d.Name = itemdeliverycookies["Name"];
+            d.Address = itemdeliverycookies["Address"];
+            d.Latitude = itemdeliverycookies["Latitude"];
+            d.Longitude = itemdeliverycookies["Longitude"];
+            d.City = itemdeliverycookies["City"];
+            d.Country = itemdeliverycookies["Country"];
+            d.noofitem = itemdeliverycookies["noofitem"];
+            d.width = itemdeliverycookies["width"];
+            d.height = itemdeliverycookies["height"];
+            d.length = itemdeliverycookies["length"];
+            d.weight = itemdeliverycookies["weight"];
+            int i = Acdl.usp_SetItemDeliveryRequest(d);
+            if (i > 0)
+            {
+                TempData["msg"] = "Data Posted Successfully!!";
+            }
+            else
+            {
+                TempData["msg"] = "Data Not Posted!!";
+            }
             return View();
         }
     }

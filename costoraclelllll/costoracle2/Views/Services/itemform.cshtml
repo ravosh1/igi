@@ -2,8 +2,10 @@
 @{
     ViewBag.Title = "itemform";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    TempData["ItemDelivery"] = "active";
 }
 
+@Html.Partial("_IteamDelevery")
 
 <div class="roots">
     <div class="container">
@@ -77,6 +79,7 @@
         </div>
     </div>
     </div>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDF8I_evWUUrTskNcc6UhNmxjiEbAdLyhc&v=3.exp&signed_in=true&libraries=places"></script>
 
 
