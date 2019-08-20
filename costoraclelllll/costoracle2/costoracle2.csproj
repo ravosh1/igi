@@ -416,6 +416,7 @@
     <Content Include="Views\Services\itemform.cshtml" />
     <Content Include="Views\Services\iteminfo.cshtml" />
     <Content Include="Views\Services\ItemReview.cshtml" />
+    <Content Include="Views\Services\ItemResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

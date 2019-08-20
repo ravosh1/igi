@@ -293,6 +293,7 @@ namespace costoracle2.Models
         public string UserId { get; set; }
         public string ServiceProviderId { get; set; }
         public string price { get; set; }
+        public string phone { get; set; }
     }
 
     public class getlga

@@ -28,6 +28,11 @@ namespace costoracle2.Models
         public string height { get; set; }
         public string length { get; set; }
         public string width { get; set; }
+        public string serviceproviderid { get; set; }
+        public string itemdeliveryid { get; set; }
+        public string bussinessname { get; set; }
+        public string price { get; set; }
+        public string phone { get; set; }
         
     }
 }

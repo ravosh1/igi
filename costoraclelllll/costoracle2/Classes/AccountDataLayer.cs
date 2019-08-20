@@ -276,6 +276,20 @@ namespace Classes
             }
         }
 
+        public DataSet usp_getItemDeliveryQuoteList(Itemdelivery model)
+        {
+            try
+            {
+                string[] paraname = { "@ItemDeliveryId", "@UserId", "@ServiceProviderId" };
+                string[] paravalue = { model.itemdeliveryid, model.userid, model.serviceproviderid };
+                return Executeproc("usp_getItemDeliveryQuoteList", paraname, paravalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public DataSet usp_GetVehicleValueGroup(string id)
         {
             try

@@ -1258,6 +1258,7 @@ namespace costoracle2.Controllers
                         model.businessname = ds.Tables[0].Rows[i]["businessname"].ToString();
                         model.address = ds.Tables[0].Rows[i]["address"].ToString();
                         model.price = ds.Tables[0].Rows[i]["price"].ToString();
+                        model.phone = ds.Tables[0].Rows[i]["phone"].ToString();
                         mmlist.Add(model);
                     }
                     ViewBag.quotelist = mmlist;
@@ -1298,34 +1299,55 @@ namespace costoracle2.Controllers
         public ActionResult itemform(Itemdelivery model)
         {
             HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
-            if (loginCookie_Costoracle_USER != null)
+            if (loginCookie_Costoracle_USER == null)
             {
-                model.Id = loginCookie_Costoracle_USER["UserId"];
+                //model.Id = loginCookie_Costoracle_USER["UserId"];
+                HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
 
+                itemdeliverycookies = new HttpCookie("itemdeliverycookies");
+                //itemdeliverycookies["UserId"] = model.Id;
+                itemdeliverycookies["Name"] = model.Name;
+                itemdeliverycookies["Address"] = model.Address;
+                itemdeliverycookies["Addresspick"] = model.Addresspick;
+                itemdeliverycookies["Latitude"] = model.Latitude;
+                itemdeliverycookies["Latitudepick"] = model.Latitudepick;
+                itemdeliverycookies["Longitude"] = model.Longitude;
+                itemdeliverycookies["Longitudepick"] = model.Longitudepick;
+                itemdeliverycookies["City"] = model.City;
+                itemdeliverycookies["Citypick"] = model.Citypick;
+                itemdeliverycookies["Country"] = model.Country;
+                itemdeliverycookies["Countrypick"] = model.Countrypick;
+                itemdeliverycookies["Citypick"] = model.Citypick;
+                itemdeliverycookies["Action"] = "packageinfo";
+                itemdeliverycookies["Controller"] = "Services";
+                Response.Cookies.Add(itemdeliverycookies);
+                return Redirect(Url.Action("Login", "Account"));
             }
             else
             {
-                model.Id = "0";
+                HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
+                itemdeliverycookies = new HttpCookie("itemdeliverycookies");
+                itemdeliverycookies["userid"] = loginCookie_Costoracle_USER["UserId"];
+                itemdeliverycookies["Name"] = model.Name;
+                itemdeliverycookies["Address"] = model.Address;
+                itemdeliverycookies["Addresspick"] = model.Addresspick;
+                itemdeliverycookies["Latitude"] = model.Latitude;
+                itemdeliverycookies["Latitudepick"] = model.Latitudepick;
+                itemdeliverycookies["Longitude"] = model.Longitude;
+                itemdeliverycookies["Longitudepick"] = model.Longitudepick;
+                itemdeliverycookies["City"] = model.City;
+                itemdeliverycookies["Citypick"] = model.Citypick;
+                itemdeliverycookies["Country"] = model.Country;
+                itemdeliverycookies["Countrypick"] = model.Countrypick;
+                itemdeliverycookies["Citypick"] = model.Citypick;
+                //itemdeliverycookies["Action"] = "packageinfo";
+                //itemdeliverycookies["Controller"] = "Services";
+                Response.Cookies.Add(itemdeliverycookies);
+                return Redirect(Url.Action("packageinfo", "Services"));
             }
             // int i = Acdl.usp_SetItemDeliveryRequest(model);
 
-            HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
-
-            itemdeliverycookies = new HttpCookie("itemdeliverycookies");
-            itemdeliverycookies["UserId"] = model.Id;
-            itemdeliverycookies["Name"] = model.Name;
-            itemdeliverycookies["Address"] = model.Address;
-            itemdeliverycookies["Addresspick"] = model.Addresspick;
-            itemdeliverycookies["Latitude"] = model.Latitude;
-            itemdeliverycookies["Latitudepick"] = model.Latitudepick;
-            itemdeliverycookies["Longitude"] = model.Longitude;
-            itemdeliverycookies["Longitudepick"] = model.Longitudepick;
-            itemdeliverycookies["City"] = model.City;
-            itemdeliverycookies["Citypick"] = model.Citypick;
-            itemdeliverycookies["Country"] = model.Country;
-            itemdeliverycookies["Countrypick"] = model.Countrypick;
-            itemdeliverycookies["Citypick"] = model.Citypick;
-            Response.Cookies.Add(itemdeliverycookies);
+           
             // }
             return RedirectToAction("packageinfo");
             // return View();
@@ -1608,6 +1630,10 @@ namespace costoracle2.Controllers
             }
             else
             {
+                //HttpCookie itemdeliverycookies = Request.Cookies["itemdeliverycookies"];
+                itemdeliverycookies["Action"] = "itemform";
+                itemdeliverycookies["Controller"] = "Services";
+                Response.Cookies.Add(itemdeliverycookies);
                 return Redirect(Url.Action("Login","Account"));
             }
             
@@ -1669,7 +1695,59 @@ namespace costoracle2.Controllers
             {
                 TempData["msg"] = "Data Not Posted!!";
             }
-            return View();
+            return Redirect(Url.Action("ItemResults", "Services"));
         }
+
+
+        public ActionResult ItemResults()
+        {
+            HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
+
+            if (loginCookie_Costoracle_USER != null)
+            {
+                HttpCookie PrevPagePageCookie = Request.Cookies["StrPrevPageCookie"];
+                // HttpCookie loginCookie_Costoracle_USER = Request.Cookies["loginCookie_Costoracle_USER"];
+                if (PrevPagePageCookie != null)
+                {
+                    PrevPagePageCookie.Expires = DateTime.Now.AddHours(-1);
+                    Response.Cookies.Add(PrevPagePageCookie);
+                }
+
+
+                Itemdelivery model = new Itemdelivery();
+                List<Itemdelivery> mmlist = new List<Models.Itemdelivery>();
+                //    getinsurancequotelist model = new Models.getinsurancequotelist();
+                //model.InsuranceId = null;
+                model.userid = loginCookie_Costoracle_USER["UserId"];
+                DataSet ds = Acdl.usp_getItemDeliveryQuoteList(model);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        model = new Models.Itemdelivery();
+                        model.bussinessname = ds.Tables[0].Rows[i]["businessname"].ToString();
+                        model.Address = ds.Tables[0].Rows[i]["address"].ToString();
+                        model.price = ds.Tables[0].Rows[i]["price"].ToString();
+                        model.phone = ds.Tables[0].Rows[i]["phone"].ToString();
+                        mmlist.Add(model);
+                    }
+                    ViewBag.quotelist = mmlist;
+                }
+                return View();
+            }
+            else
+            {
+                TempData["MustLogin"] = "You must login or register!";
+                TempData["loginerror"] = "";
+
+                HttpCookie PrevPagePageCookie = Request.Cookies["StrPrevPageCookie"];
+                PrevPagePageCookie = new HttpCookie("StrPrevPageCookie");
+                PrevPagePageCookie["PageURL"] = Url.Action("Results", "Services");
+                Response.Cookies.Add(PrevPagePageCookie);
+
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
     }
 }

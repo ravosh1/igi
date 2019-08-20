@@ -205,7 +205,7 @@ namespace costoracle2.Controllers
                     // d.height = itemdeliverycookies["height"];
                     // d.length = itemdeliverycookies["length"];
                     // d.weight = itemdeliverycookies["weight"];
-                    return RedirectToAction("ItemReview", "Services");
+                    return RedirectToAction(itemdeliverycookies["Action"], itemdeliverycookies["Controller"]);
                 }
                     HttpCookie PrevPagePageCookie = Request.Cookies["StrPrevPageCookie"];
 
