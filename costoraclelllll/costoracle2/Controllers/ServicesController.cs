@@ -1733,6 +1733,16 @@ namespace costoracle2.Controllers
                     }
                     ViewBag.quotelist = mmlist;
                 }
+                else
+                {
+                    model = new Models.Itemdelivery();
+                    model.bussinessname = "NONE";
+                    model.Address = "NONE";
+                    model.price = "NONE";
+                    model.phone = "NONE";
+                    mmlist.Add(model);
+                    ViewBag.quotelist = mmlist;
+                }
                 return View();
             }
             else

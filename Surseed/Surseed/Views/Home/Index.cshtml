@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--================Home Banner Area =================-->
+<section class="home_banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner_content">
+                        <h3>Click, Donate, Repeat</h3>
+                        <h5>Anyone, Anywhere, Anytime</h5>
+                        <a href="organization-signup.html" class="ac_btn">ORGANIZATION SIGNUP</a> <a href="@Url.Action("Home","Organisation")" class="dn_btn">ORGANIZATION LOGIN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="donation_area">
+        <div class="container">
+            <div class="row donation_inner">
+                <div class="col-lg-4">
+                    <div class="dontation_item yellow">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4>Worship Centers</h4>
+                                <ul>
+                                    <li>Surseed simplifies and promotes giving by anyone, anywhere, anytime.</li>
+                                    <li>Efficiently manage your donors and their donations through our dashboard which is focused entirely on your needs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dontation_item pink">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4>Non-Profit</h4>
+                                <ul>
+                                    <li>Surseed takes giving to the next level.</li>
+                                    <li>Simplify giving for your donors by registering your organization with Surseed.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dontation_item green">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4>Donors</h4>
+                                <ul>
+                                    <li>Let Surseed take the stress of giving away from your donors.</li>
+                                    <li>No cash, no checks, no problem.</li>
+                                    <li>click, donate, it is that easy.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Welcome Area =================-->
+<section class="welcome_area pb_120">
+    <div class="container">
+        <div class="row welcome_inner">
+            <div class="col-lg-12 text-center">
+                <a href=""><img src="@Url.Content("~/img/android_icon.png")"></a>
+                <a href=""><img src="@Url.Content("~/img/ios_icon.png")"></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Welcome Area =================-->
+<!--================Causes Area =================-->
+<section class="causes_area">
+    <div class="container">
+        <div class="main_title">
+            <h2>What Makes us Unique?</h2>
+            <p>The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence, and upturning of the natural chain of events that resounded.</p>
+        </div>
+        <div class="causes_slider owl-carousel">
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>More convenient than online giving.</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>Easier to use than text donations.</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>Faster than giving kiosks.</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>Less complicated than PayPal</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>Simpler and quicker than Square</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="causes_item">
+                    <div class="causes_text">
+                        <h4>Less expensive than building your own</h4>
+                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace that’s why it’s crucial.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Causes Area =================-->
+<!--================Download area =================-->
+<section class="download_area" id="download">
+    <div class="container">
+        <div class="download_inner">
+            <h4>Get the app for android &amp; iOS</h4>
+            <h3>Download Now</h3>
+            <a href="https://www.apple.com/"><img src="@Url.Content("~/img/android_icon.png")" alt=""></a>
+            <a href="https://play.google.com/store?hl=en"><img src="@Url.Content("~/img/ios_icon.png")" alt=""></a>
+        </div>
+    </div>
+</section>
+<!--================End Download area =================-->
+
+

@@ -1,0 +1,553 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SurSeed Organization Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="@Url.Content("~/assets/images/favicon.ico")">
+    <!-- Bootstrap select pluings -->
+    <link href="@Url.Content("~/assets/libs/bootstrap-select/bootstrap-select.min.css")" rel="stylesheet" type="text/css" />
+    <!-- c3 plugin css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/c3/c3.min.css")">
+    <!-- App css -->
+    <link href="@Url.Content("~/assets/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/css/icons.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/css/app.min.css")" rel="stylesheet" type="text/css" />
+    <style>
+        main {
+            width: 400px;
+            margin: 30px auto;
+        }
+
+        section {
+            margin-top: 30px;
+        }
+
+        .pieID {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .pie {
+            height: 200px;
+            width: 200px;
+            position: relative;
+            margin: 0 30px 30px 0;
+        }
+
+            .pie::before {
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: 1;
+                width: 100px;
+                height: 100px;
+                background: #EEE;
+                border-radius: 50%;
+                top: 50px;
+                left: 50px;
+            }
+
+            .pie::after {
+                content: "";
+                display: block;
+                width: 120px;
+                height: 2px;
+                background: rgba(0,0,0,0.1);
+                border-radius: 50%;
+                box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+                margin: 220px auto;
+            }
+
+        .slice {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            clip: rect(0px, 200px, 200px, 100px);
+            animation: bake-pie 1s;
+        }
+
+            .slice span {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: black;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                clip: rect(0px, 200px, 200px, 100px);
+            }
+
+        .legend {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background: #FFF;
+            padding: 15px;
+            font-size: 13px;
+            box-shadow: 0 0 4px #DDD;
+        }
+
+            .legend li {
+                width: auto;
+                height: 1.25em;
+                margin-bottom: 0.7em;
+                padding-left: 0.5em;
+                border-left: 1.25em solid black;
+            }
+
+            .legend em {
+                font-style: normal;
+            }
+
+            .legend span {
+                float: right;
+                padding-left: 10px;
+            }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <header id="topnav">
+
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-right mb-0">
+                    <li class="dropdown notification-list">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle nav-link">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+
+                    <li class="d-none d-sm-block">
+                        <form class="app-search">
+                            <div class="app-search-box">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="submit">
+                                            <i class="fe-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="fe-bell noti-icon"></i>
+                            <span class="badge badge-danger rounded-circle noti-icon-badge">9</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="m-0">
+                                    <span class="float-right">
+                                        <a href="#" class="text-dark">
+                                            <small>Clear All</small>
+                                        </a>
+                                    </span>Notification
+                                </h5>
+                            </div>
+                            <div class="slimscroll noti-scroll">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-primary">
+                                        <i class="mdi mdi-settings-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        New settings
+                                        <small class="text-muted">There are new settings available</small>
+                                    </p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon">
+                                        <img src="@Url.Content("~/assets/images/users/avatar-1.jpg")" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Cristina Pride</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Hi, How are you? What about our next meeting</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-warning">
+                                        <i class="mdi mdi-bell-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Updates
+                                        <small class="text-muted">There are 2 new updates available</small>
+                                    </p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img src="@Url.Content("~/assets/images/users/avatar-4.jpg")" class="img-fluid rounded-circle" alt="" />
+                                    </div>
+                                    <p class="notify-details">Karen Robinson</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Wow ! this admin looks good and awesome design</small>
+                                    </p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-danger">
+                                        <i class="mdi mdi-account-plus"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        New user
+                                        <small class="text-muted">You have 10 unread messages</small>
+                                    </p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-info">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Caleb Flakelar commented on Admin
+                                        <small class="text-muted">4 days ago</small>
+                                    </p>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-secondary">
+                                        <i class="mdi mdi-heart"></i>
+                                    </div>
+                                    <p class="notify-details">
+                                        Carlos Crouch liked
+                                        <b>Admin</b>
+                                        <small class="text-muted">13 days ago</small>
+                                    </p>
+                                </a>
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                View all
+                                <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="@Url.Content("~/assets/images/users/avatar-1.jpg")" alt="user-image" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-user"></i>
+                                <span>Profile</span>
+                            </a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings"></i>
+                                <span>Settings</span>
+                            </a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-lock"></i>
+                                <span>Lock Screen</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <!-- item-->
+                            <a href="../index.html" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown notification-list">
+                        <a href="javascript:void(0);" class="nav-link waves-effect waves-light">
+                            <i class="fe-settings noti-icon"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="index.html" class="logo text-center">
+                        <h1 class="logo-lg" style="color:#fff">
+                            SurSeed
+                            <!-- <span class="logo-lg-text-light">SurSeed</span> -->
+                        </h1>
+                        <span class="logo-sm">
+                            <span class="logo-sm-text-dark">Surseed</span>
+
+                        </span>
+                    </a>
+                </div>
+
+            </div> <!-- end container-fluid-->
+        </div>
+        <!-- end Topbar -->
+        <div class="topbar-menu">
+            <div class="container-fluid">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Home","Organisation")">
+                                <i class="fe-airplay"></i>Home
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Collection","Organisation")">
+                                <i class="fe-airplay"></i>Collection
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("AccountStatus","Organisation")">
+                                <i class="fe-airplay"></i>Account Status
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Deposits","Organisation")">
+                                <i class="fe-airplay"></i>Deposits
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Reimbursements","Organisation")">
+                                <i class="fe-airplay"></i>Reimbursements
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Donors","Organisation")">
+                                <i class="fe-airplay"></i>Donors
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("MessageBoard","Organisation")">
+                                <i class="fe-airplay"></i>Message Board
+                            </a>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="@Url.Action("Reports","Organisation")">
+                                <i class="fe-airplay"></i>Reports
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End navigation menu -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- end #navigation -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+    @RenderBody()
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    2019 &copy; SurSeed by <a href="https://www.goigi.com">GOIGI</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-right footer-links d-none d-sm-block">
+                        <a href="#">About Us</a>
+                        <a href="#">Help</a>
+                        <a href="#">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+        <div class="rightbar-title">
+            <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                <i class="mdi mdi-close"></i>
+            </a>
+            <h5 class="m-0 text-white">Settings</h5>
+        </div>
+        <div class="slimscroll-menu">
+            <hr class="mt-0">
+            <h5 class="pl-3">Basic Settings</h5>
+            <hr class="mb-0" />
+
+            <div class="p-3">
+                <div class="custom-control custom-checkbox mb-2">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                    <label class="custom-control-label" for="customCheck1">Notifications</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-2">
+                    <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                    <label class="custom-control-label" for="customCheck2">API Access</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-2">
+                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                    <label class="custom-control-label" for="customCheck3">Auto Updates</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-2">
+                    <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
+                    <label class="custom-control-label" for="customCheck4">Online Status</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck5">
+                    <label class="custom-control-label" for="customCheck5">Auto Payout</label>
+                </div>
+            </div>
+            <!-- Timeline -->
+            <hr class="mt-0" />
+            <h5 class="pl-3 pr-3">Timeline</h5>
+            <hr class="mb-0" />
+            <div class="p-3">
+                <ul class="list-unstyled activity-widget">
+                    <li class="activity-list">
+                        <p class="mb-0"><small>08 July</small></p>
+                        <p>Neque porro quisquam est</p>
+                    </li>
+                    <li class="activity-list">
+                        <p class="mb-0"><small>09 July</small></p>
+                        <p>Ut enim ad minima veniam quis velit esse </p>
+                    </li>
+                    <li class="activity-list">
+                        <p class="mb-0"><small>10 July</small></p>
+                        <p>Quis autem vel eum iure</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- Messages -->
+            <hr class="mt-0" />
+            <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
+            <hr class="mb-0" />
+            <div class="p-3">
+                <div class="inbox-widget">
+                    <div class="inbox-item">
+                        <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
+                        <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
+                        <p class="inbox-item-text">Hey! there I'm available...</p>
+                        <p class="inbox-item-date">13:40 PM</p>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                        <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
+                        <p class="inbox-item-text">I've finished it! See you so...</p>
+                        <p class="inbox-item-date">13:34 PM</p>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
+                        <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
+                        <p class="inbox-item-text">This theme is awesome!</p>
+                        <p class="inbox-item-date">13:17 PM</p>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
+                        <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
+                        <p class="inbox-item-text">Nice to meet you</p>
+                        <p class="inbox-item-date">12:20 PM</p>
+                    </div>
+                    <div class="inbox-item">
+                        <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
+                        <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
+                        <p class="inbox-item-text">Hey! there I'm available...</p>
+                        <p class="inbox-item-date">10:15 AM</p>
+                    </div>
+                </div> <!-- end inbox-widget -->
+            </div> <!-- end .p-3-->
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Vendor js -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- Bootstrap select plugin -->
+    <script src="@Url.Content("~/assets/libs/bootstrap-select/bootstrap-select.min.js")"></script>
+    <!-- Sparkline charts -->
+    <script src="@Url.Content("~/assets/libs/jquery-sparkline/jquery.sparkline.min.js")"></script>
+    <!-- init js -->
+    <script src="@Url.Content("~/assets/js/pages/sparkline.init.js")"></script>
+    <!-- plugins -->
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/d3.min.js")"></script>
+    <!-- dashboard init -->
+    <script src="@Url.Content("~/assets/js/pages/dashboard.init.js")"></script>
+    <!-- App js -->
+    <script src="@Url.Content("~/assets/js/app.min.js")"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+
+
+    <script>
+		function sliceSize(dataNum, dataTotal) {
+			  return (dataNum / dataTotal) * 360;
+			}
+			function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+			  $(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
+			  var offset = offset - 1;
+			  var sizeRotation = -179 + sliceSize;
+			  $("."+sliceID).css({
+				"transform": "rotate("+offset+"deg) translate3d(0,0,0)"
+			  });
+			  $("."+sliceID+" span").css({
+				"transform"       : "rotate("+sizeRotation+"deg) translate3d(0,0,0)",
+				"background-color": color
+			  });
+			}
+			function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+			  var sliceID = "s"+dataCount+"-"+sliceCount;
+			  var maxSize = 179;
+			  if(sliceSize<=maxSize) {
+				addSlice(sliceSize, pieElement, offset, sliceID, color);
+			  } else {
+				addSlice(maxSize, pieElement, offset, sliceID, color);
+				iterateSlices(sliceSize-maxSize, pieElement, offset+maxSize, dataCount, sliceCount+1, color);
+			  }
+			}
+			function createPie(dataElement, pieElement) {
+			  var listData = [];
+			  $(dataElement+" span").each(function() {
+				listData.push(Number($(this).html()));
+			  });
+			  var listTotal = 0;
+			  for(var i=0; i<listData.length; i++) {
+				listTotal += listData[i];
+			  }
+			  var offset = 0;
+			  var color = [
+				"cornflowerblue",
+				"olivedrab",
+				"orange",
+				"tomato",
+				"crimson",
+				"purple",
+				"turquoise",
+				"forestgreen",
+				"navy",
+				"gray"
+			  ];
+			  for(var i=0; i<listData.length; i++) {
+				var size = sliceSize(listData[i], listTotal);
+				iterateSlices(size, pieElement, offset, i, 0, color[i]);
+				$(dataElement+" li:nth-child("+(i+1)+")").css("border-color", color[i]);
+				offset += size;
+			  }
+			}
+			createPie(".pieID.legend", ".pieID.pie");
+
+    </script></body>
+</html>

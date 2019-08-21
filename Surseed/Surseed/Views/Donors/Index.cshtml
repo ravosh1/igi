@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>Donors</h2>
+                <div class="page_link">
+                    <a href="@Url.Action("index","home")">Home</a>
+                    <a href="donor.html">Donors</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Welcome Area =================-->
+<section class="welcome_area">
+    <div class="container">
+        <div class="row welcome_inner">
+            <div class="col-lg-12">
+                <div class="welcome_text text-center">
+                    <h4>Welcome to Surseed</h4>
+                    <p>Your donation is a Surseed you are planting. With our app Surseeds, you ensure you plant your Surseed where it matters to you, free of charge.</p>
+                    <a href=""><img src="img/android_icon.png"></a>
+                    <a href=""><img src="img/ios_icon.png"></a>
+                </div>
+            </div>
+            <!--div class="col-lg-6">
+                <div class="welcome_img">
+                    <img class="img-fluid" src="img/welcome-img.jpg" alt="">
+                </div>
+            </div-->
+        </div>
+    </div>
+</section>
+<!--================End Welcome Area =================-->
+

@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_OrganisationLayout.cshtml";
+}
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">SurSeed</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Welcome John !</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card widget-box-two bg-purple border-purple">
+                    <div class="card-body">
+                        <div class="float-right avatar-lg rounded-circle bg-soft-light mt-2">
+                            <i class="mdi mdi-chart-line font-22 avatar-title text-white"></i>
+                        </div>
+                        <div class="wigdet-two-content">
+                            <p class="m-0 text-uppercase text-white" title="Statistics">Statistics</p>
+                            <h2 class="text-white"><span data-plugin="counterup">65841</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
+                            <p class="text-white m-0"><b>10%</b> From previous period</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card widget-box-two bg-info border-info">
+                    <div class="card-body">
+                        <div class="float-right avatar-lg rounded-circle bg-soft-light mt-2">
+                            <i class="mdi mdi-access-point-network  font-22 avatar-title text-white"></i>
+                        </div>
+
+                        <div class="wigdet-two-content">
+                            <p class="m-0 text-white text-uppercase" title="User Today">User Today</p>
+                            <h2 class="text-white"><span data-plugin="counterup">52142</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
+                            <p class="text-white m-0"><b>5.6%</b> From previous period</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card widget-box-two bg-pink border-pink">
+                    <div class="card-body">
+                        <div class="float-right avatar-lg rounded-circle bg-soft-light mt-2">
+                            <i class="mdi mdi-timetable font-22 avatar-title text-white"></i>
+                        </div>
+                        <div class="wigdet-two-content">
+                            <p class="m-0 text-uppercase text-white" title="Request Per Minute">Request Per Minute</p>
+                            <h2 class="text-white"><span data-plugin="counterup">2365</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
+                            <p class="text-white m-0"><b>7.02%</b> From previous period</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card widget-box-two bg-success border-success">
+                    <div class="card-body">
+                        <div class="float-right avatar-lg rounded-circle bg-soft-light mt-2">
+                            <i class="mdi mdi-cloud-download font-22 avatar-title text-white"></i>
+                        </div>
+                        <div class="wigdet-two-content">
+                            <p class="m-0 text-white text-uppercase" title="New Downloads">New Users</p>
+                            <h2 class="text-white"><span data-plugin="counterup">854</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
+                            <p class="text-white m-0"><b>9.9%</b> From previous period</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title mb-3">Last 30 days Donation</h4>
+                        <main>
+                            <section>
+                                <div class="pieID pie"></div>
+                                <ul class="pieID legend">
+                                    <li>
+                                        <em>Reason 1</em>
+                                        <span>718</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 2</em>
+                                        <span>531</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 3</em>
+                                        <span>868</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 4</em>
+                                        <span>344</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 5</em>
+                                        <span>660</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 6</em>
+                                        <span>1145</span>
+                                    </li>
+                                    <li>
+                                        <em>Reason 7</em>
+                                        <span>11450</span>
+                                    </li>
+                                </ul>
+                            </section>
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title mb-3">Total Revenue share</h4>
+                        <div class="">
+                            <div id="sparkline2" class="text-center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title mb-3">Recent Collection</h4>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Donor Name</th>
+                                        <th>Donate Date</th>
+                                        <th>Purpose</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Admin v1</td>
+                                        <td>01/01/2019</td>
+                                        <td>Fruit</td>
+                                        <td>$400</td>
+                                        <td><span class="badge badge-info">Received</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Admin v2</td>
+                                        <td>01/07/2019</td>
+                                        <td>Fruit</td>
+                                        <td>$200</td>
+                                        <td><span class="badge badge-info">Received</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Admin v3</td>
+                                        <td>21/04/2019</td>
+                                        <td>Fruit</td>
+                                        <td>$200</td>
+                                        <td><span class="badge badge-info">Received</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Admin v4</td>
+                                        <td>11/05/2019</td>
+                                        <td>Fruit</td>
+                                        <td>$200</td>
+                                        <td><span class="badge badge-info">Received</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div> <!-- end container-fluid -->
+</div>
+<!-- end wrapper -->
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+>
