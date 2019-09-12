@@ -229,6 +229,34 @@ namespace AMSS.Models
             }
         }
 
+        public DataSet usp_getStudentReport(Property p)
+        {
+            try
+            {
+                string[] paraname = { "@StudentId", "@AssignmentId" };
+                string[] paravalue = { p.studentid, p.assignmentID };
+                return Ds_Process("usp_getStudentReport", paraname, paravalue);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int usp_setQuestion(Property model)
+        {
+            try
+            {
+                string[] paraname = { "@QuestionId", "@Question", "@MaxMark", "@M01_AssignmentId" };
+                string[] paravalue = { model.QuestionId.ToString(), model.Question, model.MaxMark, model.assignmentID };
+
+                return Int_Process("usp_setQuestion", paraname, paravalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public int AdminEditProfile(Property model)
         {

@@ -39,7 +39,7 @@ namespace AMSS.Controllers
 
                     loginCookie_AMS_Admin.Expires = System.DateTime.Now.AddHours(24);
                     Response.Cookies.Add(loginCookie_AMS_Admin);
-                    TempData["successs"] = "Welcome To AMS Admin Panel!!";
+                    TempData["successs"] = "Welcome To Assignment Management System!!";
                     return RedirectToAction("Dashboard", "Admin");
                 }
                 else

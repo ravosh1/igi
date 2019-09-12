@@ -10,6 +10,7 @@
     {
         dt = ds.Tables[0];
     }
+    int ii = 1;
 }
 
 
@@ -96,6 +97,7 @@
                             <thead>
                                 <tr>
 
+                                    <th>Question Id</th>
                                     <th>Question Name</th>
                                     <th>Full Marks</th>
 
@@ -109,7 +111,10 @@
                                 {
                                     <tr>
 
+                                        <td>
+                                            @ii
 
+                                        </td>
                                         <td>
                                             @dr["Question"]
 
@@ -130,6 +135,7 @@
 
                                         </td>
                                     </tr>
+                                    ii++;
                                 }
                             </tbody>
                         </table>

@@ -1,7 +1,14 @@
-﻿
+﻿@model AMSS.Models.Property
+@using System.Data;
+
+
 @{
     ViewBag.Title = "Question";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    DataTable dt = new DataTable();
+
+    dt = (DataTable)ViewBag.Question;
+
 }
 <div class="contentwrapper">
     <div class="heading">
@@ -12,6 +19,22 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            @if (TempData["Questionsuccess"] != null && !string.IsNullOrEmpty((string)TempData["Questionsuccess"]))
+            {
+                <div class="alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="fa fa-check alert-icon"></i>
+                    <strong>Success!</strong> @TempData["Questionsuccess"]
+                </div>
+            }
+            else if (TempData["Questionerror"] != null && !string.IsNullOrWhiteSpace(TempData["Questionerror"].ToString()))
+            {
+                <div class="alert alert-danger fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <i class="glyphicon glyphicon-ban-circle alert-icon"></i>
+                    @TempData["Questionerror"]
+                </div>
+            }
             <div class="panel panel-default " style="border: 1px solid #c4c4c4;">
                 <div class="panel-heading">
                     <h4 class="panel-title">@if (ViewBag.Assignment != null)
@@ -26,30 +49,141 @@
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label class="col-lg-3 control-label" style="text-align: left;">Questions<span style="color: red;">*</span></label>
-                                <div class="col-lg-9">
-                                    <input type="text" name="assignmentname" class="form-control" placeholder="Enter Assignment Name" required />
+                        <form class="form-horizontal" method="post" >
 
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label class="col-lg-2 control-label" style="text-align: left;">Questions<span style="color: red;">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.Question, new { @class = "form-control", @placeholder = "Enter Questions", @required = "true" })
+                                        @Html.HiddenFor(model => model.QuestionId)
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="col-lg-4 control-label" style="text-align: left;">Full Marks <span style="color: red;">*</span></label>
-                                <div class="col-lg-8">
-                                    <input type="text" name="assignmentname" class="form-control" placeholder="Enter Full Marks" required />
-
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-success " >Submit</button>
+                                <div class="form-group">
+                                    <div class="col-md-8">
+                                        <label class="col-lg-3 control-label" style="text-align: left;">Full Marks <span style="color: red;">*</span></label>
+                                        <div class="col-lg-4">
+                                            @Html.TextBoxFor(model => model.MaxMark, new { @class = "form-control decimalnumber", @placeholder = "Enter Full Marks", @required = "true",@onchange= "MaxMarkcheck()", @onkeyup = "MaxMarkcheck()" })
 
-                            </div>
-                    </div>
-                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-success " id="btnEdit">Submit</button>
+
+                                        </div>
+                                    </div>
+                            </form>
+</div>
             </div>
         </div>
     </div>
-</div>
-   
 
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Questions List</h4>
+                </div>
+                <div class="panel-body">
+
+
+                    @if (dt == null)
+                                                    {
+                        <h4 class="panel-title alert alert-info fade in text-center" style="color: #F10404; margin-top: 10px; text-align: center;">No result found.</h4>
+                    }
+
+                    else
+                    {
+                        <div class="col-md-12">
+                            
+                            <table id="tabletools" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>                                      
+                                        <th>Question</th>                                        
+                                        <th>Full Marks</th>
+                                        <th>Action</th>
+
+                                <tbody>
+                                    @foreach (DataRow row in dt.Rows)
+                                                {
+                                        <tr>
+
+                                            @if (!string.IsNullOrEmpty(row["Question"].ToString()))
+                                            {
+                                                <td>@row["Question"].ToString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A</td>
+                                            }
+
+                                                    @if (!string.IsNullOrEmpty(row["MaxMark"].ToString()))
+                                                    {
+                                                        <td>@row["MaxMark"].ToString()</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>N/A</td>
+                                                    }
+
+
+
+                                            <td>
+
+                                                <a href="@Url.Action("Question","Assignment",new { @id=row["M01_AssignmentId"].ToString(),id1=row["QuestionId"].ToString()})" class="btn btn-primary ml10"><i class="fa fa-pencil"></i>Edit</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                            <div class="pagination-container">
+                                @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                                @Html.PagedListPager(Model, page => Url.Action("enquirylist", "Contact",
+                                    new { page}))*@
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- End .panel -->
+        </div>
+
+</div>
+   </div>
+
+<script>
+
+    $(document.body).on("keypress", ".decimalnumber", function (evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (
+            (charCode != 46 || $(this).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
+            (charCode < 48 || charCode > 57) && charCode != 8)
+            return false;
+    });
+</script>
+<script>
+    function MaxMarkcheck()
+    {
+        if ($("#MaxMark").val() != "")
+        {
+            if ($("#MaxMark").val() > 20 || $("#MaxMark").val() == 0) {
+                alert('Full Marks Range 1 to 20');
+              
+            }
+        }
+        
+    }
+    
+    //function Edit(QuestionId, Question, MaxMark) {
+    //    alert('Are You Sure want to edit');
+    //    $('#QuestionId').val(QuestionId);
+    //    $('#Question').val(Question);
+    //    $('#MaxMark').val(MaxMark);
+
+    //    $('#btnEdit').html('Update');
+    //}
+ </script>
