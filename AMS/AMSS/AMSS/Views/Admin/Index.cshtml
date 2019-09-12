@@ -1,0 +1,125 @@
+﻿@model AMSS.Models.Property
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Account Login | AMS</title>
+    <!-- Mobile specific metas -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <!-- Force IE9 to render in normal mode -->
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="application-name" content="">
+    <!-- Import google fonts - Heading first/ text second -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+    <!-- Css files -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminTheme/themes/supr/css/main.min.css")">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.html">
+    <link rel="icon" href="img/ico/favicon.html" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#3399cc">
+</head>
+<body>
+    <div id="header" class="animated fadeInDown">
+        <div class="row">
+            <div class="navbar">
+                <div class="container text-center">
+                    <a class="navbar-brand" style="float: none ;cursor:context-menu;color:white;margin-left:150px;" href="javascript:void(0)">ASSIGNMENT MANAGEMENT SYSTEM <span class="slogan" style="color:white;">Login</span></a>
+                </div>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- End .row -->
+    </div>
+    <!-- End #header -->
+    <!-- Start login container -->
+    <div class="container login-container" style="width: 360px;">
+        <div class="login-panel panel panel-default plain animated bounceIn" style="margin-top: 100px;">
+            <!-- Start .panel -->
+            <div class="panel-body">
+                <form class="form-horizontal mt0" id="login-form" role="form" method="post">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <!-- col-md-12 start here -->
+                            <label for="">Username:</label>
+                        </div>
+                        <!-- col-md-12 end here -->
+                        <div class="col-lg-12">
+                            <div class="input-group input-icon">
+                                @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Username", @autocomplete = "on", @required = "required", @class = "form-control",  })
+                                <span class="input-group-addon"><i class="icomoon-icon-user s16"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <!-- col-md-12 start here -->
+                            <label for="">Password:</label>
+                        </div>
+                        <!-- col-md-12 end here -->
+                        <div class="col-lg-12">
+                            <div class="input-group input-icon">
+                                @Html.PasswordFor(model => model.Password, new { @placeholder = "Password", @required = "required", @class = "form-control" })
+                                <span class="input-group-addon"><i class="icomoon-icon-lock s16"></i></span>
+                            </div>
+                            @*<span class="help-block text-right"><a href="~/">Forgot password ?</a></span>*@
+                        </div>
+                    </div>
+                    <div class="form-group mb0">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                            <div class="checkbox-custom">
+                                @*  <input type="checkbox" name="remember" id="remember" value="option"><label for="remember">Remember me ?</label>*@
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 mb25">
+                            <button class="btn btn-default pull-right" type="submit">Login</button>
+                        </div>
+                    </div>
+                </form>
+                @*<div class="seperator"><strong>or</strong><hr>
+                    </div>*@
+
+                @if (!string.IsNullOrWhiteSpace(ViewBag.Msg))
+                {
+                    <div class="alert alert-danger fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <i class="glyphicon glyphicon-ban-circle alert-icon"></i><strong>Oh snap!</strong><br /> @ViewBag.Msg
+                    </div>
+                }
+
+            </div>
+
+        </div>
+        <!-- End .panel -->
+    </div>
+    <!-- End login container -->
+    <div class="container">
+        <div class="footer">
+            <p class="text-center">&copy;2019 Copyright AMS. All right reserved !!!</p>
+        </div>
+    </div>
+
+    <!-- Important javascript libs(put in all pages) -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/code.jquery.com/jquery-2.1.1.min.js")"></script>
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/AdminTheme/themes/supr/assets/js/libs/jquery-2.1.1.min.html")">\x3C/script>')</script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/code.jquery.com/ui/1.10.4/jquery-ui.js")"></script>
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/AdminTheme/themes/supr/assets/js/libs/jquery-ui-1.10.4.min.html")">\x3C/script>')</script>
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/libs/excanvas.min.js"></script>
+      <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script type="text/javascript" src="js/libs/respond.min.js"></script>
+    <![endif]-->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/pages/login.js")"></script>
+</body>
+</html>

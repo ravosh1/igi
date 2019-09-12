@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "AddSubject";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="contentwrapper">
+
+     @if (ViewBag.error != null && !string.IsNullOrWhiteSpace(ViewBag.error.ToString()))
+    {
+        <div class="alert alert-danger fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <i class="glyphicon glyphicon-ban-circle alert-icon"></i><strong>Oh snap!</strong> @ViewBag.error
+        </div>
+    }
+
+    <div class="heading">
+        <h3>Section</h3>
+        <div class="resBtnSearch"><a href="#"><span class="s16 icomoon-icon-search-3"></span></a></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default plain">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Add</h4>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal group-border stripped" role="form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label class="col-md-3">Country<span style="color: red">*</span></label>
+                                <div class="col-lg-12 col-md-12">
+                                    @Html.DropDownList("Country", (IEnumerable<SelectListItem>)ViewBag.Countrylist, "-Select Country-", new { @class = "form-control select2", @required = "true", @onchange = "fillwithdistWithCountry(this,'add')" })
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="display:none;">
+                                <label class="col-md-8">State Name<span style="color: red">*</span></label>
+                                <div class="col-md-12 ">
+                                    @Html.DropDownListFor(model => model.StateId, (List<SelectListItem>)ViewBag.GetStatelist, "-Select State-", new { @class = "form-control select2", @onchange = "fillwithdist(this,'add')" })
+                                    <span style="color: red;">@Html.ValidationMessageFor(model => model.StateId)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="col-md-8">District Name<span style="color: red">*</span></label>
+                                <div class="col-md-12 ">
+                                    @Html.DropDownListFor(model => model.DistrictId, (List<SelectListItem>)ViewBag.GetDistlist, "-Select District-", new { @class = "form-control select2", @required = "true" })
+                                    <span style="color: red;">@Html.ValidationMessageFor(model => model.DistrictId)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="col-md-8">Section Name<span style="color: red">*</span></label>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.SecName, new { @class = "form-control", @placeholder = "Enter Section Name", @required = "true" })
+                                    <span style="color: red;">@Html.ValidationMessageFor(model => model.SecName)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Dashboard", "CRM")" class="btn btn-primary ml10 pull-right" style="margin-top:21px;margin-right:10px;">Cancel</a>
+                                <button type="submit" class="btn btn-success ml10 pull-right" style="margin-top: 21px;">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End .panel -->
+        </div>
+    </div>
+</div>

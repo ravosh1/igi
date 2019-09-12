@@ -1,0 +1,82 @@
+﻿@{
+    
+    ViewBag.pagename = Request.RequestContext.RouteData.Values["controller"].ToString();
+    ViewBag.viewname = Request.RequestContext.RouteData.Values["action"].ToString();
+}
+
+<div class="">
+    <div class="sidebar-scrollarea">
+        <div class="sidenav">
+            <div class="sidebar-widget mb0">
+                <h6 class="title mb0">Navigation</h6>
+            </div>
+            <div class="mainnav">
+                <ul>
+                    <li>
+                        <a class="@TempData["active"]" href="@Url.Action("Dashboard", "Admin")">
+                            <i class="s16 icomoon-icon-screen-2"></i>
+                            <span class="txt">Dashboard</span>
+                        </a>
+                    </li>
+                  
+                
+                    <li class="hasSub">
+                  
+                        <a class="" href="#">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                            <span class="txt">Assignment</span>
+                        </a>
+                        <ul class="sub" style="display:@TempData["show"]">
+                            <li>
+                                <a class="@TempData["Assignment"]" href="@Url.Action("Index", "Assignment")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">List</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="@TempData["Question"]" href="@Url.Action("Question", "Assignment")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Question</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                      
+                    </li>
+                 
+
+                    <li class="hasSub">
+
+                        <a class="" href="#">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                            <span class="txt">Student</span>
+                        </a>
+                        <ul class="sub" style="display:@TempData["show"]">
+                            <li>
+                                <a class="@TempData["Studentadd"]" href="@Url.Action("Add", "Student")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Add</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="@TempData["Studentmarks"]" href="@Url.Action("Marks", "Student")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Marks</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

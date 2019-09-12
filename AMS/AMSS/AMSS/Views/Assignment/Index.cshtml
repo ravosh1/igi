@@ -1,0 +1,95 @@
+﻿@using System.Data;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Assignment"] = "active";
+    TempData["indicator"] = "show";
+    DataSet ds = (DataSet)ViewBag.assignmentlist;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+}
+<style>
+    @@media only screen and (min-width: 700px) {
+        .dd {
+            float: left;
+            width: 100%;
+        }
+    }
+</style>
+<div id="content" class="page-content clearfix">
+    <div class="contentwrapper">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 sortable-layout">
+                <div class="panel panel-primary plain">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Assignment</h4>
+                    </div>
+                    <div class="panel-body">
+
+                        <button type="button" class="btn btn-primary btn-block mb10" onclick="Assignmentshow('New')">New Assignment</button>
+                        <div class="panel panel-default" >
+                            <div class="panel-body" id="NewAssignment" style="display:none;">
+                                <form method="post" action="@Url.Action("assign","Assignment")">
+                                    <div class="col-md-8">
+                                        <input type="text" name="assignmentname" class="form-control" placeholder="Enter Assignment Name" required/>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-info btn-block mb10" value="Submit"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                      
+                        <button type="button" class="btn btn-success btn-block" onclick="Assignmentshow('Old')">Old Assignment</button>
+                     
+                        <div class="panel panel-default">
+                            <!-- Start .panel -->
+
+                            <div class="panel-body" id="OldAssignment" style="display:none;">
+                                <div class="dd" id="nestable">
+                                    <ol class="dd-list">
+                                        @if (dt.Rows.Count > 0)
+                                        {
+                                            foreach (System.Data.DataRow dr in dt.Rows)
+                                            {
+                                                <li class="dd-item" data-id="1" >
+                                                    <a href="@Url.Action("Question", "Assignment",new { @id=dr["Assignmentid"]})"><div class="dd-handle" style="cursor:pointer;">@dr["assignmentname"]</div></a>
+                                                </li>
+                                            }
+                                        }
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section featured
+    {
+        <script>
+            function Assignmentshow(type) {
+                if (type == "New") {                  
+                    $("#NewAssignment").show();
+                    $("#OldAssignment").hide();
+                }
+                else {
+                    $("#NewAssignment").hide();
+                    $("#OldAssignment").show();
+                   
+                }
+
+            }
+       
+    </script>
+        }

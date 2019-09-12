@@ -1,0 +1,69 @@
+﻿@using System.Data;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Assignment"] = "active";
+    TempData["indicator"] = "show";
+    DataSet ds = (DataSet)ViewBag.assignmentlist;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
+}
+
+<div id="content" class="page-content clearfix">
+    <div class="contentwrapper">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 sortable-layout">
+                <div class="panel panel-primary plain">
+                    <!-- Start .panel -->
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Assignment</h4>
+                    </div>
+                    <div class="panel-body">
+
+                        <button type="button" class="btn btn-primary btn-block mb10">New Assignment</button>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form method="post" action="@Url.Action("assign","Assignment")">
+                                    <div class="col-md-8">
+                                        <input type="text" name="assignmentname" class="form-control" placeholder="Enter Assignment Name" />
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="btn btn-info btn-block mb10" value="Submit" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-success btn-block">Old Assignment</button>
+                        <br />
+                        <div class="panel panel-default">
+                            <!-- Start .panel -->
+
+                            <div class="panel-body">
+                                <div class="dd" id="nestable">
+                                    <ol class="dd-list">
+                                        @if (dt.Rows.Count > 0)
+                                        {
+                                            foreach (System.Data.DataRow dr in dt.Rows)
+                                            {
+                                                <li class="dd-item" data-id="1">
+                                                    <div class="dd-handle">@dr["assignmentname"]</div>
+                                                </li>
+                                            }
+                                        }
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

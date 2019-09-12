@@ -1,0 +1,240 @@
+﻿@using AMSS.Models;
+@{
+    Layout = null;
+    Property p = new Property();
+    HttpCookie loginCookie_AMS_Admin = Request.Cookies["loginCookie_AMS_Admin"];
+    if (loginCookie_AMS_Admin == null)
+    {
+        Response.Redirect(@Url.Action("Index", "Admin"));
+    }
+    Datalayer dl = new Datalayer();
+    System.Data.DataSet ds = new System.Data.DataSet();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Admin | AMS</title>
+    <!-- Mobile specific metas -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <!-- Force IE9 to render in normal mode -->
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="application-name" content="">
+    <!-- Import google fonts - Heading first/ text second -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+    <!-- Css files -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminTheme/themes/supr/css/main.min.css")">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Content/img/ico/apple-touch-icon-144-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Content/img/ico/apple-touch-icon-114-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Content/img/ico/apple-touch-icon-72-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" href="/Content/img/ico/apple-touch-icon-57-precomposed.html">
+    <link href="/Content/themes/favicon/favicon.png" rel="shortcut icon" />
+    <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/libs/jquery-2.1.1.min.js")" >\x3C/script>')</script>
+    <meta name="msapplication-TileColor" content="#3399cc">
+
+</head>
+<body>
+    <div id="header">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")" target="_blank">
+                    <img src="@Url.Content("~/img/logo.png")" style="height: 55px;" />
+                </a>
+            </div>
+            <div id="navbar-no-collapse" class="navbar-no-collapse">
+                <ul class="nav navbar-right usernav">
+                    <li class="dropdown">
+                        @if (loginCookie_AMS_Admin != null)
+                        {
+                            if (loginCookie_AMS_Admin["UserId"] != null)
+                            {
+                                ds = dl.Inline_Process("select * from AdminLogin_tbl where usertype='" + loginCookie_AMS_Admin["usertype"] + "'");
+                                <a href="#" class="dropdown-toggle avatar dropdownid" data-toggle="dropdown">
+
+                                    @if (ds.Tables[0].Rows.Count > 0)
+                                    {
+                                        <img src=@Url.Content("~/DataImages/Admin/" + ds.Tables[0].Rows[0]["Photo"]) alt="" class="image">
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/Content/AdminTheme/themes/supr/img/-text.png")" alt="" class="image">
+                                    }
+
+                                    <span class="txt">@ds.Tables[0].Rows[0]["usertype"].ToString()</span> <b class="caret"></b>
+                                </a>
+                            }
+                        }
+                        <ul class="dropdown-menu right dropdownclass">
+                            <li class="menu">
+                                <ul>
+                                    <li><a href="@Url.Action("EditProfile", "Admin", new { @id = @loginCookie_AMS_Admin["usertype"].ToString() })"><i class="s16 icomoon-icon-user-plus"></i>Edit profile</a></li>
+                                    <li><a href="@Url.Action("ChangePassword","Admin")"><i class="fa fa-unlock-alt"></i>ChangePassword</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li><a href="@Url.Action("Logout", "Admin")"><i class="s16 icomoon-icon-exit"></i><span class="txt">Logout</span></a></li>
+                    @*<li><a href="~/"><span class="txt">Change Password</span></a></li>
+                        <li><a id="toggle-right-sidebar" href="#"><i class="s16 icomoon-icon-indent-increase"></i></a></li>*@
+                </ul>
+            </div>
+            <!-- /.nav-collapse -->
+        </nav>
+        <!-- /navbar -->
+    </div>
+
+
+    <div id="wrapper">
+
+        <div id="sidebarbg" class="hidden-lg hidden-md hidden-sm hidden-xs"></div>
+
+        <div id="sidebar" class="page-sidebar hidden-lg hidden-md hidden-sm hidden-xs">
+            @Html.Partial("_sidebar")
+        </div>
+
+
+        <div id="content" class="page-content clearfix">
+            @RenderBody()
+
+        </div>
+
+        <div id="footer" class="clearfix sidebar-page ">
+
+            <p class="pull-left">Copyrights &copy; 2019<a href="#" class="color-blue strong" target="_blank"> AMS</a> All rights reserved.</p>
+            @*<p class="pull-right"><a href="#" class="mr5">Terms of use</a> | <a href="#" class="ml5 mr25">Privacy police</a></p>*@
+        </div>
+
+    </div>
+
+    <div id="back-to-top"><a href="#">Back to Top</a></div>
+
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/pace/pace.min.js")"></script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/code.jquery.com/jquery-2.1.1.min.js")"></script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/pages/tables-data.js")"></script>
+
+
+    @RenderSection("editor", required: false)
+
+    @* <@script>window.jquery || document.write('<script src="/content/themes/supr/js/libs/jquery-2.1.1.min.js">\x3c/script>')</script>*@
+    <script src="@Url.Content("~/content/AdminTheme/themes/supr/code.jquery.com/ui/1.10.4/jquery-ui.js")"></script>
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/libs/jquery-ui-1.10.4.min.js")" >\x3C/script>')</script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/code.jquery.com/jquery-migrate-1.2.1.min.js")"></script>
+
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/libs/jquery-migrate-1.2.1.min.js")" >\x3C/script>')</script>
+
+
+
+
+    <!-- Bootstrap plugins -->
+    @*    <script src="/Content/AdminTheme/themes/supr/js/bootstrap/bootstrap.js"></script>*@
+    <!-- Core plugins ( not remove ) -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/libs/modernizr.custom.js")"></script>
+    <!-- Handle responsive view functions -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/jRespond.min.js")"></script>
+    <!-- Custom scroll for sidebars,tables and etc. -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/slimscroll/jquery.slimscroll.min.js")"></script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js")"></script>
+    <!-- Remove click delay in touch -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/fastclick/fastclick.js")"></script>
+    <!-- Increase jquery animation speed -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/velocity/jquery.velocity.min.js")"></script>
+    <!-- Quick search plugin (fast search for many widgets) -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/core/quicksearch/jquery.quicksearch.js")"></script>
+    <!-- Bootbox fast bootstrap modals -->
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/ui/bootbox/bootbox.js")"></script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/pages/modals.js")"></script>
+    @* <script src="/Content/js/pages/modals.js"></script>*@
+
+
+    @*<script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/charts/sparklines/jquery.sparkline.js")"></script>*@
+    @*<script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/tables/datatables/jquery.dataTables.js")"></script>
+        <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/tables/datatables/dataTables.tableTools.js")"></script>
+        <script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/tables/datatables/dataTables.bootstrap.js")"></script>*@
+    @*<script src="@Url.Content("~/Content/AdminTheme/themes/supr/plugins/tables/datatables/dataTables.responsive.js")"></script>*@
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/jquery.supr.js")"></script>
+    <script src="@Url.Content("~/Content/AdminTheme/themes/supr/js/main.js")"></script>
+
+
+
+    @* <script src="@Url.Content("~/Content/datepicker/jquery.datetimepicker.js")"></script>*@
+    <script>
+        $('.dropdownid').click(function () {
+            $('.dropdownclass').toggle();
+            //if($('.dropdownclass').toggle)
+        })
+    </script>
+    @*<script>
+            //CKEDITOR.replace('editor');
+
+            $(".readonly").keydown(function (e) {
+                e.preventDefault();
+            });
+
+            //$('.start_end_time').datetimepicker({
+            //    datepicker: false,
+            //    format: ' H:i a',
+            //    formatTime: ' H:i a',
+            //    step: 5
+            //});
+
+        </script>*@
+
+    @RenderSection("featured", required: false)
+    <script src="@Url.Content("~/Content/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Content/ckeditor/config.js")"></script>
+    <script>
+        $(document).ready(function () {
+            $(".form-control")
+              .focusout(function () {
+                  if ($.trim($(this).val()).length == 0) {
+                      $(this).val('');
+                      // e.preventDefault();
+                  }
+              })
+              .blur(function () {
+                  if ($.trim($(this).val()).length == 0) {
+                      $(this).val('');
+                      // e.preventDefault();
+                  }
+              });
+        });
+    </script>
+
+    @*<script type="text/javascript">
+            var CurDate = Date();
+            $('.datetimepicker').datetimepicker({
+                //yearOffset:222,
+                scrollMonth: false,
+                scrollInput: false,
+                lang: 'en',
+                timepicker: false,
+                format: 'd M Y',
+                formatDate: 'Y/m/d',
+                //minDate: CurDate // yesterday is minimum date
+                //maxDate: CurDate//'+2016/01/02' // and tommorow is maximum date calendar
+            });
+
+            $(".readonly").keydown(function (e) {
+                e.preventDefault();
+            });
+
+            function isNumber(evt, element) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (
+                    (charCode != 46 || $(element).val().indexOf('.') != 0) &&      // “.” CHECK DOT, AND ONLY ONE.
+                    (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+
+        </script>*@
+</body>
+</html>

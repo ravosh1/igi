@@ -1,0 +1,98 @@
+﻿@{
+    
+    ViewBag.pagename = Request.RequestContext.RouteData.Values["controller"].ToString();
+    ViewBag.viewname = Request.RequestContext.RouteData.Values["action"].ToString();
+}
+
+<div class="">
+    <div class="sidebar-scrollarea">
+        <div class="sidenav">
+            <div class="sidebar-widget mb0">
+                <h6 class="title mb0">Navigation</h6>
+            </div>
+            <div class="mainnav">
+                <ul>
+                    <li>
+                        <a class="@TempData["active"]" href="@Url.Action("Dashboard", "Admin")">
+                            <i class="s16 icomoon-icon-screen-2"></i>
+                            <span class="txt">Dashboard</span>
+                        </a>
+                    </li>
+                  
+                  @*  <li class='@if (ViewBag.pagename == "cms")
+               {@Html.Raw("highlight-menu")}'>
+        <a class="@if (ViewBag.pagename == "cms")
+               {@Html.Raw("expand")}" href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="txt">CMS</span></a>
+        <ul class="sub @if (ViewBag.pagename == "cms")
+               {@Html.Raw("show")}">
+            <li>
+                <a class="@if (ViewBag.pagename == "cms" && ViewBag.viewname == "pages")
+               {@Html.Raw("active")}" href="@Url.Action("pages", "cms")"><i class="s16 icomoon-icon-arrow-right-3"></i><span class="txt">Pages</span></a>
+            </li>
+
+
+        </ul>
+    </li>
+    <li class='@if (ViewBag.pagename == "Admin" && ViewBag.viewname == "Subscriber")
+               {@Html.Raw("highlight-menu")}'>
+        <a class="@if (ViewBag.pagename == "Admin" && ViewBag.viewname == "Subscriber")
+               {@Html.Raw("expand")}" href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="txt">Subscriber</span></a>
+        <ul class="sub @if (ViewBag.pagename == "Admin" && ViewBag.viewname == "Subscriber")
+                {@Html.Raw("show")}">
+            <li>
+                <a class="@if ((ViewBag.pagename == "Admin") && (ViewBag.viewname == "Subscriber"))
+                {@Html.Raw("active")}" href="@Url.Action("Subscriber", "Admin")"><i class="s16 icomoon-icon-arrow-right-3"></i><span class="txt">List</span></a>
+            </li>
+        </ul>
+    </li>
+    <li class='@if (ViewBag.pagename == "Social")
+               {@Html.Raw("highlight-menu")}'>
+        <a class="@if (ViewBag.pagename == "Social")
+                                                        {@Html.Raw("expand")}" href="#">
+            <i class="fa fa-share-square-o" aria-hidden="true"></i><span class="txt">Social</span>
+        </a>
+        <ul class="sub @if (ViewBag.pagename == "Social")
+                       {@Html.Raw("show")}">
+            <li>
+                <a class="@if ((ViewBag.viewname == "Link"))
+                          {@Html.Raw("active")}" href="@Url.Action("Link", "Social")"><i class="s16 icomoon-icon-arrow-right-3"></i><span class="txt">Links</span></a>
+            </li>
+        </ul>
+    </li>*@
+                    <li class="hasSub">
+                  
+                        <a class="" href="#">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                            <span class="txt">List</span>
+                        </a>
+                        <ul class="sub" style="display:@TempData["show"]">
+                            <li>
+                                <a class="@TempData["Assignment"]" href="@Url.Action("Index", "Assignment")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Assignment</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+                            @*<li>
+                                <a class="@TempData["subject"]" href="@Url.Action("Subject", "Master")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Subject</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="@TempData["Level"]" href="@Url.Action("Addlevel", "Master")">
+                                    <i class="s16 icomoon-icon-arrow-right-3"></i>
+                                    <span class="txt">Level</span>
+                                    <span class="@TempData["indicator"]"></span>
+                                </a>
+                            </li>*@
+                        </ul>
+                      
+                    </li>
+                 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

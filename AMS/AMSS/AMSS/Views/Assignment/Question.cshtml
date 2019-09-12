@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="contentwrapper">
+    <div class="heading">
+        <h3>Add Questions</h3>
+        <div class="resBtnSearch">
+            <a href="#"><span class="s16 icomoon-icon-search-3"></span></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default " style="border: 1px solid #c4c4c4;">
+                <div class="panel-heading">
+                    <h4 class="panel-title">@if (ViewBag.Assignment != null)
+                    {
+                        @ViewBag.Assignment
+                    }
+                    else
+                    {
+                        
+                    }
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="col-lg-3 control-label" style="text-align: left;">Questions<span style="color: red;">*</span></label>
+                                <div class="col-lg-9">
+                                    <input type="text" name="assignmentname" class="form-control" placeholder="Enter Assignment Name" required />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-lg-4 control-label" style="text-align: left;">Full Marks <span style="color: red;">*</span></label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="assignmentname" class="form-control" placeholder="Enter Full Marks" required />
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success " >Submit</button>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+
