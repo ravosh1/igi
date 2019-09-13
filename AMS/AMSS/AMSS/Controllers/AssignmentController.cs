@@ -179,8 +179,8 @@ namespace AMSS.Controllers
                         ViewBag.TotalMark = dsStudentReport.Tables[0].Rows[0]["TotalMark"].ToString();
                         ViewBag.StudentMark = dsStudentReport.Tables[0].Rows[0]["StudentMark"].ToString();
                         ViewBag.TotalPenalty = dsStudentReport.Tables[0].Rows[0]["TotalPenalty"].ToString();
-                        ViewBag.StudentMarksPenalty = dsStudentReport.Tables[0].Rows[0]["TotalPenalty"].ToString();
-                        ViewBag.StudentMarksPer = dsStudentReport.Tables[0].Rows[0]["TotalPenalty"].ToString();
+                        ViewBag.StudentMarksPenalty = dsStudentReport.Tables[0].Rows[0]["StudentMarksPenalty"].ToString();
+                        ViewBag.StudentMarksPer = dsStudentReport.Tables[0].Rows[0]["StudentMarksPer"].ToString();
                         ViewBag.Status = dsStudentReport.Tables[0].Rows[0]["Status"].ToString();
 
                     }

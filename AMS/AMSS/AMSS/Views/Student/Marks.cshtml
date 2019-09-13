@@ -68,7 +68,7 @@
                               
                                     <div class="col-md-3">
                                         <button type="submit" id="btnsmt" class="btn btn-success mb-10 ml10" style="margin-top: 21px;">Get Question</button>
-                                        <a href="@Url.Action("Dashboard", "Portal")" class="btn btn-primary mr5 " style="margin-top: 21px;">Back</a>
+                                        <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-primary mr5 " style="margin-top: 21px;">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                            @for(int i = 0; i <= Convert.ToInt32(@dr["maxmark"]); i++)
                                            {
                                                //@i;
-                                               <input type="text" readonly style="width:50px;padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success" value="@i"/>
+                                               <input type="text" id="marksid_@dr["questionid"]_@i" readonly style="width:50px;padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success" onclick="obtainedmarks(@dr["questionid"],@i);" value="@i"/>
                                                @*<button style="padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success"><b>@i</b></button>*@
                                            }
 
@@ -155,3 +155,18 @@
 
 </div>
 
+<script>
+    function obtainedmarks(id, id1) {
+        if ($('#marksid_' + id + '_' + id1).hasClass('btn-success')) {
+
+            $('#marksid_' + id + '_' + id1).toggleClass('btn-warning');
+        //$('#marksid_' + id + '_' + id1).removeClass('btn-success').addClass('btn-warning').toggleClass('btn-success');
+        }
+        //else {
+        //    $('#marksid_' + id + '_' + id1).toggleClass('btn-warning');
+        //}
+        //else if ($('#marksid_' + id + '_' + id1).hasClass('btn-warning')) {
+        //    $('#marksid_' + id + '_' + id1).removeClass('btn-warning').addClass('btn-success');
+        //}
+    }
+</script>

@@ -8,7 +8,12 @@
     dt = (DataTable)ViewBag.StudentReport;
     int i = 1;
 }
-
+<style>
+    .table.table-bordered thead tr {
+     background: white; 
+    color: #333;
+}
+</style>
 <div class="contentwrapper">
     <div class="heading">
         <h3>Student Report</h3>
@@ -79,20 +84,20 @@
                 {
                    
                     <div class="col-md-12">
-                        <p>Hi @ViewBag.FullName</p>
+                        <p>Hi &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;font-size:14px;">@ViewBag.FullName</span></p>
                         <br />
                         <p> How are you </p>
                         <p> Great to assess your submission</p>                          
                                 <hr />
-                      <p>TIME MANAGEMENT- @ViewBag.assignmentname	</p>
+                      <p>TIME MANAGEMENT:- @ViewBag.assignmentname	</p>
                         <p>@ViewBag.assignmentname	By	@ViewBag.FullName</p>
-                        <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <table id="" class="table table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Question No</th>
                                     <th>Question</th>
-                                    <th>Marks/Out of</th>                                    
-
+                                    <th>Marks</th>                                    
+                                    <th>Out of</th> 
                             <tbody>
                                 @foreach (DataRow row in dt.Rows)
                                 {
@@ -106,10 +111,12 @@
                                         {
                                             <td>N/A</td>
                                         }
-                                        <td>
-                                            @if (!string.IsNullOrEmpty(row["MaxMark"].ToString()) && !string.IsNullOrEmpty(row["MarksObtain"].ToString()))
+                                       
+                                            @if (!string.IsNullOrEmpty(row["MaxMark"].ToString()))
                                             {
-                                                @row["MaxMark"].ToString()<span>/</span>@row["MarksObtain"].ToString()
+                                                <td>
+                                                    @row["MaxMark"].ToString()
+                                                </td>
                                             }
                                             else
                                             {
@@ -117,6 +124,18 @@
                                         </td >
                                             }
                                        
+                                        @if (!string.IsNullOrEmpty(row["MarksObtain"].ToString()))
+                                        {
+                                            <td>
+                                                @row["MarksObtain"].ToString()
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                N / A
+                                            </td>
+                                        }
                                     </tr>
                                    i++;
                                 }
@@ -128,19 +147,17 @@
 
 
 
-                        <p>Your Final Mark			@ViewBag.StudentMark	/	@ViewBag.TotalMark </p> 
+                        <p>Your Final Mark	:-		<b>@ViewBag.StudentMark	/	@ViewBag.TotalMark </b></p> 
                         <hr />
-                        <p>@ViewBag.assignmentname</p> 
-                        <p>Please enter values in green boxes only</p>
-                        <p>Total Mark of Assessment	@ViewBag.TotalMark</p>
-                        <p>Student's Mark	@ViewBag.StudentMark</p>
-                        <p>Number of Days Late (maximum 7)	@ViewBag.LateDays</p>
-                        <p>Total Penalty %	@ViewBag.TotalPenalty%</p>
-                        <p>RESULTS</p>
-                        <p>Student's Mark with Penalty	@ViewBag.StudentMarksPenalty</p>
-                        <p>Student's Mark as a Percentage	@ViewBag.StudentMarksPenalty%</p>
-                        <p>Student's Mark with Penalty	@ViewBag.StudentMarksPer</p>
-                        <p>Status	@ViewBag.Status</p>
+                        <p><b>@ViewBag.assignmentname</b></p> 
+                        <p>Total Mark of Assessment:-	@ViewBag.TotalMark</p>
+                        <p>Student's Mark:-	@ViewBag.StudentMark</p>
+                        <p>Number of Days Late (maximum 7):-	@ViewBag.LateDays</p>
+                        <p>Total Penalty %:-	@ViewBag.TotalPenalty%</p>
+                        <p><b>RESULTS:-</b></p>
+                        <p>Student's Mark with Penalty:-	@ViewBag.StudentMarksPenalty</p>
+                        <p>Student's Mark as a Percentage:-	@ViewBag.StudentMarksPer%</p>
+                        <p>Status:-	@ViewBag.Status</p>
                         <p>Regards</p>
                              <hr />
                         @ViewBag.User
