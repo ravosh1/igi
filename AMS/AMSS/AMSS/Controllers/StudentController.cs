@@ -100,6 +100,7 @@ namespace AMSS.Controllers
         {
             Property p = new Models.Property();
             // Add();
+
             if (id != "")
             {
                 p.studentid = id1;
@@ -107,8 +108,13 @@ namespace AMSS.Controllers
                 DataSet ds = dl.usp_getQuestion(p);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-
                     ViewBag.Question = ds;
+                }
+
+                DataSet ds1 = dl.usp_getStudentReport(p);
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+                    ViewBag.getquestionmarks = ds1;
                 }
             }
             assignmentlist();
@@ -124,25 +130,28 @@ namespace AMSS.Controllers
             if (p.assignmentID != null)
             {
                 Marks(p.assignmentID, p.studentid);
-               // p.studentid=
-              //  p.assignmentID = p.assignmentID;
-                DataSet ds = dl.usp_getQuestion(p);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-
-                    ViewBag.Question = ds;
-                }
-
             }
             else
             {
-                TempData["Questionerror"] = "Please Select  Assignment";
+                TempData["Questionerror"] = "Please Select Assignment";
             }
 
-
-
             return Redirect(Url.Action("marks", "student", new { Id = p.assignmentID,id1=p.studentid }));
-            //  return RedirectToAction("marks");
+        }
+
+        public JsonResult studentmarks(string id,string id1,string id2,string id3)
+        {
+            string studentmarksid = "0";
+            int i = dl.usp_setStudentMarks(studentmarksid,id,id1,id2,id3);
+            if (i > 0)
+            {
+                TempData["msg"]="Success";
+            }
+            else
+            {
+                TempData["msg"] = "Fail";
+            }
+            return Json(TempData["msg"],JsonRequestBehavior.AllowGet);
         }
     }
 }

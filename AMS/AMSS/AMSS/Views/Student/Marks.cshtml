@@ -10,8 +10,15 @@
     {
         dt = ds.Tables[0];
     }
+    DataSet ds1 = (DataSet)ViewBag.usp_getStudentReport;
+    DataTable dt1 = new DataTable();
+    if (ds1 != null && ds1.Tables[0].Rows.Count > 0)
+    {
+        dt1 = ds1.Tables[0];
+    }
     int ii = 1;
 }
+
 
 
 <div class="contentwrapper">
@@ -40,7 +47,7 @@
         <div class="col-md-12 sortable-layout">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Marks</h4>
+                    <h4 class="panel-title">Enter Marks</h4>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal group-border stripped" action="@Url.Action("Markss","Student")" method="post" enctype="multipart/form-data">
@@ -52,7 +59,7 @@
                                         <label class="col-md-12 control-label text-left">Student<span class="Red">*</span></label>
                                         <div class="col-md-12 ">
                                             @Html.DropDownListFor(model => model.studentid, ViewBag.Studentlist as SelectList, new { @class = "form-control", @required = "required" })
-                                       
+
                                         </div>
 
                                     </div>
@@ -64,18 +71,30 @@
                                         </div>
 
                                     </div>
-                               
-                              
                                     <div class="col-md-3">
-                                        <button type="submit" id="btnsmt" class="btn btn-success mb-10 ml10" style="margin-top: 21px;">Get Question</button>
-                                        <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-primary mr5 " style="margin-top: 21px;">Back</a>
+
+                                        <button type="submit" id="btnsmt" class="btn btn-primary mb-10 ml10" style="margin-top: 30px;">Get Question</button>
+                                        @* <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-primary mr5 " style="margin-top: 21px;">Back</a>*@
                                     </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-12 control-label text-left">No. of days late</label>
+                                        <div class="col-md-12 ">
+                                            @for (int i = 1; i <= 7; i++)
+                                            {
+                                                //@i;
+                                                <input type="text" readonly style="width:50px;padding: 0px 10px;margin:5px;font-size:24px;" class="btn btnnew btn-success" @*onclick="obtainedmarks(@dr["questionid"],@i);"*@ value="@i" />
+                                                @*<button style="padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success"><b>@i</b></button>*@
+                                            }
+                                            <input type="hidden" id="noofdays_@ii" class="btnalterr"  />
+                                            <p id="msgdays"></p>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
 
-
                         </div>
-
 
                     </form>
                 </div>
@@ -96,11 +115,9 @@
                         <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-
-                                    <th>Question Id</th>
-                                    <th>Question Name</th>
+                                    <th>Question No.</th>
+                                    <th>Question</th>
                                     <th>Full Marks</th>
-
                                     <th>Marks Obtained</th>
                                 </tr>
                             </thead>
@@ -110,29 +127,27 @@
                                 @foreach (System.Data.DataRow dr in dt.Rows)
                                 {
                                     <tr>
-
                                         <td>
                                             @ii
-
                                         </td>
+
                                         <td>
                                             @dr["Question"]
-
+                                            <input type="hidden" value="@dr["questionid"]" id="question_@ii"/>
                                         </td>
+
                                         <td>
                                             @dr["maxmark"]
-
                                         </td>
 
-
                                         <td>
-                                           @for(int i = 0; i <= Convert.ToInt32(@dr["maxmark"]); i++)
-                                           {
-                                               //@i;
-                                               <input type="text" id="marksid_@dr["questionid"]_@i" readonly style="width:50px;padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success" onclick="obtainedmarks(@dr["questionid"],@i);" value="@i"/>
-                                               @*<button style="padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn-success"><b>@i</b></button>*@
-                                           }
-
+                                            @for (int i = 0; i <= Convert.ToInt32(@dr["maxmark"]); i++)
+                                                {
+                                                    string aa = "marksid_"+@ii+"_"+@i;
+                                                    <input type="text" id=@aa readonly style="width:50px;padding: 0px 10px;margin:5px;font-size:24px;" class="btn btn1 btn_@ii btn-success" @*onclick="obtainedmarks(@dr["questionid"],@i);"*@ value="@i" />
+                                                }
+                                            <input type="text" id="marksid_@ii" class="btnalter" />
+                                            <p id="msg_@ii"></p>
                                         </td>
                                     </tr>
                                     ii++;
@@ -147,26 +162,133 @@
                             <h4 class="panel-title alert alert-info fade in" style="color: #F10404; text-align: center;">No result found.</h4>
                         </div>
                     }
+                    <div class="col-md-9">
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <button type="submit" id="btnallsmt" class="btn btn-warning mb-10 ml10" style="margin-top: 30px;">Submit</button>
+                        <button type="submit" id="btncnl" class="btn btn-danger mb-10 ml10" style="margin-top: 30px;">Cancel</button>
+                        @* <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-primary mr5 " style="margin-top: 21px;">Back</a>*@
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 
+  
 </div>
-
+<script src="/Scripts/jquery-1.10.2.js"></script>
 <script>
-    function obtainedmarks(id, id1) {
-        if ($('#marksid_' + id + '_' + id1).hasClass('btn-success')) {
+    $(document).ready(function () {
+        $('.btnnew').click(function () {
+            //alert($(this).attr('id').split('_')[1]);
+            // var id=$(this).attr('id').split('_')[1];
+            $('.btnnew').removeClass('btn-warning').addClass('btn-success');
+            $(this).removeClass('btn-success').addClass('btn-warning');
 
-            $('#marksid_' + id + '_' + id1).toggleClass('btn-warning');
-        //$('#marksid_' + id + '_' + id1).removeClass('btn-success').addClass('btn-warning').toggleClass('btn-success');
+            $('.btnalterr').val($(this).val());
+            if ($('.btnnew').val() != "") {
+                $('#msgdays').html('');
+            }
+        });
+
+    })
+    $(document).ready(function () {
+        $('.btn1').click(function () {
+            //alert($(this).attr('id').split('_')[1]);
+            var id = $(this).attr('id').split('_')[1];
+           // alert(id);
+            $('.btn_' + id).removeClass('btn-warning').addClass('btn-success');
+            $(this).removeClass('btn-success').addClass('btn-warning');
+
+            $('#marksid_' + id).val($(this).val());
+            if ($('#marksid_' + id).val() != "") {
+                $('#msg_' + id).html('');
+            }
+        });
+
+    })
+
+    $('#btnallsmt').click(function () {
+        var id = $('.btnalter').attr('id').split('_')[1];
+        
+        var j=1;
+       
+        
+        var concat="";
+        for (var i = 1; i <@ii; i++) {
+        
+            concat+=$('#question_' + i).val()+','+$('#marksid_' + i).val()+'|'
+
         }
-        //else {
-        //    $('#marksid_' + id + '_' + id1).toggleClass('btn-warning');
-        //}
-        //else if ($('#marksid_' + id + '_' + id1).hasClass('btn-warning')) {
-        //    $('#marksid_' + id + '_' + id1).removeClass('btn-warning').addClass('btn-success');
-        //}
-    }
+        concat=concat.substring(0, concat.length - 1);
+
+        var s=$('#studentid').val();
+        var a=$('#assignmentID').val();
+        var nod=$('.btnalterr').val();
+        var obj=0;
+        var chk=0;
+        var url='@Url.Action("studentmarks", "student")';
+        $('.btnalter').each(function (j, item) {
+            ++j;
+            if ($('#marksid_' + j).val() == "" || $('#marksid_' + j).val() == "-1") {
+                $('#msg_' + j).html('Please enter marks').css('color','red');
+                $('#marksid_' + j).val('-1');
+                obj=$('#marksid_' + j).val();
+            }
+            else{
+                chk=j;
+            }
+            if ($('.btnalterr').val() == "" || $('.btnalterr').val() == "-1") {
+                $('#msgdays').html('Please select no. of days left').css('color','red');
+                $('.btnalterr').val('-1');
+            }
+            //return false;
+        })
+     //   alert(obj);
+        if(obj!=-1){
+            $.getJSON(url,{id:s,id1:a,id2:nod,id3:concat},function(data){
+                if(data=="Success"){
+                    alert('Data Saved Successfully!!!');
+                    $('.btnalter').each(function (j, item) {
+                        ++j;
+                        $('#marksid_' + j).val('');
+                        $('.btnalterr').val('');
+                        $('.btn_' + j).removeClass('btn-warning').addClass('btn-success');
+                        $('.btnnew').removeClass('btn-warning').addClass('btn-success');
+                        //return false;
+                        $('#msg_' + j).html('');    
+                    })
+                }
+            })
+        }
+        else{
+            if(chk!=0){
+                alert('Please select the remaining marks from the list.');
+
+            }
+            else{
+
+            alert('Please select all the marks from the list.');
+            }
+        }
+     
+    })
+
+
+    $('#btncnl').click(function () {
+        $('.btnalter').each(function (j, item) {
+            ++j;
+            $('#marksid_' + j).val('');
+            $('.btnalterr').val('');
+            $('.btn_' + j).removeClass('btn-warning').addClass('btn-success');
+            $('.btnnew').removeClass('btn-warning').addClass('btn-success');
+            //return false;
+            $('#msg_' + j).html('');    
+        })
+    })
+    
+
 </script>

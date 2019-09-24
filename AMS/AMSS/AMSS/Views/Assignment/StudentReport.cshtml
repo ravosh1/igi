@@ -37,7 +37,7 @@
                     }
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" >
                 <div class="panel panel-default">
                     <form class="form-horizontal" method="post" >
 
@@ -72,7 +72,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title"></h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="myInput">
 
 
                 @if (dt == null)
@@ -88,16 +88,16 @@
                         <br />
                         <p> How are you </p>
                         <p> Great to assess your submission</p>                          
-                                <hr />
-                      <p>TIME MANAGEMENT:- @ViewBag.assignmentname	</p>
-                        <p>@ViewBag.assignmentname	By	@ViewBag.FullName</p>
+                        <div style="width:400px;float:left;"><hr /></div>
+                        <p style="clear:both">Time Management:- @ViewBag.assignmentname	</p>
+                        <p><b>@ViewBag.assignmentname</b>	By	<b>@ViewBag.FullName</b></p>
                         <table id="" class="table table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Question No</th>
                                     <th>Question</th>
-                                    <th>Marks</th>                                    
-                                    <th>Out of</th> 
+                                    <th>Marks/Out of</th>                                    
+                                  
                             <tbody>
                                 @foreach (DataRow row in dt.Rows)
                                 {
@@ -112,22 +112,10 @@
                                             <td>N/A</td>
                                         }
                                        
-                                            @if (!string.IsNullOrEmpty(row["MaxMark"].ToString()))
-                                            {
-                                                <td>
-                                                    @row["MaxMark"].ToString()
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                        <td> N / A
-                                        </td >
-                                            }
-                                       
-                                        @if (!string.IsNullOrEmpty(row["MarksObtain"].ToString()))
+                                        @if (!string.IsNullOrEmpty(row["MaxMark"].ToString()) && !string.IsNullOrEmpty(row["MarksObtain"].ToString()))
                                         {
                                             <td>
-                                                @row["MarksObtain"].ToString()
+                                                @row["MaxMark"].ToString()<span>/</span>@row["MarksObtain"].ToString()
                                             </td>
                                         }
                                         else
@@ -135,10 +123,11 @@
                                             <td>
                                                 N / A
                                             </td>
-                                        }
+                                        }    
                                     </tr>
                                    i++;
                                 }
+                               
                             </tbody>
 
                         </table>
@@ -148,13 +137,13 @@
 
 
                         <p>Your Final Mark	:-		<b>@ViewBag.StudentMark	/	@ViewBag.TotalMark </b></p> 
-                        <hr />
-                        <p><b>@ViewBag.assignmentname</b></p> 
+                        <div style="width:400px;float:left;"><hr /></div>
+                        <p style="clear:both"><b>@ViewBag.assignmentname:-</b></p>
                         <p>Total Mark of Assessment:-	@ViewBag.TotalMark</p>
                         <p>Student's Mark:-	@ViewBag.StudentMark</p>
                         <p>Number of Days Late (maximum 7):-	@ViewBag.LateDays</p>
                         <p>Total Penalty %:-	@ViewBag.TotalPenalty%</p>
-                        <p><b>RESULTS:-</b></p>
+                        <p><b>Results:-</b></p>
                         <p>Student's Mark with Penalty:-	@ViewBag.StudentMarksPenalty</p>
                         <p>Student's Mark as a Percentage:-	@ViewBag.StudentMarksPer%</p>
                         <p>Status:-	@ViewBag.Status</p>
@@ -163,6 +152,10 @@
                         @ViewBag.User
                         </div>
                  } 
+            </div><br />
+            <div class="col-md-12 text-right">
+                <a class="btn btn-success" onclick="WriteToFile()">Save Text File</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" onclick="myFunction()">Copy</a>
             </div>
         </div>
         <!-- End .panel -->
@@ -170,3 +163,113 @@
 
 </div>
 </div>
+<script>
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyTextToClipboard(copyText.innerText)
+
+    }
+    function fallbackCopyTextToClipboard(text) {
+        text.select();
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+    }
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function () {
+            alert('Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
+</script>
+
+    <script>
+        //function WriteToFile() {
+        //    const fs = require('fs')
+
+        //    let data = "Learning how to write in a file.";
+        //    fs.writeFile('D:/Output.txt', data, (err) => {
+        //        if (err) throw err;
+        //    });
+        //    Console.log("myInput :" + data);
+        //}
+</script> 
+<script>
+    //function WriteToFile() {
+    //    var data = "Learning how to write in a file.";
+    //  //  var fso = new ActiveXObject("Scripting.FileSystemObject"); //CreateObject("Scripting.FileSystemObject");
+       
+    //    var file = new File([data], "D:/filename1.txt", {
+    //    type: "text/plain",
+    //    });
+    //    var s = file.CreateTextFile("D:/filename1.txt", true);
+    //    //var myInput = document.getElementById('myInput'); 
+    //    s.writeText("myInput :" + myInput);       
+    //    //file.Close();
+    //}
+
+    function WriteToFile() {
+        var myInput = document.getElementById('myInput');
+        $.ajax({
+            url: '@Url.Action("SaveStudentReport", "Assignment")',
+            type: 'POST',
+            dataType: 'json',
+            data:
+            {
+                Text: myInput.innerText
+            },
+            beforeSend: function () {
+                $('#overlay').fadeIn(500);
+            },
+            success: function (data) {
+                alert('File Created successfull in D://studentreport.txt!');
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+</script>
+@*<script>
+    
+    function save_content_to_file(content, filename) {
+        var dlg = false;
+        with (document) {
+          var ir = createElement('iframe');
+            ir.id = 'ifr';
+            ir.location = 'about.blank';
+            ir.style.display = 'none';
+            body.appendChild(ir);
+            with (getElementById('ifr').contentWindow.document) {
+                open("text/plain", "replace");
+                charset = "utf-8";
+                write(content);
+                close();
+                document.charset = "utf-8";
+                dlg = execCommand('SaveAs', false, filename);
+            }
+            body.removeChild(ir);
+        }
+        alert(dlg);
+        return dlg;
+    }
+
+    function WriteToFile1() {
+       
+        var myInput = document.getElementById('myInput');
+        var successful = document.execCommand('SaveAs', false, filename);
+        alert(successful);
+        //save_content_to_file(myInput.innerText, 'D://studentreport2');
+    }
+</script>*@

@@ -304,6 +304,21 @@ namespace AMSS.Models
             }
         }
 
+        public int usp_setStudentMarks(string StudentMarksId, string StudentId, string AssignmentId, string LateDays, string Question_Marks)
+        {
+            try
+            {
+                string[] paraname = { "@StudentMarksId", "@StudentId", "@AssignmentId", "@LateDays", "@Question_Marks" };
+                string[] paravalue = { StudentMarksId,StudentId,AssignmentId,LateDays,Question_Marks };
+
+                return Int_Process("usp_setStudentMarks", paraname, paravalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public DataSet usp_getQuestion(Property p)
         {

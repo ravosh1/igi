@@ -277,5 +277,32 @@ namespace AMSS.Controllers
             ViewBag.Studentlist = new SelectList(Student, "Value", "Text");
 
         }
+
+       
+        [HttpPost]
+        public JsonResult SaveStudentReport(string Text)
+        {
+
+            if (Text != null || Text != "")
+            {
+                //using (StreamWriter sw = new StreamWriter("D:/yourWebPAge.txt"))
+                //{
+                //    sw.WriteLine(Text);
+                //}
+                string Filename = "studentreport.txt";//DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + "/" + DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + ".txt";
+                System.IO.File.WriteAllText("D:/" + Filename, Text);
+                return Json(new { Success = true });
+            }
+            else
+            {
+                return Json(new { Success = false });
+            }
+
+            // WebClient client = new WebClient();
+            // string downloadString = client.DownloadString(Text);
+            // System.IO.File.WriteAllText("D:/yourWebPAge.txt", downloadString);
+
+            // return RedirectToAction("SaveStudentReport", "Assignment",new { id = "1", id1 = "1" });
+        }
     }
 }

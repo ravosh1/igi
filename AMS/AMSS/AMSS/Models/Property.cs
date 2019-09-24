@@ -34,6 +34,7 @@ namespace AMSS.Models
         public string UserID { get; set; }
 
         public string assignmentID { get; set; }
+        public string latedays { get; set; }
         public string Question { get; set; }
         public string MaxMark { get; set; }
         public int QuestionId { get; set; }
