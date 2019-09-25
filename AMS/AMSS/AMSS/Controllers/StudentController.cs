@@ -114,6 +114,10 @@ namespace AMSS.Controllers
                 DataSet ds1 = dl.usp_getStudentReport(p);
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
+                    p.latedays = ds1.Tables[0].Rows[0]["latedays"].ToString();
+                }
+                if (ds1.Tables[1].Rows.Count > 0)
+                {
                     ViewBag.getquestionmarks = ds1;
                 }
             }
